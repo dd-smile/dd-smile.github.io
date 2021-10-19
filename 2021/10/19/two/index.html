@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="五子棋项目, 冬瓜冬瓜排骨汤">
+    <meta name="keywords" content="简单的注册界面, 冬瓜冬瓜排骨汤">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>五子棋项目 | 冬瓜冬瓜排骨汤</title>
+    <title>简单的注册界面 | 冬瓜冬瓜排骨汤</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -290,12 +290,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">五子棋项目</h1>
+                    <h1 class="description center-align post-title">简单的注册界面</h1>
                 </div>
             </div>
         </div>
@@ -411,8 +411,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Python/">
-                                <span class="chip bg-color">Python</span>
+                            <a href="/tags/Android/">
+                                <span class="chip bg-color">Android</span>
                             </a>
                         
                     </div>
@@ -427,7 +427,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-10-18
+                    2021-10-19
                 </div>
                 
 
@@ -448,69 +448,90 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="五子棋单机版"><a href="#五子棋单机版" class="headerlink" title="五子棋单机版"></a>五子棋单机版</h1><ol>
-<li><h3 id="游戏规则"><a href="#游戏规则" class="headerlink" title="游戏规则"></a>游戏规则</h3><p>棋盘大小:15*15</p>
-<p>空棋盘开局,黑棋先下,白棋后下,一次只能下一子.棋子下在交叉点上,棋子下在棋盘上之后,不能移动.</p>
-<p>当相同颜色的五颗棋子连在一起的时候,就认为胜负已分.连在一起的方法有4个:水平,垂直,左上右下,左下右上;如果整个棋盘都摆满棋子之后,仍旧不分胜负,则认为和局.</p>
-</li>
-<li><h3 id="编程遇到的问题"><a href="#编程遇到的问题" class="headerlink" title="编程遇到的问题"></a>编程遇到的问题</h3><ol>
-<li><h4 id="怎么样定义棋盘的坐标"><a href="#怎么样定义棋盘的坐标" class="headerlink" title="怎么样定义棋盘的坐标"></a>怎么样定义棋盘的坐标</h4><p>编程的时候数组或者列表的下标都是从0开始的,但是五子棋棋盘的坐标是从1开始的,如何解决两者之间的不协调?</p>
-<p>第一种方法:把每个二维数组或列表的索引值全部加1,比如说五子棋棋盘第4行第6列,则对应的坐标是arr[3] [5].</p>
-<p>第二种方法:直接忽略x=0和y=0这一行一列.分配内存时,直接分配16*16的内存空间做为棋盘即可.</p>
-<ul>
-<li>经过敲代码后发现,第一种方法需要来回切换,比较繁琐,代码量增加.因此采用第二种方法</li>
-</ul>
-</li>
-<li><h4 id="坐标系"><a href="#坐标系" class="headerlink" title="坐标系"></a>坐标系</h4><p>对于计算机来说,一般会把左上角作为坐标系原点.从左往右是水平方向y,从上往下是垂直方向x</p>
-<p>比如(4,6)表示第4行第6列,如下图:</p>
-<p><img src="https://img-blog.csdnimg.cn/e1142dabff20449ba48dc5248ecde8f6.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_20,color_FFFFFF,t_70,g_se,x_16" alt="images"></p>
-<p>对于五子棋棋盘来说,4个角落的坐标点分别为:</p>
-<ul>
-<li>左上角:(1,1)</li>
-<li>左下角:(15,1)</li>
-<li>右上角:(1,15)</li>
-<li>右下角:(15,15)</li>
-</ul>
-</li>
-<li><h4 id="胜负判断"><a href="#胜负判断" class="headerlink" title="胜负判断"></a>胜负判断</h4><p>相同颜色的五颗棋子连在一起,则胜负已分.有以下几种极端情况:</p>
-<ul>
-<li>从左到右:判断(x,y-4)~(x,y+4)这9个坐标中是否有连续5颗棋子连在一起</li>
-<li>从上到下:判断(x-4,y)~(x+4,y)这9个坐标中是否有连续5颗棋子连在一起</li>
-<li>左上右下:判断(x-4,y-4)~(x+4,y+4)这9个坐标中是否有连续5颗棋子连在一起</li>
-<li>左下右上:判断(x+4,y-4)~(x-4,y+4)这9个坐标中是否有连续5颗棋子连在一起</li>
-</ul>
-</li>
+                <hr>
+<h1 id="安卓开发"><a href="#安卓开发" class="headerlink" title="安卓开发"></a>安卓开发</h1><h4 id="实现一个仿QQ的注册界面"><a href="#实现一个仿QQ的注册界面" class="headerlink" title="实现一个仿QQ的注册界面"></a>实现一个仿QQ的注册界面</h4><ol>
+<li>相对布局RelativeLayout</li>
+<li>线性布局LinearLayout</li>
+<li>drawable中selector标签的使用(用来实现Button的点击效果)</li>
+<li>EditText的属性标签使用</li>
+<li>TextView的属性标签使用</li>
+<li>ImageView的属性标签的使用</li>
 </ol>
+<h3 id="1-设计分析"><a href="#1-设计分析" class="headerlink" title="1.设计分析"></a>1.设计分析</h3><ul>
+<li><p>控件分析</p>
+<table>
+<thead>
+<tr>
+<th align="center">看到的控件</th>
+<th align="center">业务功能</th>
+<th align="center">实际控件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">企鹅图标</td>
+<td align="center">无</td>
+<td align="center">ImageView</td>
+</tr>
+<tr>
+<td align="center">“QQ”文本</td>
+<td align="center">无</td>
+<td align="center">TextView</td>
+</tr>
+<tr>
+<td align="center">账号输入框</td>
+<td align="center">编辑输入账号(只能输入数字)</td>
+<td align="center">EditText</td>
+</tr>
+<tr>
+<td align="center">密码输入框</td>
+<td align="center">编辑输入密码(只能输入数字)</td>
+<td align="center">EditText</td>
+</tr>
+<tr>
+<td align="center">注册按钮</td>
+<td align="center">执行注册</td>
+<td align="center">Button</td>
+</tr>
+<tr>
+<td align="center">“阅读并同意”文本</td>
+<td align="center">无(颜色为白色)</td>
+<td align="center">TextView</td>
+</tr>
+<tr>
+<td align="center">“服务条款”</td>
+<td align="center">无(颜色为黑色)</td>
+<td align="center">TextView</td>
+</tr>
+</tbody></table>
 </li>
-<li><h3 id="建立模型"><a href="#建立模型" class="headerlink" title="建立模型"></a>建立模型</h3><p>使用面向对象的思维来建立模型</p>
-<p>棋子类</p>
-<ul>
-<li> 属性:颜色color,坐标pos   </li>
-<li>方法:setColor(),getColor(),setPos(),getPos()</li>
-</ul>
-<p>棋盘类</p>
-<ul>
-<li>属性:棋盘大小BOARD_SIZE,棋盘上的棋子board[] []</li>
-<li>方法:setChess(),getChess(),initBoard(),printBoard()</li>
-</ul>
-<p>规则类(引擎类)</p>
-<ul>
-<li>属性:棋盘对象 board</li>
-<li>方法:判断胜负isWon(),计算机下棋方法computerGo(),人工下棋userGo()</li>
-</ul>
+<li><p>布局分析</p>
+<p>使用相对布局大框架中嵌入线性布局</p>
+<p>示意图如下:相对布局为红色,线性布局为黑色</p>
+<p><img src="https://img-blog.csdnimg.cn/3f2456d0f14c418ba0e8684fbd662861.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_13,color_FFFFFF,t_70,g_se,x_16" alt="images"></p>
 </li>
-<li><h3 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h3><p>创建一个棋盘类</p>
-<p>chessboard.py</p>
-<figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#棋盘类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChessBoard</span>:</span></span><br><span class="line">    <span class="comment"># 棋盘大小</span></span><br><span class="line">    BOARD_SIZE = <span class="number">15</span></span><br><span class="line">    <span class="comment"># 初始化</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.board = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(ChessBoard.BOARD_SIZE+<span class="number">1</span>):</span><br><span class="line">            tmp = []</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(ChessBoard.BOARD_SIZE+<span class="number">1</span>):</span><br><span class="line">                tmp.append(<span class="number">0</span>)</span><br><span class="line">            self.board.append(tmp)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#清空棋盘</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">initBoard</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,ChessBoard.BOARD_SIZE+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,ChessBoard.BOARD_SIZE+<span class="number">1</span>):</span><br><span class="line">                self.board[i][j] = <span class="string">'+'</span>  <span class="comment"># 实现方法initBoard(),对棋盘进行初始化,把所有的空格都设置成'+'符号</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 打印棋盘</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">printBoard</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 打印列号</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">'  '</span>,end=<span class="string">' '</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,ChessBoard.BOARD_SIZE+<span class="number">1</span>):</span><br><span class="line">            ch = <span class="built_in">chr</span>(<span class="number">96</span>+i)</span><br><span class="line">            <span class="built_in">print</span>(ch,end=<span class="string">' '</span>)</span><br><span class="line">        <span class="built_in">print</span>()</span><br><span class="line">        <span class="comment"># 打印行号和棋盘</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,ChessBoard.BOARD_SIZE+<span class="number">1</span>):</span><br><span class="line">            <span class="comment"># 打印行号</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">'%2d'</span> % i,end=<span class="string">' '</span>)</span><br><span class="line">            <span class="comment"># 打印棋盘</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,ChessBoard.BOARD_SIZE+<span class="number">1</span>):</span><br><span class="line">                <span class="built_in">print</span>(self.board[i][j],end=<span class="string">' '</span>)</span><br><span class="line">            <span class="built_in">print</span>()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 放置棋子</span></span><br><span class="line">    <span class="comment"># 参数1 pos位置坐标 类型是长度为2的列表或元组</span></span><br><span class="line">    <span class="comment"># 参数2 color棋子颜色</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setChess</span>(<span class="params">self,pos,color</span>):</span></span><br><span class="line">        x = pos[<span class="number">0</span>]</span><br><span class="line">        y = pos[<span class="number">1</span>]</span><br><span class="line">        self.board[x][y] = color</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 放置棋子</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setChessMan</span>(<span class="params">self,chessMan</span>):</span></span><br><span class="line">            pos = chessMan.getPos()</span><br><span class="line">            color = chessMan.getColor()</span><br><span class="line">            self.setChess(pos,color)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 根据位置读取棋子的颜色</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getChess</span>(<span class="params">self,pos</span>):</span></span><br><span class="line">        x,y = pos</span><br><span class="line">        <span class="keyword">return</span> self.board[x][y]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 判断某个坐标点是否为空</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isEmpty</span>(<span class="params">self,pos</span>):</span></span><br><span class="line">        chess = self.getChess(pos)</span><br><span class="line">        <span class="keyword">if</span> chess == <span class="string">'+'</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="comment">#非空即黑或白</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-
-<p>创建一个棋子类</p>
-<p>chessman.py</p>
-<figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#棋子类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChessMan</span>:</span></span><br><span class="line">    <span class="comment"># 初始化</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.color = <span class="string">'x'</span></span><br><span class="line">        self.pos = (<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">    <span class="comment"># 设置颜色</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setColor</span>(<span class="params">self,color</span>):</span></span><br><span class="line">        self.color = color</span><br><span class="line">    <span class="comment"># 获取颜色</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getColor</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.color</span><br><span class="line">    <span class="comment"># 设置位置</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setPos</span>(<span class="params">self,pos</span>):</span></span><br><span class="line">        self.pos = pos</span><br><span class="line">    <span class="comment"># 获取位置</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getPos</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.pos</span><br></pre></td></tr></tbody></table></figure>
-
-<p>测试代码</p>
-<p>main.py</p>
-<figure class="highlight py"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># from 文件名 import 类名</span></span><br><span class="line"><span class="keyword">from</span> chessboard <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> chessman <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试打印棋盘</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test1</span>():</span></span><br><span class="line">    board = ChessBoard()</span><br><span class="line">    board.initBoard()</span><br><span class="line">    board.printBoard()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#测试摆放棋子</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test2</span>():</span></span><br><span class="line">    board = ChessBoard()</span><br><span class="line">    board.initBoard()</span><br><span class="line">    <span class="comment">#测试setChess()摆放棋子</span></span><br><span class="line">    board.setChess((<span class="number">3</span>,<span class="number">5</span>),<span class="string">'x'</span>)</span><br><span class="line">    <span class="comment">#测试setChessMan()摆放棋子</span></span><br><span class="line">    chessMan = ChessMan()</span><br><span class="line">    chessMan.setColor(<span class="string">'o'</span>)</span><br><span class="line">    chessMan.setPos((<span class="number">4</span>,<span class="number">6</span>))</span><br><span class="line">    board.setChessMan(chessMan)</span><br><span class="line">    board.printBoard()</span><br><span class="line">    ret = board.isEmpty((<span class="number">3</span>,<span class="number">6</span>))</span><br><span class="line">    <span class="built_in">print</span>(ret)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:  <span class="comment"># 相当于一个入口,当其他模块被调用的时候,先运行此模块</span></span><br><span class="line">    test2()</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<h3 id="2-编程中出现的问题"><a href="#2-编程中出现的问题" class="headerlink" title="2.编程中出现的问题"></a>2.编程中出现的问题</h3><ul>
+<li>Button的点击效果颜色没有反应</li>
+</ul>
+<p>提示不兼容.(应该是版本问题)</p>
+<p>解决办法如下:改为红色圈圈中的Bridge即可</p>
+<p><img src="https://img-blog.csdnimg.cn/376d474cdff0460ba85526db74597c39.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
+<h3 id="3-Button的点击效果实现"><a href="#3-Button的点击效果实现" class="headerlink" title="3.Button的点击效果实现"></a>3.Button的点击效果实现</h3><ol>
+<li><p>在drawable下面创建一个xml文件:bt_bg.xml</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span>?&gt;</span><br><span class="line">&lt;selector xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span> &gt;</span><br><span class="line">    &lt;!--按下时的图形 --&gt;</span><br><span class="line">    &lt;item android:state_pressed=<span class="string">"true"</span>   android:drawable=<span class="string">"@drawable/bg2"</span>&gt;&lt;/item&gt;</span><br><span class="line">    &lt;!-- 松开时的图形 --&gt;</span><br><span class="line">    &lt;item android:state_pressed=<span class="string">"false"</span>   android:drawable=<span class="string">"@drawable/bg1"</span>/&gt;</span><br><span class="line"></span><br><span class="line">&lt;/selector&gt;</span><br></pre></td></tr></tbody></table></figure></li>
+<li><p>在activity_main.xml文件中去实现</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;Button</span><br><span class="line">    ....</span><br><span class="line">    android:background=<span class="string">"@drawable/bt_bg"</span></span><br><span class="line">    ....</span><br></pre></td></tr></tbody></table></figure></li>
+<li><p>在颜色点击效果的基础上实现Button的圆角效果</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">#在drawable下面创建一个xml文件:bt_bg3.xml</span><br><span class="line">    &lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span>?&gt;</span><br><span class="line">&lt;selector xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span><br><span class="line">    &lt;item android:state_pressed=<span class="string">"true"</span>&gt;</span><br><span class="line">        &lt;!-- 定义当button 处于pressed 状态时的形态。--&gt;</span><br><span class="line">        &lt;shape&gt;</span><br><span class="line">            &lt;solid android:color=<span class="string">"#FF00FF"</span> /&gt;</span><br><span class="line">            &lt;!-- 设置按钮的四个角为弧形 --&gt;</span><br><span class="line">            &lt;!-- android:radius 弧形的半径 --&gt;</span><br><span class="line">            &lt;corners android:radius=<span class="string">"20dip"</span> /&gt;</span><br><span class="line">            &lt;!-- padding：Button里面的文字与Button边界的间隔 --&gt;</span><br><span class="line">            &lt;padding android:bottom=<span class="string">"10dp"</span> android:left=<span class="string">"10dp"</span> android:right=<span class="string">"10dp"</span> android:top=<span class="string">"10dp"</span> /&gt;</span><br><span class="line">        &lt;/shape&gt;</span><br><span class="line">    &lt;/item&gt;</span><br><span class="line">    &lt;item&gt;</span><br><span class="line">        &lt;!-- 定义button默认时的形态--&gt;</span><br><span class="line">        &lt;shape&gt;</span><br><span class="line">            &lt;solid android:color=<span class="string">"#000000"</span> /&gt;</span><br><span class="line">            &lt;!-- 设置按钮的四个角为弧形 --&gt;</span><br><span class="line">            &lt;!-- android:radius 弧形的半径 --&gt;</span><br><span class="line">            &lt;corners android:radius=<span class="string">"20dip"</span> /&gt;</span><br><span class="line">            &lt;!-- padding：Button里面的文字与Button边界的间隔 --&gt;</span><br><span class="line">            &lt;padding android:bottom=<span class="string">"10dp"</span> android:left=<span class="string">"10dp"</span> android:right=<span class="string">"10dp"</span> android:top=<span class="string">"10dp"</span> /&gt;</span><br><span class="line">        &lt;/shape&gt;</span><br><span class="line">    &lt;/item&gt;</span><br><span class="line">&lt;/selector&gt;</span><br><span class="line">#xml文件中应用</span><br><span class="line">                    android:background=<span class="string">"@drawable/bt_bg3"</span></span><br></pre></td></tr></tbody></table></figure></li>
 </ol>
+<h3 id="activity-main-xml源码如下"><a href="#activity-main-xml源码如下" class="headerlink" title="activity_main.xml源码如下"></a>activity_main.xml源码如下</h3><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span>?&gt;</span><br><span class="line">&lt;RelativeLayout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    xmlns:app=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span><br><span class="line">    xmlns:tools=<span class="string">"http://schemas.android.com/tools"</span></span><br><span class="line">    android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">    android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">    tools:context=<span class="string">".MainActivity"</span></span><br><span class="line">    android:background=<span class="string">"@drawable/fengmian"</span>&gt;   #APP界面的背景图</span><br><span class="line"></span><br><span class="line">    &lt;LinearLayout</span><br><span class="line">        android:id=<span class="string">"@+id/tubiao"</span> </span><br><span class="line">        android:layout_width=<span class="string">"wrap_content"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:orientation=<span class="string">"horizontal"</span></span><br><span class="line">        android:layout_marginStart=<span class="string">"25dp"</span></span><br><span class="line">        android:layout_marginTop=<span class="string">"80dp"</span></span><br><span class="line">        android:layout_marginLeft=<span class="string">"25dp"</span>&gt;</span><br><span class="line"></span><br><span class="line">        &lt;ImageView  #左上角QQ图标</span><br><span class="line">            android:layout_width=<span class="string">"wrap_content"</span></span><br><span class="line">            android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">            android:src=<span class="string">"@drawable/tubiao"</span>/&gt;</span><br><span class="line"></span><br><span class="line">        &lt;TextView</span><br><span class="line">            android:layout_width=<span class="string">"wrap_content"</span></span><br><span class="line">            android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">            android:text=<span class="string">"QQ"</span></span><br><span class="line">            android:textSize=<span class="string">"36sp"</span>/&gt;</span><br><span class="line">    &lt;/LinearLayout&gt;</span><br><span class="line"></span><br><span class="line">    &lt;LinearLayout</span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:layout_marginTop=<span class="string">"43dp"</span></span><br><span class="line">        android:layout_below=<span class="string">"@+id/tubiao"</span></span><br><span class="line">        android:orientation=<span class="string">"vertical"</span>&gt;</span><br><span class="line">        &lt;RelativeLayout</span><br><span class="line">            android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">            android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">            android:orientation=<span class="string">"horizontal"</span>&gt;</span><br><span class="line">            &lt;ImageView</span><br><span class="line">                android:id=<span class="string">"@+id/mobile"</span></span><br><span class="line">                android:layout_width=<span class="string">"20dp"</span></span><br><span class="line">                android:layout_height=<span class="string">"50dp"</span></span><br><span class="line">                android:src=<span class="string">"@drawable/ipone"</span>&gt;    #输入账号的手机图标</span><br><span class="line">            &lt;/ImageView&gt;</span><br><span class="line"></span><br><span class="line">            &lt;EditText</span><br><span class="line">                android:layout_toRightOf=<span class="string">"@+id/mobile"</span></span><br><span class="line">                android:layout_width=<span class="string">"wrap_content"</span></span><br><span class="line">                android:layout_height=<span class="string">"50dp"</span></span><br><span class="line">                android:hint=<span class="string">"@string/input_mobile"</span></span><br><span class="line">                android:inputType=<span class="string">"number"</span>&gt;</span><br><span class="line">            &lt;/EditText&gt;</span><br><span class="line"></span><br><span class="line">        &lt;/RelativeLayout&gt;</span><br><span class="line"></span><br><span class="line">        &lt;RelativeLayout</span><br><span class="line">            android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">            android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">            android:orientation=<span class="string">"horizontal"</span>&gt;</span><br><span class="line">            &lt;ImageView</span><br><span class="line">                android:id=<span class="string">"@+id/mima"</span></span><br><span class="line">                android:layout_width=<span class="string">"20dp"</span></span><br><span class="line">                android:layout_height=<span class="string">"50dp"</span></span><br><span class="line">                android:src=<span class="string">"@drawable/mima"</span>&gt;    #输入密码的密码矢量图</span><br><span class="line">            &lt;/ImageView&gt;</span><br><span class="line"></span><br><span class="line">            &lt;EditText</span><br><span class="line">                android:layout_toRightOf=<span class="string">"@+id/mima"</span></span><br><span class="line">                android:layout_width=<span class="string">"wrap_content"</span></span><br><span class="line">                android:layout_height=<span class="string">"50dp"</span></span><br><span class="line">                android:hint=<span class="string">"@string/input_password"</span></span><br><span class="line">                android:inputType=<span class="string">"number"</span>&gt;</span><br><span class="line">            &lt;/EditText&gt;</span><br><span class="line"></span><br><span class="line">        &lt;/RelativeLayout&gt;</span><br><span class="line"></span><br><span class="line">        &lt;Button</span><br><span class="line">            android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">            android:layout_height=<span class="string">"38dp"</span></span><br><span class="line">            android:layout_marginTop=<span class="string">"22dp"</span></span><br><span class="line">            android:text=<span class="string">"@string/login"</span></span><br><span class="line">            android:textSize=<span class="string">"20sp"</span></span><br><span class="line">            android:background=<span class="string">"@drawable/bty_ys"</span>&gt;   实现Button的点击效果</span><br><span class="line"></span><br><span class="line">        &lt;/Button&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/LinearLayout&gt;</span><br><span class="line"></span><br><span class="line">    &lt;LinearLayout</span><br><span class="line">        android:layout_width=<span class="string">"wrap_content"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:orientation=<span class="string">"horizontal"</span></span><br><span class="line">        android:layout_centerHorizontal=<span class="string">"true"</span></span><br><span class="line">        android:layout_alignParentBottom=<span class="string">"true"</span></span><br><span class="line">        android:layout_marginBottom=<span class="string">"42dp"</span>&gt;</span><br><span class="line">        &lt;TextView</span><br><span class="line">            android:layout_width=<span class="string">"wrap_content"</span></span><br><span class="line">            android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">            android:text=<span class="string">"@string/login_message"</span></span><br><span class="line">            android:textColor=<span class="string">"@android:color/white"</span>/&gt;</span><br><span class="line">        &lt;TextView</span><br><span class="line">            android:layout_width=<span class="string">"wrap_content"</span></span><br><span class="line">            android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">            android:text=<span class="string">"@string/service"</span>/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/LinearLayout&gt;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">&lt;/RelativeLayout&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="strings-xml源码"><a href="#strings-xml源码" class="headerlink" title="strings.xml源码"></a>strings.xml源码</h3><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;resources&gt;</span><br><span class="line">    &lt;string name=<span class="string">"app_name"</span>&gt;qq&lt;/string&gt;</span><br><span class="line">    &lt;string name=<span class="string">"input_mobile"</span>&gt;输入手机号&lt;/string&gt;</span><br><span class="line">    &lt;string name=<span class="string">"input_password"</span>&gt;输入密码&lt;/string&gt;</span><br><span class="line">    &lt;string name=<span class="string">"login"</span>&gt;注册&lt;/string&gt;</span><br><span class="line">    &lt;string name=<span class="string">"login_message"</span>&gt;阅读并同意&lt;/string&gt;</span><br><span class="line">    &lt;string name=<span class="string">"service"</span>&gt;服务条款&lt;/string&gt;</span><br><span class="line">&lt;/resources&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+
+
 
                 
             </div>
@@ -537,7 +558,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://dd-smile.github.io/2021/10/18/first/">http://dd-smile.github.io/2021/10/18/first/</a>
+                    <a href="http://dd-smile.github.io/2021/10/19/two/">http://dd-smile.github.io/2021/10/19/two/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -575,8 +596,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Python/">
-                                    <span class="chip bg-color">Python</span>
+                                <a href="/tags/Android/">
+                                    <span class="chip bg-color">Android</span>
                                 </a>
                             
                         </div>
@@ -620,9 +641,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/10/19/two/">
                     <div class="card-image">
@@ -640,9 +662,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-19
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-19
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -651,6 +673,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -666,7 +689,7 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
                 <a href="/2021/10/18/first/">
@@ -696,7 +719,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
