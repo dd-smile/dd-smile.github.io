@@ -899,7 +899,7 @@ ti<span class="token punctuation">.</span><span class="token function">f1</span>
 </li>
 <li><p>访问成员方法的语法 : this.方法名(参数列表)</p>
 </li>
-<li><p>访问构造器语法 : this(参数列表)    <strong>只能在构造器中使用(即只能在构造器中访问另外一个构造器)</strong>   如果有访问构造器语法 : this(参数列表); <em><strong>必须放在第一条语句</strong></em></p>
+<li><p>访问构造器语法 : this(参数列表)    <strong>只能在构造器中使用(即只能在构造器中访问本类另外一个构造器)</strong>   如果有访问构造器语法 : this(参数列表); <em><strong>必须放在第一条语句</strong></em></p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">T</span><span class="token punctuation">{</span>
     <span class="token keyword">public</span> <span class="token function">T</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">//这里去访问 T(String name, int age) 构造器</span>
