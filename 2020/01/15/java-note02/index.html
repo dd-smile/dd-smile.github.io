@@ -448,7 +448,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Java笔记二"><a href="#Java笔记二" class="headerlink" title="Java笔记二"></a>Java笔记二</h1><h3 id="第四章-程序流程控制"><a href="#第四章-程序流程控制" class="headerlink" title="第四章 程序流程控制"></a>第四章 程序流程控制</h3><h5 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h5><ol>
+                <h1 id="Java笔记二"><a href="#Java笔记二" class="headerlink" title="Java笔记二"></a>Java笔记二</h1><h2 id="第四章-程序流程控制"><a href="#第四章-程序流程控制" class="headerlink" title="第四章 程序流程控制"></a>第四章 程序流程控制</h2><h3 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h3><ol>
 <li>switch 关键字, 表示switch分支</li>
 <li>表达式 对应一个值</li>
 <li>case 常量1: 当表达式的值等于常量1, 就执行 语句块1</li>
@@ -456,7 +456,7 @@
 <li>如果和case 常量1匹配, 就执行语句块1, 如果没有匹配, 就继续匹配case 常量2</li>
 <li>如果一个都没有匹配上, 执行default</li>
 </ol>
-<h5 id="switch细节"><a href="#switch细节" class="headerlink" title="switch细节"></a>switch细节</h5><ol>
+<h3 id="switch细节"><a href="#switch细节" class="headerlink" title="switch细节"></a>switch细节</h3><ol>
 <li><p>表达式数据类型, 应和case后的常量类型一致, 或者是可以自动转成可以相互比较的类型, 比如输入的是字符, 而常量是int</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">char</span> c <span class="token operator">=</span> <span class="token string">'a'</span><span class="token punctuation">;</span>
 <span class="token keyword">switch</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -479,19 +479,19 @@
 <li><p>break语句是用来在执行完一个case分支后使程序跳出switch语句块, 如果没有写break, 会出现<strong>穿透现象</strong>(程序会顺序执行到switch结尾)</p>
 </li>
 </ol>
-<h5 id="return"><a href="#return" class="headerlink" title="return"></a>return</h5><p>当return用在方法时, 表示跳出方法, 如果使用在main, 表示退出程序</p>
+<h3 id="return"><a href="#return" class="headerlink" title="return"></a>return</h3><p>当return用在方法时, 表示跳出方法, 如果使用在main, 表示退出程序</p>
 <p>谁调用(接收), 就返回给谁</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">int</span> returnRes <span class="token operator">=</span> p1<span class="token punctuation">.</span><span class="token function">getSum</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">//把方法 getSum 返回的值 ,赋给 变量 returnRes</span>
 </code></pre>
-<h3 id="第五章-数组-排序"><a href="#第五章-数组-排序" class="headerlink" title="第五章 数组\排序"></a>第五章 数组\排序</h3><h5 id="静态初始化"><a href="#静态初始化" class="headerlink" title="静态初始化"></a>静态初始化</h5><p>数据类型[] 数组名 = {元素值, 元素值, …}</p>
+<h2 id="第五章-数组-排序"><a href="#第五章-数组-排序" class="headerlink" title="第五章 数组\排序"></a>第五章 数组\排序</h2><h3 id="静态初始化"><a href="#静态初始化" class="headerlink" title="静态初始化"></a>静态初始化</h3><p>数据类型[] 数组名 = {元素值, 元素值, …}</p>
 <p><code>int[] a = {1,2,3,4...};</code> </p>
-<h5 id="动态初始化"><a href="#动态初始化" class="headerlink" title="动态初始化"></a>动态初始化</h5><p>数据类型[] 数组名 = new 数据类型[大小]</p>
+<h3 id="动态初始化"><a href="#动态初始化" class="headerlink" title="动态初始化"></a>动态初始化</h3><p>数据类型[] 数组名 = new 数据类型[大小]</p>
 <p><code>int[] a = new int[3];</code></p>
 <hr>
 <p><code>double[] a;</code>先声明数组</p>
 <p><code>a = new double[5];</code>再分配内存空间</p>
-<h5 id="数组细节"><a href="#数组细节" class="headerlink" title="数组细节"></a>数组细节</h5><ol>
+<h3 id="数组细节"><a href="#数组细节" class="headerlink" title="数组细节"></a>数组细节</h3><ol>
 <li><p>数组是多个相同类型数据的组合, 实现对这些数据的统一管理.</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr1 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">60</span><span class="token punctuation">,</span><span class="token number">1.1</span><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//double -> int 错误  需要满足自动转换</span>
 </code></pre>
@@ -507,7 +507,7 @@
 <li><p>数组属于引用类型, 数组型数据是对象</p>
 </li>
 </ol>
-<h5 id="数组赋值机制"><a href="#数组赋值机制" class="headerlink" title="数组赋值机制"></a>数组赋值机制</h5><ol>
+<h3 id="数组赋值机制"><a href="#数组赋值机制" class="headerlink" title="数组赋值机制"></a>数组赋值机制</h3><ol>
 <li><p>基本数据类型赋值, 赋值方式为值拷贝(值传递), 不会相互影响.</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//n2的变化, 不会影响到n1的值</span>
 <span class="token keyword">int</span> n1 <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
@@ -527,13 +527,12 @@ arr2<span class="token punctuation">[</span><span class="token number">0</span><
 </code></pre>
 </li>
 </ol>
-<p><strong><u>值传递(值拷贝) 和 引用传递(地址拷贝)的区别</u></strong></p>
-<p><img src="https://img-blog.csdnimg.cn/50310e663fa54f9c865451b2d132cdaf.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+<h3 id="值传递-值拷贝-和-引用传递-地址拷贝-的区别"><a href="#值传递-值拷贝-和-引用传递-地址拷贝-的区别" class="headerlink" title="值传递(值拷贝) 和 引用传递(地址拷贝)的区别"></a><strong><u>值传递(值拷贝) 和 引用传递(地址拷贝)的区别</u></strong></h3><p><img src="https://img-blog.csdnimg.cn/50310e663fa54f9c865451b2d132cdaf.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
 <p>在内存里面只要分配了一个数据空间, 一定会对应一个地址.</p>
 <p><img src="https://img-blog.csdnimg.cn/65cec621a9144fcca7e184b8b854ddc5.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
 <p>⬇</p>
 <p><img src="https://img-blog.csdnimg.cn/40586b7e294f41ae8ec65f51d7b431d3.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<h5 id="数组拷贝-内容复制"><a href="#数组拷贝-内容复制" class="headerlink" title="数组拷贝(内容复制)"></a>数组拷贝(内容复制)</h5><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//将 int[] arr1 = {10,20,30}; 拷贝到 arr2数组, 要求数据空间是独立的.</span>
+<h3 id="数组拷贝-内容复制"><a href="#数组拷贝-内容复制" class="headerlink" title="数组拷贝(内容复制)"></a>数组拷贝(内容复制)</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//将 int[] arr1 = {10,20,30}; 拷贝到 arr2数组, 要求数据空间是独立的.</span>
 <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr1 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token number">20</span><span class="token punctuation">,</span><span class="token number">30</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">//创建一个新的数组arr2, 开辟新的空间, 大小和arr1一样</span>
 <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">int</span><span class="token punctuation">[</span>arr<span class="token punctuation">.</span>length<span class="token punctuation">]</span><span class="token punctuation">;</span>
@@ -543,7 +542,7 @@ arr2<span class="token punctuation">[</span><span class="token number">0</span><
     arr2<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> arr1<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h5 id="数组反转"><a href="#数组反转" class="headerlink" title="数组反转"></a>数组反转</h5><pre class=" language-java"><code class="language-java"><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">11</span><span class="token punctuation">,</span><span class="token number">22</span><span class="token punctuation">,</span><span class="token number">33</span><span class="token punctuation">,</span><span class="token number">44</span><span class="token punctuation">,</span><span class="token number">55</span><span class="token punctuation">,</span><span class="token number">66</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<h3 id="数组反转"><a href="#数组反转" class="headerlink" title="数组反转"></a>数组反转</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">11</span><span class="token punctuation">,</span><span class="token number">22</span><span class="token punctuation">,</span><span class="token number">33</span><span class="token punctuation">,</span><span class="token number">44</span><span class="token punctuation">,</span><span class="token number">55</span><span class="token punctuation">,</span><span class="token number">66</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">//方式一:</span>
 <span class="token comment" spellcheck="true">//1.把arr[0] 和 arr[5] 进行交换</span>
 <span class="token comment" spellcheck="true">//2.把arr[1] 和 arr[4] 进行交换</span>
@@ -564,8 +563,8 @@ arr2<span class="token punctuation">[</span><span class="token number">0</span><
 <span class="token comment" spellcheck="true">//3.将arr 指向 arr2</span>
 <span class="token comment" spellcheck="true">//注意 : 让 arr 指向 arr2数据空间, 此时 arr原来的数据空间就没有变量引用, 会被当成垃圾, 销毁</span>
 </code></pre>
-<h5 id="数组扩容"><a href="#数组扩容" class="headerlink" title="数组扩容"></a>数组扩容</h5><p>数组不能扩容, 必须新定义一个新的数组, 把原先的数组内容遍历给新的数组中, 再赋新的元素.</p>
-<h5 id="冒泡排序-从小到大"><a href="#冒泡排序-从小到大" class="headerlink" title="冒泡排序(从小到大)"></a>冒泡排序(从小到大)</h5><ol>
+<h3 id="数组扩容"><a href="#数组扩容" class="headerlink" title="数组扩容"></a>数组扩容</h3><p>数组不能扩容, 必须新定义一个新的数组, 把原先的数组内容遍历给新的数组中, 再赋新的元素.</p>
+<h3 id="冒泡排序-从小到大"><a href="#冒泡排序-从小到大" class="headerlink" title="冒泡排序(从小到大)"></a>冒泡排序(从小到大)</h3><ol>
 <li>每一轮排序可以确定一个数的位置, 比如第一轮排序确定最大数, 第二轮排序确定第二大的数的位置, 以此类推</li>
 <li>当进行比较时, 如果前面的数大于后面的数, 就交换</li>
 <li>每轮比较在减少 例如: 4-&gt;3-&gt;2-&gt;1</li>
@@ -641,7 +640,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h5 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h5><p><code>int[] [] arr = {{0,0,0},{1,1,1},{2,2,2}};</code></p>
+<h3 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h3><p><code>int[] [] arr = {{0,0,0},{1,1,1},{2,2,2}};</code></p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//二维数组的每个元素是一维数组,所以要得到每个一维数组的值,还需要再次遍历</span>
 <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> arr<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//遍历二维数组的每个元素</span>
     <span class="token comment" spellcheck="true">//1.arr[i] 表示 二维数组的i+1个元素  比如arr[0] : 二维数组的第一个元素</span>
@@ -654,7 +653,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 </code></pre>
 <p><code>int[] [] arr = new int [2][3]</code>      二维数组内存形式 :</p>
 <p><img src="https://img-blog.csdnimg.cn/53d52bacc1534fc89f01570fe32ab5a9.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_19,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<h5 id="动态初始化-列数不确定"><a href="#动态初始化-列数不确定" class="headerlink" title="动态初始化-列数不确定"></a>动态初始化-列数不确定</h5><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/*
+<h3 id="动态初始化-列数不确定"><a href="#动态初始化-列数不确定" class="headerlink" title="动态初始化-列数不确定"></a>动态初始化-列数不确定</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/*
 i = 0: 1
 i = 1: 2 2
 i = 2: 3 3 3
@@ -671,9 +670,9 @@ i = 2: 3 3 3
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="第六章-面向对象"><a href="#第六章-面向对象" class="headerlink" title="第六章 面向对象"></a>第六章 面向对象</h3><h5 id="对象在内存中的存在形式"><a href="#对象在内存中的存在形式" class="headerlink" title="对象在内存中的存在形式"></a>对象在内存中的存在形式</h5><p>对象也是一个引用数据类型.</p>
+<h2 id="第六章-面向对象"><a href="#第六章-面向对象" class="headerlink" title="第六章 面向对象"></a>第六章 面向对象</h2><h3 id="对象在内存中的存在形式"><a href="#对象在内存中的存在形式" class="headerlink" title="对象在内存中的存在形式"></a>对象在内存中的存在形式</h3><p>对象也是一个引用数据类型.</p>
 <p><img src="https://img-blog.csdnimg.cn/47cbef86fd4446b0ae1ddcf16721d22f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<h5 id="对象创建的流程分析"><a href="#对象创建的流程分析" class="headerlink" title="对象创建的流程分析"></a>对象创建的流程分析</h5><pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Person</span><span class="token punctuation">{</span>
+<h3 id="对象创建的流程分析"><a href="#对象创建的流程分析" class="headerlink" title="对象创建的流程分析"></a>对象创建的流程分析</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Person</span><span class="token punctuation">{</span>
     <span class="token keyword">int</span> age <span class="token operator">=</span> <span class="token number">90</span><span class="token punctuation">;</span>
     String name<span class="token punctuation">;</span>
     <span class="token keyword">public</span> <span class="token function">Person</span><span class="token punctuation">(</span>String n<span class="token punctuation">,</span><span class="token keyword">int</span> a<span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -690,7 +689,7 @@ Person p <span class="token operator">=</span> <span class="token keyword">new</
 <li>完成对象的初始化[3.1 默认初始化 age = 0 name = null  3.2 显式初始化 age = 90 name = null  3.3 构造器的初始化 age = 20 name = jack(字符串,堆中的对象的name地址指向在常量池中jack)]</li>
 <li>对象在堆中的地址, 返回给p(p是对象名, 也可以理解成是对象的引用)</li>
 </ol>
-<h5 id="对象分配机制"><a href="#对象分配机制" class="headerlink" title="对象分配机制"></a>对象分配机制</h5><pre class=" language-java"><code class="language-java">Person p1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<h3 id="对象分配机制"><a href="#对象分配机制" class="headerlink" title="对象分配机制"></a>对象分配机制</h3><pre class=" language-java"><code class="language-java">Person p1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 a1<span class="token punctuation">.</span>age <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
 a1<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"小明"</span><span class="token punctuation">;</span>
 Person p2 <span class="token operator">=</span> p1<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//把p1赋给了p2 , 让p2指向p1</span>
@@ -698,7 +697,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <span class="token comment" spellcheck="true">//p2,age是什么?</span>
 </code></pre>
 <p><img src="https://img-blog.csdnimg.cn/0b6566b84499482f85e0f2918b12f2c2.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<h5 id="匿名对象"><a href="#匿名对象" class="headerlink" title="匿名对象"></a>匿名对象</h5><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Test</span><span class="token punctuation">{</span>   <span class="token comment" spellcheck="true">//公有类</span>
+<h3 id="匿名对象"><a href="#匿名对象" class="headerlink" title="匿名对象"></a>匿名对象</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Test</span><span class="token punctuation">{</span>   <span class="token comment" spellcheck="true">//公有类</span>
     <span class="token keyword">int</span> count <span class="token operator">=</span> <span class="token number">9</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//属性</span>
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">count1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>  <span class="token comment" spellcheck="true">//Test类的成员方法</span>
         count <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//这个count就是属性 改成10</span>
@@ -718,18 +717,18 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h5 id="Java内存的结构分析"><a href="#Java内存的结构分析" class="headerlink" title="Java内存的结构分析:"></a>Java内存的结构分析:</h5><ol>
+<h3 id="Java内存的结构分析"><a href="#Java内存的结构分析" class="headerlink" title="Java内存的结构分析:"></a>Java内存的结构分析:</h3><ol>
 <li>栈: 一般存放基本数据类型(局部类型)</li>
 <li>堆: 存放对象</li>
 <li>方法区: 常量池(常量, 比如字符串), 类加载信息</li>
 </ol>
 <p><img src="https://img-blog.csdnimg.cn/b8de488856e447fdbad03ed281b2f2d2.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<h5 id="属性-成员变量-字段-细节"><a href="#属性-成员变量-字段-细节" class="headerlink" title="属性(成员变量\字段)细节"></a>属性(成员变量\字段)细节</h5><ol>
+<h3 id="属性-成员变量-字段-细节"><a href="#属性-成员变量-字段-细节" class="headerlink" title="属性(成员变量\字段)细节"></a>属性(成员变量\字段)细节</h3><ol>
 <li>属性的定义语法变量, 示例 : 访问修饰符 属性类型 属性名;</li>
 <li>属性的定义类型可以为任意类型, 可以是基本类型或引用类型.</li>
 <li>属性如果不赋值, 有默认值. 和数组一样.  String null / int 0 / short 0 / byte 0 / long 0 / float 0.0 double 0.0 / char \u0000 / boolean false</li>
 </ol>
-<h5 id="方法调用机制"><a href="#方法调用机制" class="headerlink" title="方法调用机制"></a>方法调用机制</h5><p>当返回后, <code>getSum</code>栈就被释放(销毁)了</p>
+<h3 id="方法调用机制"><a href="#方法调用机制" class="headerlink" title="方法调用机制"></a>方法调用机制</h3><p>当返回后, <code>getSum</code>栈就被释放(销毁)了</p>
 <p><img src="https://img-blog.csdnimg.cn/a56f21648e8a43f788f22769c046b846.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_17,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
 <h6 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h6><ol>
 <li>当程序执行到方法时, 就会开辟一个独立的空间(栈空间)</li>
@@ -740,7 +739,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <li><strong>基本数据类型, 传递的是值(值拷贝), 形参的任何改变不影响实参</strong>(方法传参机制)</li>
 <li><strong>引用数据类型, 传递的是地址(传递也是值, 但是值是地址), 形参的改变会影响到实参</strong>(方法传参机制)</li>
 </ol>
-<h5 id="方法使用细节"><a href="#方法使用细节" class="headerlink" title="方法使用细节"></a>方法使用细节</h5><ol>
+<h3 id="方法使用细节"><a href="#方法使用细节" class="headerlink" title="方法使用细节"></a>方法使用细节</h3><ol>
 <li><p>一个方法<strong>最多有一个</strong>返回值, [ 如果要返回多个结果 , 返回数组 ]</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">getSum</span><span class="token punctuation">(</span><span class="token keyword">int</span> n1<span class="token punctuation">,</span><span class="token keyword">int</span> n2<span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">//创建一个数组</span>
@@ -781,16 +780,16 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 </code></pre>
 </li>
 </ol>
-<h5 id="形参列表的细节"><a href="#形参列表的细节" class="headerlink" title="形参列表的细节"></a>形参列表的细节</h5><ol>
+<h3 id="形参列表的细节"><a href="#形参列表的细节" class="headerlink" title="形参列表的细节"></a>形参列表的细节</h3><ol>
 <li>一个方法可以有0个参数, 也可以有多个参数, 中间用逗号隔开</li>
 <li>参数类型可以是任意类型, 包括基本类型或引用类型</li>
 <li>调用带参数的方法时, 一定对应着参数列表相同类型或者兼容类型(低精度向高精度) 的参数</li>
 <li>方法定义时的参数称为形式参数, 方法调用时的传入参数称为实际参数</li>
 <li>实参和形参的类型要一致或者兼容, 个数, 顺序必须一致</li>
 </ol>
-<h5 id="方法重载"><a href="#方法重载" class="headerlink" title="方法重载"></a>方法重载</h5><p>java允许方法名相同, 但是要求<strong>形参列表不同</strong></p>
+<h3 id="方法重载"><a href="#方法重载" class="headerlink" title="方法重载"></a>方法重载</h3><p>java允许方法名相同, 但是要求<strong>形参列表不同</strong></p>
 <p>返回类型没有要求</p>
-<h5 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数"></a>可变参数</h5><p>java允许将同一个类中<strong>多个同名同功能</strong>但参数个数不同的方法, 封装成一个方法, 通过可变参数实现</p>
+<h3 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数"></a>可变参数</h3><p>java允许将同一个类中<strong>多个同名同功能</strong>但参数个数不同的方法, 封装成一个方法, 通过可变参数实现</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">HspMethod</span><span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">//计算2个数的和, 3个数的和, 4.....</span>
     <span class="token comment" spellcheck="true">//可以使用方法的重载(但是繁琐)</span>
@@ -830,7 +829,7 @@ ti<span class="token punctuation">.</span><span class="token function">f1</span>
 <li><p>一个形参列表只能出现一个可变参数</p>
 </li>
 </ol>
-<h5 id="变量作用域"><a href="#变量作用域" class="headerlink" title="变量作用域"></a>变量作用域</h5><p>局部变量与全局变量(属性变量)</p>
+<h3 id="变量作用域"><a href="#变量作用域" class="headerlink" title="变量作用域"></a>变量作用域</h3><p>局部变量与全局变量(属性变量)</p>
 <p>全局变量可以不赋值, 直接使用, 因为有默认值, 局部变量必须赋值后才能使用, 因为没有默认值</p>
 <h6 id="作用域细节"><a href="#作用域细节" class="headerlink" title="作用域细节"></a>作用域细节</h6><ol>
 <li><p>属性和局部变量可以重名, 访问时遵循就近原则</p>
@@ -856,7 +855,7 @@ ti<span class="token punctuation">.</span><span class="token function">f1</span>
 <p>局部变量 : 不能加修饰符</p>
 </li>
 </ol>
-<h5 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h5><pre class=" language-java"><code class="language-java"><span class="token punctuation">[</span>修饰符<span class="token punctuation">]</span> 方法名<span class="token punctuation">(</span>和类名保持一致<span class="token punctuation">)</span> <span class="token punctuation">(</span>形参列表<span class="token punctuation">)</span><span class="token punctuation">{</span>
+<h3 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h3><pre class=" language-java"><code class="language-java"><span class="token punctuation">[</span>修饰符<span class="token punctuation">]</span> 方法名<span class="token punctuation">(</span>和类名保持一致<span class="token punctuation">)</span> <span class="token punctuation">(</span>形参列表<span class="token punctuation">)</span><span class="token punctuation">{</span>
     方法体<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 <span class="token comment" spellcheck="true">//构造器没有返回值</span>
@@ -872,7 +871,7 @@ ti<span class="token punctuation">.</span><span class="token function">f1</span>
 </code></pre>
 </li>
 </ol>
-<h5 id="this关键字"><a href="#this关键字" class="headerlink" title="this关键字"></a>this关键字</h5><pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Dog</span><span class="token punctuation">{</span>
+<h3 id="this关键字"><a href="#this关键字" class="headerlink" title="this关键字"></a>this关键字</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Dog</span><span class="token punctuation">{</span>
     String name<span class="token punctuation">;</span>
     <span class="token keyword">int</span> age<span class="token punctuation">;</span>
     <span class="token keyword">public</span> <span class="token function">Dog</span><span class="token punctuation">(</span>String name<span class="token punctuation">,</span><span class="token keyword">int</span> age<span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -886,7 +885,7 @@ ti<span class="token punctuation">.</span><span class="token function">f1</span>
 <h6 id="深入理解this"><a href="#深入理解this" class="headerlink" title="深入理解this"></a>深入理解this</h6><p><img src="https://img-blog.csdnimg.cn/7f8ed585f0384da88a736e8c191a247a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
 <p>虚拟机会给每个对象分配this, 代表当前对象</p>
 <p>哪个对象调用, this就代表哪个对象</p>
-<h5 id="this细节"><a href="#this细节" class="headerlink" title="this细节"></a>this细节</h5><ol>
+<h3 id="this细节"><a href="#this细节" class="headerlink" title="this细节"></a>this细节</h3><ol>
 <li><p>this关键字可以用来访问本类的属性, 方法, 构造器</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">f3</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">//传统方式(按照的是就近原则访问属性,但是如果在方法中有局部变量,那么这个name就是局部变量,不是属性)</span>
