@@ -448,7 +448,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Java笔记一"><a href="#Java笔记一" class="headerlink" title="Java笔记一"></a>Java笔记一</h1><h4 id="因为前面记的笔记过于杂乱，现在整理一份以便复习查阅。本笔记是跟着B站老韩的视频学习记录。"><a href="#因为前面记的笔记过于杂乱，现在整理一份以便复习查阅。本笔记是跟着B站老韩的视频学习记录。" class="headerlink" title="因为前面记的笔记过于杂乱，现在整理一份以便复习查阅。本笔记是跟着B站老韩的视频学习记录。"></a>因为前面记的笔记过于杂乱，现在整理一份以便复习查阅。本笔记是跟着B站老韩的视频学习记录。</h4><h2 id="开发细节"><a href="#开发细节" class="headerlink" title="开发细节"></a>开发细节</h2><ol>
+                <h1 id="Java笔记一"><a href="#Java笔记一" class="headerlink" title="Java笔记一"></a>Java笔记一</h1><h2 id="开发细节"><a href="#开发细节" class="headerlink" title="开发细节"></a>开发细节</h2><ol>
 <li><p>一个源文件最多只能有一个public类,但其他类不受限制.</p>
 </li>
 <li><p>如果源文件包含一个public类,则文件名必须按该类名命名.</p>
@@ -676,6 +676,8 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <li><p>String类型转基本数据类型</p>
 <p>通过基本类型的包装类调用parseXX方法</p>
 <p><img src="https://img-blog.csdnimg.cn/4767ff73ad0b42e2a5e280fbcddd4b0d.png" alt="img"></p>
+<p>把字符串转换成字符</p>
+<p><code>*.charAt(0)</code>表示字符串的第一个字符</p>
 </li>
 </ol>
 <h2 id="第三章-运算符"><a href="#第三章-运算符" class="headerlink" title="第三章 运算符"></a>第三章 运算符</h2><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//  / 除法的使用</span>
@@ -746,13 +748,6 @@ b <span class="token operator">=</span> b <span class="token operator">+</span> 
 <span class="token keyword">double</span> d <span class="token operator">=</span> a <span class="token operator">></span> b<span class="token operator">?</span> a <span class="token operator">:</span> b <span class="token operator">+</span> <span class="token number">3</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//可以的,满足int -> double</span>
 </code></pre>
 </li>
-<li><p>三元运算符是一个整体</p>
-<pre class=" language-java"><code class="language-java">Object obj1 <span class="token operator">=</span> <span class="token boolean">true</span><span class="token operator">?</span> <span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">Double</span><span class="token punctuation">(</span><span class="token number">2.0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>obj1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">//输出的是1.0,而不是1 </span>
-<span class="token comment" spellcheck="true">//注意三元运算符是一个整体,会优先转换成最高精度的类型,再计算输出等</span>
-</code></pre>
-</li>
 <li><p>三元运算符可以转换从if(…)else 语句</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//实现三个数的最大值</span>
 <span class="token keyword">int</span> n1 <span class="token operator">=</span> <span class="token number">553</span><span class="token punctuation">;</span>
@@ -767,6 +762,15 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 </code></pre>
 </li>
 </ol>
+<ul>
+<li><p>三元运算符是一个整体</p>
+<pre class=" language-java"><code class="language-java">Object obj1 <span class="token operator">=</span> <span class="token boolean">true</span><span class="token operator">?</span> <span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">Double</span><span class="token punctuation">(</span><span class="token number">2.0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>obj1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//输出的是1.0,而不是1 </span>
+<span class="token comment" spellcheck="true">//注意三元运算符是一个整体,会优先转换成最高精度的类型,再计算输出等</span>
+</code></pre>
+</li>
+</ul>
 <h5 id="键盘输入语句"><a href="#键盘输入语句" class="headerlink" title="键盘输入语句"></a>键盘输入语句</h5><p>Input.java///需要一个 扫描器(对象), 就是 Scanner</p>
 <pre class=" language-java"><code class="language-java"><span class="token operator">*</span><span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//接收String类型的输入</span>
 <span class="token operator">*</span><span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//接收Int类型的输入</span>
