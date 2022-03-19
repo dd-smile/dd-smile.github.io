@@ -762,15 +762,6 @@ b <span class="token operator">=</span> b <span class="token operator">+</span> 
 <span class="token keyword">int</span> max2 <span class="token operator">=</span> max1 <span class="token operator">></span> n3<span class="token operator">?</span> max1 <span class="token operator">:</span> n3<span class="token punctuation">;</span>
 System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"最大数="</span> <span class="token operator">+</span> max2<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<ul>
-<li><p>三元运算符是一个整体</p>
-<pre class=" language-java"><code class="language-java">Object obj1 <span class="token operator">=</span> <span class="token boolean">true</span><span class="token operator">?</span> <span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">Double</span><span class="token punctuation">(</span><span class="token number">2.0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>obj1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">//输出的是1.0,而不是1 </span>
-<span class="token comment" spellcheck="true">//注意三元运算符是一个整体,会优先转换成最高精度的类型,再计算输出等</span>
-</code></pre>
-</li>
-</ul>
 <h5 id="键盘输入语句"><a href="#键盘输入语句" class="headerlink" title="键盘输入语句"></a>键盘输入语句</h5><p>Input.java///需要一个 扫描器(对象), 就是 Scanner</p>
 <pre class=" language-java"><code class="language-java"><span class="token operator">*</span><span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//接收String类型的输入</span>
 <span class="token operator">*</span><span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//接收Int类型的输入</span>
