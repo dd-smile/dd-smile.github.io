@@ -420,6 +420,15 @@
                 </div>
                 <div class="col s5 right-align">
                     
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%90%8E%E7%AB%AF/" class="post-category">
+                                后端
+                            </a>
+                        
+                    </div>
+                    
                 </div>
             </div>
 
@@ -448,7 +457,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Java笔记一"><a href="#Java笔记一" class="headerlink" title="Java笔记一"></a>Java笔记一</h1><h4 id="因为前面记的笔记过于杂乱，现在整理一份以便复习查阅。本笔记是跟着B站老韩的视频学习记录。"><a href="#因为前面记的笔记过于杂乱，现在整理一份以便复习查阅。本笔记是跟着B站老韩的视频学习记录。" class="headerlink" title="因为前面记的笔记过于杂乱，现在整理一份以便复习查阅。本笔记是跟着B站老韩的视频学习记录。"></a>因为前面记的笔记过于杂乱，现在整理一份以便复习查阅。本笔记是跟着B站老韩的视频学习记录。</h4><h2 id="开发细节"><a href="#开发细节" class="headerlink" title="开发细节"></a>开发细节</h2><ol>
+                <h2 id="开发细节"><a href="#开发细节" class="headerlink" title="开发细节"></a>开发细节</h2><ol>
 <li><p>一个源文件最多只能有一个public类,但其他类不受限制.</p>
 </li>
 <li><p>如果源文件包含一个public类,则文件名必须按该类名命名.</p>
@@ -511,24 +520,14 @@ javadoc <span class="token operator">-</span>d d<span class="token operator">:</
 </code></pre>
 </li>
 </ol>
-<h2 id="第一章习题"><a href="#第一章习题" class="headerlink" title="第一章习题"></a>第一章习题</h2><ol>
-<li><p>JDK，JRE，JVM的关系</p>
-<p>答：JDK = JRE + java开发工具</p>
-<p>​        JRE = JVM + 核心类库</p>
-</li>
-<li><p>环境变量path配置及其作用</p>
-<p>答：1.环境变量的作用是为了在dos的任意目录，可以去使用java和javac命令。</p>
-<p>2.先配置一个JAVA_HOME = 指向jdk安装的主目录。</p>
-<p>3.编辑path环境变量，增加% JAVA_HOME%\bin</p>
-</li>
-</ol>
-<h2 id="第二章-基本类型"><a href="#第二章-基本类型" class="headerlink" title="第二章  基本类型"></a>第二章  基本类型</h2><h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><ol>
+<h2 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h2><h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><ol>
 <li>变量必须先声明，后使用，即有顺序。</li>
 <li>该区区域的数据/值可以在同一类型范围内不断变化。</li>
 <li>变量在同一个区域内不能重名。</li>
 <li>变量三要素：变量名，值，数据类型。</li>
 </ol>
-<h5 id="＋号的使用"><a href="#＋号的使用" class="headerlink" title="＋号的使用"></a>＋号的使用</h5><ol>
+<p><strong>＋号的使用</strong></p>
+<ol>
 <li>当左右两边都是数值型，则做加法运算。</li>
 <li>当左右两边有一方为字符型，则做拼接运算。</li>
 <li>运算顺序是从左到右的。</li>
@@ -678,7 +677,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <p><img src="https://img-blog.csdnimg.cn/4767ff73ad0b42e2a5e280fbcddd4b0d.png" alt="img"></p>
 </li>
 </ol>
-<h2 id="第三章-运算符"><a href="#第三章-运算符" class="headerlink" title="第三章 运算符"></a>第三章 运算符</h2><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//  / 除法的使用</span>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//  / 除法的使用</span>
 System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token number">10</span> <span class="token operator">/</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 2</span>
 System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token number">10.0</span> <span class="token operator">/</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//2.5</span>
 <span class="token keyword">double</span> d <span class="token operator">=</span> <span class="token number">10</span> <span class="token operator">/</span> <span class="token number">4</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//2.0</span>
@@ -713,14 +712,16 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 </ol>
 <p>|| 和 |使用区别</p>
 <p><img src="https://img-blog.csdnimg.cn/7ce2e8c4e33c41eebbc9992c9137f2a0.png" alt="img"></p>
-<h5 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h5><p>复合赋值运算符会进行类型转换.</p>
+<p><strong>赋值运算符</strong></p>
+<p>复合赋值运算符会进行类型转换.</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">byte</span> b <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
 b <span class="token operator">+=</span> <span class="token number">2</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//b = b + 2;  实际上真正等价于 b = (byte)(b + 2);</span>
 b<span class="token operator">++</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 等价于 b = (byte)(b + 1);</span>
 <span class="token comment" spellcheck="true">//如果直接写</span>
 b <span class="token operator">=</span> b <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//是错误的,类型是int型</span>
 </code></pre>
-<h5 id="三元运算符"><a href="#三元运算符" class="headerlink" title="三元运算符"></a>三元运算符</h5><p>条件表达式 ? 表达式1 :  表达式2;</p>
+<p><strong>三元运算符</strong></p>
+<p>条件表达式 ? 表达式1 :  表达式2;</p>
 <p>运算规则:</p>
 <ol>
 <li><p>如果条件表达式为true, 运算后的结果是表达式1;</p>
@@ -767,7 +768,8 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 </code></pre>
 </li>
 </ol>
-<h5 id="键盘输入语句"><a href="#键盘输入语句" class="headerlink" title="键盘输入语句"></a>键盘输入语句</h5><p>Input.java///需要一个 扫描器(对象), 就是 Scanner</p>
+<p><strong>键盘输入语句</strong></p>
+<p>Input.java///需要一个 扫描器(对象), 就是 Scanner</p>
 <pre class=" language-java"><code class="language-java"><span class="token operator">*</span><span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//接收String类型的输入</span>
 <span class="token operator">*</span><span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//接收Int类型的输入</span>
 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>等
@@ -832,14 +834,11 @@ eg<span class="token operator">:</span><span class="token number">0x23A</span>�
 <p><img src="https://img-blog.csdnimg.cn/746bf9fef49e45a1aeeb333427ae33fb.png" alt="img"></p>
 <p><img src="https://img-blog.csdnimg.cn/089e1478260941f9839eaecdd11a55de.png" alt="img"></p>
 <p>逻辑右移也叫无符号右移 &gt;&gt;&gt; : 低位溢出, 高位补0</p>
-<h2 id="第三章习题"><a href="#第三章习题" class="headerlink" title="第三章习题"></a>第三章习题</h2><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//1.计算 -10.5%3 = ?</span>
+<h3 id="经典面试题"><a href="#经典面试题" class="headerlink" title="经典面试题"></a>经典面试题</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//计算 -10.5%3 = ?</span>
 <span class="token comment" spellcheck="true">//a % b 当a是小数时,公式 = a - (int)a/b*b</span>
 <span class="token comment" spellcheck="true">//-10.5%3 = -10.5 - (-10)/3*3 = -10.5 + 9 = -1.5</span>
 <span class="token comment" spellcheck="true">//注意: 有小数运算,得到结果是近似值</span>
 System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">10.5</span><span class="token operator">%</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">//2.试写出将String转换成double类型的语句,以及将char类型转换成String的语句,举例说明.</span>
-见chapter03<span class="token operator">/</span>Test
 </code></pre>
 
                 
@@ -996,16 +995,16 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+                本篇&nbsp;<i class="far fa-dot-circle"></i>
             </div>
             <div class="card">
-                <a href="/2019/11/26/java-firstedition/">
+                <a href="/2019/12/22/java-note-firstedition/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Java入门语法">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="基本类型与运算符">
                         
-                        <span class="card-title">Java入门语法</span>
+                        <span class="card-title">基本类型与运算符</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1016,16 +1015,21 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-11-26
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-12-22
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            CSD
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%90%8E%E7%AB%AF/" class="post-category">
+                                    后端
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
