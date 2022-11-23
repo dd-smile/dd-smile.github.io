@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="集合泛型与线程, 冬瓜冬瓜排骨汤">
+    <meta name="keywords" content="集合泛型, 冬瓜冬瓜排骨汤">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>集合泛型与线程 | 冬瓜冬瓜排骨汤</title>
+    <title>集合泛型 | 冬瓜冬瓜排骨汤</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -290,12 +290,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">集合泛型与线程</h1>
+                    <h1 class="description center-align post-title">集合泛型</h1>
                 </div>
             </div>
         </div>
@@ -420,6 +420,15 @@
                 </div>
                 <div class="col s5 right-align">
                     
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%90%8E%E7%AB%AF/" class="post-category">
+                                后端
+                            </a>
+                        
+                    </div>
+                    
                 </div>
             </div>
 
@@ -448,7 +457,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Java-笔记五"><a href="#Java-笔记五" class="headerlink" title="Java 笔记五"></a>Java 笔记五</h1><h2 id="第十二章-集合"><a href="#第十二章-集合" class="headerlink" title="第十二章 集合"></a>第十二章 集合</h2><h3 id="ArrayList类-单列集合-List接口"><a href="#ArrayList类-单列集合-List接口" class="headerlink" title="ArrayList类(单列集合)-List接口"></a>ArrayList类(单列集合)-List接口</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//main</span>
+                <h2 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h2><h3 id="ArrayList类-单列集合-List接口"><a href="#ArrayList类-单列集合-List接口" class="headerlink" title="ArrayList类(单列集合)-List接口"></a>ArrayList类(单列集合)-List接口</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//main</span>
 List list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">//add:添加单个元素</span>
 list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"jack"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -474,7 +483,8 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <span class="token comment" spellcheck="true">//containsAll:查找多个元素是否都存在</span>
 <span class="token comment" spellcheck="true">//remove:删除多个元素</span>
 </code></pre>
-<h6 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h6><ol>
+<p><strong>细节</strong></p>
+<ol>
 <li>ArrayList可以加入null, 并且多个</li>
 <li>ArrayList是由数组来实现数据存储的</li>
 <li>ArrayList基本等同于Vector, 除了ArrayList是线程不安全的(执行效率高), 在多线程情况下, 不建议使用ArrayList</li>
@@ -498,7 +508,8 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <li>可以添加任意元素(元素可以重复), 包括null</li>
 <li>线程不安全, 没有实现同步</li>
 </ol>
-<h5 id="LinkedList底层机制"><a href="#LinkedList底层机制" class="headerlink" title="LinkedList底层机制"></a>LinkedList底层机制</h5><ol>
+<p><strong>LinkedList底层机制</strong></p>
+<ol>
 <li>LinkedList底层维护了一个双向链表</li>
 <li>LinkedList中维护了两个属性first和last分别指向 首节点和尾节点</li>
 <li>每个节点(Node对象), 里面维护了prev, next, item三个属性, 其中通过prev指向前一个, 通过next指向后一个节点, 最终实现双向链表</li>
@@ -508,12 +519,14 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <h3 id="List集合选择"><a href="#List集合选择" class="headerlink" title="List集合选择"></a>List集合选择</h3><p><img src="https://img-blog.csdnimg.cn/cb04e2e78efc46e4ab0b6bbaf5aa8867.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_19,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
 <h3 id="迭代器遍历"><a href="#迭代器遍历" class="headerlink" title="迭代器遍历"></a>迭代器遍历</h3><p>Iterator对象称为迭代器, 主要用于遍历Collection集合中的元素. 所以实现了Collection接口的集合类都有一个Iterator()方法. Iterator仅用于遍历集合, Iterator本身并不存放对象</p>
 <p><img src="https://img-blog.csdnimg.cn/c6549b33a6df4967bc573bdd441e641f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_11,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<h6 id="细节-1"><a href="#细节-1" class="headerlink" title="细节"></a>细节</h6><ol>
+<p><strong>细节</strong></p>
+<ol>
 <li>当退出while循环后, 这时iterator迭代器, 指向最后的元素</li>
 <li>如果接着指向<code>iterator.next();</code> 会报错 : NoSuchElementException</li>
 <li>如果希望再次遍历, 需要重置迭代器</li>
 </ol>
-<h5 id="增强for循环"><a href="#增强for循环" class="headerlink" title="增强for循环"></a>增强for循环</h5><p><img src="https://img-blog.csdnimg.cn/c973cd66c5314f2d809e4d8ac423d4b7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_11,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+<p><strong>增强for循环</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/c973cd66c5314f2d809e4d8ac423d4b7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_11,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
 <h3 id="Set接口"><a href="#Set接口" class="headerlink" title="Set接口"></a>Set接口</h3><p>也是双列集合, 但是和Map不同的是, 他的 [K, V] 中的V是一个常量present</p>
 <ol>
 <li>set 接口的实现类的对象(Set接口对象), 不能存放重复的元素, 可以添加一个null</li>
@@ -532,7 +545,8 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <li>HashSet不保证元素是有序的, 取决于hash后, 再确定索引的结果</li>
 <li>不能有重复元素/对象</li>
 </ol>
-<h6 id="经典面试题"><a href="#经典面试题" class="headerlink" title="经典面试题"></a>经典面试题</h6><pre class=" language-java"><code class="language-java">set <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashSet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<p><strong>经典面试题</strong></p>
+<pre class=" language-java"><code class="language-java">set <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashSet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">//HashSet 不能添加相同的元素/对象</span>
 set<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Dog</span><span class="token punctuation">(</span><span class="token string">"tom"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//OK</span>
 set<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Dog</span><span class="token punctuation">(</span><span class="token string">"tom"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//OK</span>
@@ -557,7 +571,8 @@ set<span class="token punctuation">.</span><span class="token function">add</spa
 <li>如果有, 调用equals比较, 如果相同, 就放弃添加, 如果不相同, 则添加到最后</li>
 <li>在Java8中, 如果一条链表的元素大于等于 TREEIFY_THRESHOLD(默认是8) 并且table的大小 大于等于 MIN_TREEIFY_CAPACITY(默认是64), 就会进行树化(红黑树), 否则仍然采用数组扩容机制</li>
 </ul>
-<h5 id="HashSet扩容机制"><a href="#HashSet扩容机制" class="headerlink" title="HashSet扩容机制"></a>HashSet扩容机制</h5><ol>
+<p><strong>HashSet扩容机制</strong></p>
+<ol>
 <li><p>HashSet底层是HashMap, 第一次添加时, table数组扩容到16, 临界值(threshold) 是 16*加载因子(loadFactor) 是0.75  = 12</p>
 </li>
 <li><p>如果table数组使用到了临界值12, 就会扩容到16 * 2 = 32, 新的临界值就是32 * 0.75 =24, 依次类推</p>
@@ -681,7 +696,8 @@ Iterator iterator3 <span class="token operator">=</span> entrySet<span class="to
 <li>hashtable使用方法基本和HashMap一样</li>
 <li>hashtable是线程安全的, HashMap是线程不安全的</li>
 </ol>
-<h6 id="底层-扩容机制"><a href="#底层-扩容机制" class="headerlink" title="底层 : 扩容机制"></a>底层 : 扩容机制</h6><p><img src="https://img-blog.csdnimg.cn/d6bd5a41cc834134a38518d49a87a845.png" alt="img"></p>
+<p><strong>底层 : 扩容机制</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/d6bd5a41cc834134a38518d49a87a845.png" alt="img"></p>
 <h3 id="Properties类"><a href="#Properties类" class="headerlink" title="Properties类"></a>Properties类</h3><ol>
 <li>Properties类继承自HashTable类, 并且实现了Map接口, 也是使用一种键值对的形式来保存数据</li>
 <li>使用特点和HashTable类似</li>
@@ -722,7 +738,10 @@ Comparator<span class="token operator">&lt;</span><span class="token operator">?
     <span class="token punctuation">}</span><span class="token keyword">while</span><span class="token punctuation">(</span>t <span class="token operator">!=</span> null<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h2 id="第十三章-泛型"><a href="#第十三章-泛型" class="headerlink" title="第十三章 泛型"></a>第十三章 泛型</h2><h6 id="泛型的理解和好处"><a href="#泛型的理解和好处" class="headerlink" title="泛型的理解和好处"></a>泛型的理解和好处</h6><p>使用传统方法的问题分析</p>
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><blockquote>
+<p> 泛型的理解和好处</p>
+</blockquote>
+<p>使用传统方法的问题分析</p>
 <ol>
 <li>不能对加入到集合ArrayList中的数据类型进行约束(不安全)</li>
 <li>遍历的时候, 需要进行类型转换, 如果集合中的数据量较大, 对效率有影响</li>
@@ -786,136 +805,6 @@ ArrayList arrayList <span class="token operator">=</span> <span class="token key
 <li><p><code>&lt;? super A&gt;</code>  表示支持A类以及A类的父类, 不限于直接父类, 规定了泛型的下限</p>
 </li>
 </ol>
-<h2 id="第十四章-多线程"><a href="#第十四章-多线程" class="headerlink" title="第十四章 多线程"></a>第十四章 多线程</h2><h3 id="创建线程"><a href="#创建线程" class="headerlink" title="创建线程"></a>创建线程</h3><h4 id="继承Thread创建线程"><a href="#继承Thread创建线程" class="headerlink" title="继承Thread创建线程"></a>继承Thread创建线程</h4><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//main中</span>
-<span class="token comment" spellcheck="true">//创建Cat对象,可以当做线程使用</span>
-Cat cat <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Cat</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-cat<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//启动线程</span>
-<span class="token comment" spellcheck="true">//说明 : 当main线程启动一个子线程, 主线程不会阻塞,会继续执行</span>
-<span class="token comment" spellcheck="true">//这时 主线程和子线程是交替执行的</span>
-
-<span class="token comment" spellcheck="true">//1.当一个类继承了Thread类, 该类就可以当成线程使用</span>
-<span class="token comment" spellcheck="true">//2.我们会重写 run 方法, 写上自己的业务代码</span>
-<span class="token comment" spellcheck="true">//3. run Theread类 实现了 Runnable 接口的run方法</span>
-<span class="token keyword">class</span> <span class="token class-name">Cat</span> <span class="token keyword">extends</span> <span class="token class-name">Thread</span><span class="token punctuation">{</span>
-    <span class="token annotation punctuation">@Override</span> 
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//重写run方法,写上自己的业务逻辑</span>
-        <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">//该线程每隔1秒,在控制台输出喵喵</span>
-            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"喵喵"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">//休眠一秒</span>
-            <span class="token keyword">try</span><span class="token punctuation">{</span>
-                Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span><span class="token keyword">catch</span><span class="token punctuation">(</span>InterruptedException e<span class="token punctuation">)</span><span class="token punctuation">{</span>
-                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<h4 id="实现Runnable接口创建线程"><a href="#实现Runnable接口创建线程" class="headerlink" title="实现Runnable接口创建线程"></a>实现Runnable接口创建线程</h4><ol>
-<li>java是单继承的, 在某些情况下一个类可能已经继承了某个父类, 这时在用继承Thread类方法来创建线程显然不可能了</li>
-<li>所以通过实现Runnable接口创建线程</li>
-</ol>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//main中</span>
-Dog dog <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Dog</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">//不能直接调用start</span>
-<span class="token comment" spellcheck="true">//创建了Thread对象, 把dog对象(实现Runnable),放入Thread</span>
-<span class="token comment" spellcheck="true">//使用到了代理模式</span>
-Thread thread <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span>Dog<span class="token punctuation">)</span><span class="token punctuation">;</span>
-thread<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">class</span> <span class="token class-name">Dog</span> <span class="token keyword">implements</span> <span class="token class-name">Runnable</span><span class="token punctuation">{</span>
-    <span class="token keyword">int</span> count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"汪汪"</span><span class="token operator">+</span><span class="token punctuation">(</span><span class="token operator">++</span>count<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">//休眠一秒</span>
-             <span class="token keyword">try</span><span class="token punctuation">{</span>
-                Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span><span class="token keyword">catch</span><span class="token punctuation">(</span>InterruptedException e<span class="token punctuation">)</span><span class="token punctuation">{</span>
-                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<h5 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h5><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//模拟简单代理模式</span>
-<span class="token keyword">class</span> <span class="token class-name">ThreadProxy</span> <span class="token keyword">implements</span> <span class="token class-name">Runnable</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//你可以把ThreadProxy类当做   真正的Thread类</span>
-    <span class="token keyword">private</span> Runnable target <span class="token operator">=</span> null<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//属性, 类型是 Runnable   </span>
-    <span class="token comment" spellcheck="true">//构造器</span>
-    <span class="token keyword">public</span> <span class="token function">ThreadProxy</span><span class="token punctuation">(</span>Runnable target<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//传进来一个实现了Runnable接口的对象</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>target <span class="token operator">=</span> target<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token function">start0</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//这个方法是真正实现多线程的方法</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">start0</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>target <span class="token operator">!=</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            target<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//动态绑定</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<h3 id="多线程机制"><a href="#多线程机制" class="headerlink" title="多线程机制"></a>多线程机制</h3><ol>
-<li>在多线程之中, 不是主线程结束了就意味着进程结束, 而是要等所有的线程结束.</li>
-<li>从Java的设计来看, 通过继承Thread或者实现Runnable接口来创建线程本质没有区别</li>
-<li>实现Runnable接口方式更加适合多线程共享一个资源的情况, 并且避免了单继承的限制</li>
-</ol>
-<h5 id="为什么是start"><a href="#为什么是start" class="headerlink" title="为什么是start?"></a>为什么是start?</h5><p>如果直接调用<code>run()</code>方法的话, 就是一个普通的方法, 没有真正的启动一个线程, 就会把<code>run()</code>方法执行完毕, 才向下执行</p>
-<h6 id="start-方法执行过程"><a href="#start-方法执行过程" class="headerlink" title="start()方法执行过程"></a>start()方法执行过程</h6><p><img src="https://img-blog.csdnimg.cn/fffa463262e744249978b42d803b584b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_10,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<h6 id="注意"><a href="#注意" class="headerlink" title="注意:"></a>注意:</h6><p><img src="https://img-blog.csdnimg.cn/57bc0d92d8f0433b9c2d77737de2eb5d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_11,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<h3 id="线程方法"><a href="#线程方法" class="headerlink" title="线程方法"></a>线程方法</h3><ol>
-<li><code>setName</code> //设置线程名称, 使它和参数name相同</li>
-<li><code>getName</code> //返回该线程的名称</li>
-<li><code>start</code> //使该线程开始执行, Java虚拟机底层调用该线程的 start0 方法</li>
-<li><code>run</code>  //调用线程对象的 run 方法</li>
-<li><code>setPriority</code> //更改线程的优先级</li>
-<li><code>getPriority</code> //获取线程的优先级</li>
-<li><code>sleep</code> //在指定毫秒数内休眠</li>
-<li><code>interrupt</code> //中断线程(中断线程, 不是停止线程, 一般用于中断正在休眠的线程)</li>
-</ol>
-<h5 id="通知线程退出"><a href="#通知线程退出" class="headerlink" title="通知线程退出"></a>通知线程退出</h5><p>设置一个Boolean变量, 在线程外改变该变量. 使线程退出循环.</p>
-<h5 id="线程插队"><a href="#线程插队" class="headerlink" title="线程插队"></a>线程插队</h5><ol>
-<li><code>yield</code>  //线程的礼让. 让出cpu, 让其他线程执行, 但礼让的时间不确定, 所以也不一定礼让成功</li>
-<li><code>join</code>  //线程的插队. 插队的线程一旦插队成功, 则肯定会先执行完插入的线程所以的任务</li>
-</ol>
-<h5 id="用户线程和守护线程"><a href="#用户线程和守护线程" class="headerlink" title="用户线程和守护线程"></a>用户线程和守护线程</h5><ol>
-<li><p>用户线程 : 也叫工作线程, 当线程的任务执行完成或通知方式结束</p>
-</li>
-<li><p>守护线程 : 一般是为工作线程服务的, 当所有的用户线程结束, 守护线程自动结束, 常见的守护线程是 : GC(垃圾回收机制)</p>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//当我们希望当main线程结束后, 子线程自动结束, 将子线程设置为守护线程就可以</span>
-
-<span class="token operator">*</span><span class="token punctuation">.</span><span class="token function">setDaemon</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-</li>
-</ol>
-<h5 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h5><p><img src="https://img-blog.csdnimg.cn/34430a0a9fd94f13846e88f87abd81ff.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_12,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<h3 id="Synchronized"><a href="#Synchronized" class="headerlink" title="Synchronized"></a>Synchronized</h3><ol>
-<li>在多线程编程, 一些敏感数据不允许被多个线程同时访问, 此时就使用同步访问技术, 保证数据在任何同一时刻, 最多有一个线程访问, 以保证数据的完整性</li>
-<li>线程同步, 即当有一个线程在对内存进行操作时, 其他线程都不可以对这个内存地址进行操作, 直到该线程完成操作, 其他线程才能对该内存地址进行操作</li>
-</ol>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//1.同步代码块</span>
-<span class="token keyword">synchronized</span> <span class="token punctuation">(</span>对象<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//得到对象的锁, 才能操作同步代码</span>
-    <span class="token comment" spellcheck="true">//需要被同步代码</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//2.同步方法</span>
-<span class="token keyword">public</span> <span class="token keyword">synchronized</span> <span class="token keyword">void</span> <span class="token function">m</span> <span class="token punctuation">(</span>String name<span class="token punctuation">)</span><span class="token punctuation">{</span>  <span class="token comment" spellcheck="true">//同步方法, 在同一时刻, 只能有一个线程来执行m方法</span>
-    <span class="token comment" spellcheck="true">//需要被同步的代码</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<h6 id="eg"><a href="#eg" class="headerlink" title="eg :"></a>eg :</h6><p><img src="https://img-blog.csdnimg.cn/6cef8f4fc95b4a9795bc81ed8985926c.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_18,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<h3 id="Synchronized细节"><a href="#Synchronized细节" class="headerlink" title="Synchronized细节"></a>Synchronized细节</h3><ol>
-<li>同步的局限性 : 导致程序的执行效率降低</li>
-<li>非静态的方法中同步代码块 的锁可以是this, 也可以是其他对象(<strong>要求多个线程的锁是同一个对象</strong>)</li>
-<li>静态的方法中同步代码块 的锁为当前类本身</li>
-</ol>
-<h3 id="释放锁"><a href="#释放锁" class="headerlink" title="释放锁"></a>释放锁</h3><p><img src="https://img-blog.csdnimg.cn/885963e670564125a429ead1a42b93cb.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_17,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<p><img src="https://img-blog.csdnimg.cn/3e1bcaf7860d49f58551ba03902d529d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_17,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
 
                 
             </div>
@@ -942,7 +831,7 @@ thread<span class="token punctuation">.</span><span class="token function">start
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://dd-smile.github.io/2020/02/25/java-note05/">http://dd-smile.github.io/2020/02/25/java-note05/</a>
+                    <a href="http://dd-smile.github.io/2020/02/25/java-note006/">http://dd-smile.github.io/2020/02/25/java-note006/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1029,13 +918,13 @@ thread<span class="token punctuation">.</span><span class="token function">start
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/02/27/java-note06/">
+                <a href="/2020/03/02/java-note007/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="IO流与反射">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="多线程初级">
                         
-                        <span class="card-title">IO流与反射</span>
+                        <span class="card-title">多线程初级</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1046,12 +935,16 @@ thread<span class="token punctuation">.</span><span class="token function">start
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-02-27
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-02
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            CSD
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%90%8E%E7%AB%AF/" class="post-category">
+                                    后端
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -1074,13 +967,13 @@ thread<span class="token punctuation">.</span><span class="token function">start
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/02/22/java-note04/">
+                <a href="/2020/02/22/java-note005/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="枚举\异常\常用类">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="枚举与异常">
                         
-                        <span class="card-title">枚举\异常\常用类</span>
+                        <span class="card-title">枚举与异常</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1095,8 +988,12 @@ thread<span class="token punctuation">.</span><span class="token function">start
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            CSD
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%90%8E%E7%AB%AF/" class="post-category">
+                                    后端
+                                </a>
+                            
                             
                         </span>
                     </div>

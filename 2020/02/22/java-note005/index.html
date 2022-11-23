@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="枚举\异常\常用类, 冬瓜冬瓜排骨汤">
+    <meta name="keywords" content="枚举与异常, 冬瓜冬瓜排骨汤">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>枚举\异常\常用类 | 冬瓜冬瓜排骨汤</title>
+    <title>枚举与异常 | 冬瓜冬瓜排骨汤</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -290,12 +290,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">枚举\异常\常用类</h1>
+                    <h1 class="description center-align post-title">枚举与异常</h1>
                 </div>
             </div>
         </div>
@@ -420,6 +420,15 @@
                 </div>
                 <div class="col s5 right-align">
                     
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%90%8E%E7%AB%AF/" class="post-category">
+                                后端
+                            </a>
+                        
+                    </div>
+                    
                 </div>
             </div>
 
@@ -448,7 +457,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Java笔记四"><a href="#Java笔记四" class="headerlink" title="Java笔记四"></a>Java笔记四</h1><h2 id="第九章-枚举和注解"><a href="#第九章-枚举和注解" class="headerlink" title="第九章 枚举和注解"></a>第九章 枚举和注解</h2><h3 id="枚举类"><a href="#枚举类" class="headerlink" title="枚举类"></a>枚举类</h3><p>创建Season对象有如下特点</p>
+                <h2 id="枚举和注解"><a href="#枚举和注解" class="headerlink" title="枚举和注解"></a>枚举和注解</h2><h3 id="枚举类"><a href="#枚举类" class="headerlink" title="枚举类"></a>枚举类</h3><p>创建Season对象有如下特点</p>
 <ol>
 <li>季节的值是有限的几个值(spring , summer , fall , winter)</li>
 <li>只读, 不需要修改</li>
@@ -501,21 +510,23 @@
 </ol>
 <h3 id="foreach语句-for循环补充"><a href="#foreach语句-for循环补充" class="headerlink" title="foreach语句 - for循环补充"></a>foreach语句 - for循环补充</h3><p><img src="https://img-blog.csdnimg.cn/adbb1060bc58442b91665f30fe124e89.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_11,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
 <p>foreach执行流程是 : 依次从nums数组中取出数据, 赋给i, 如果取出完毕, 则退出for</p>
-<h2 id="第十章-异常"><a href="#第十章-异常" class="headerlink" title="第十章 异常"></a>第十章 异常</h2><h3 id="异常体系图-体现继承和实现的关系"><a href="#异常体系图-体现继承和实现的关系" class="headerlink" title="异常体系图 (体现继承和实现的关系)"></a>异常体系图 (体现继承和实现的关系)</h3><p><img src="https://img-blog.csdnimg.cn/4a8d5f05101044ba93d54499088f03d4.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><h3 id="异常体系图-体现继承和实现的关系"><a href="#异常体系图-体现继承和实现的关系" class="headerlink" title="异常体系图 (体现继承和实现的关系)"></a>异常体系图 (体现继承和实现的关系)</h3><p><img src="https://img-blog.csdnimg.cn/4a8d5f05101044ba93d54499088f03d4.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
 <ol>
 <li>异常分为两大类, 运行时异常和编译时异常</li>
 <li>运行时异常, 编译器检查不出来. 一般是指编译时的逻辑错误, 是程序员应该避免其出现的异常. java.lang.RuntimeException类及它的子类都是运行时异常</li>
 <li>对于运行时异常, 可以不作处理, 因为这类异常很普遍, 若全处理可能会对程序的可读性和运行效率产生影响</li>
 <li>编译时异常, 是编译器要求必须处置的异常</li>
 </ol>
-<h3 id="常见异常"><a href="#常见异常" class="headerlink" title="常见异常"></a>常见异常</h3><h5 id="运行时异常"><a href="#运行时异常" class="headerlink" title="运行时异常"></a>运行时异常</h5><ol>
+<h3 id="常见异常"><a href="#常见异常" class="headerlink" title="常见异常"></a>常见异常</h3><p><strong>运行时异常</strong></p>
+<ol>
 <li>NullPointException空指针异常</li>
 <li>ArithmeticException数学运算异常</li>
 <li>ArraylndexOutBoundsException数组下标越界异常</li>
 <li>ClassCastException类型转换异常</li>
 <li>NumberFormatException数字格式不正确异常</li>
 </ol>
-<h5 id="编译时异常"><a href="#编译时异常" class="headerlink" title="编译时异常"></a>编译时异常</h5><ol>
+<p><strong>编译时异常</strong></p>
+<ol>
 <li>SQLException操作数据库时, 查询表可能发生异常</li>
 <li>IOException操作文件时, 发生异常</li>
 <li>FileNotFoundException当操作一个不存在的文件时, 发生异常</li>
@@ -617,71 +628,6 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h2 id="第十一章-常用类"><a href="#第十一章-常用类" class="headerlink" title="第十一章  常用类"></a>第十一章  常用类</h2><h3 id="包装类"><a href="#包装类" class="headerlink" title="包装类"></a>包装类</h3><p><img src="https://img-blog.csdnimg.cn/45cdef257d71483ca0007809c66af69a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_17,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<h5 id="装箱与拆箱"><a href="#装箱与拆箱" class="headerlink" title="装箱与拆箱"></a>装箱与拆箱</h5><p><img src="https://img-blog.csdnimg.cn/01a425af423649fdbc4f91d2e4891e16.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_15,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<h3 id="Integer创建机制"><a href="#Integer创建机制" class="headerlink" title="Integer创建机制"></a>Integer创建机制</h3><p><img src="https://img-blog.csdnimg.cn/54cb172adb5d467b9f8b3f63debb60be.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_14,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<h3 id="String类"><a href="#String类" class="headerlink" title="String类"></a>String类</h3><ul>
-<li><p>String 是final类, 不能被其他的类继承</p>
-</li>
-<li><p>Stirng 有属性 private final char <strong>value[]</strong>, 用于存放字符串内容, 所以<strong>字符串的本质是char数组</strong></p>
-</li>
-<li><p>value 是一个final类型, 不可以修改(指的是地址不可以修改, 不能再指向另外的对象)</p>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//堆中</span>
-<span class="token keyword">final</span> <span class="token keyword">char</span><span class="token punctuation">[</span><span class="token punctuation">]</span> value <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token keyword">char</span><span class="token punctuation">[</span><span class="token punctuation">]</span> v2 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'t'</span><span class="token punctuation">,</span><span class="token string">'y'</span><span class="token punctuation">,</span><span class="token string">'e'</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-value<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'H'</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//正确可以改变内容</span>
-value <span class="token operator">=</span> v2<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//错误, 不能指向新的对象(地址)</span>
-</code></pre>
-</li>
-<li><p>方式一 : 先从常量池查看是否有”hsp”数据空间, 如果有, 直接指向, 如果没有则创建, 然后指向. s最终指向的是常量池的空间地址</p>
-<p>方式二 : 先在堆中创建对象, 里面维护了value属性, 指向常量池的hsp空间. 如果常量池没有”hsp”, 重新创建, 如果有, 直接通过value指向. 最终指向的是堆中的空间地址</p>
-<p><img src="https://img-blog.csdnimg.cn/13100fcb194745bbba170242cce0c7ac.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-</li>
-<li><p>字符串的特性 (String c1 = “ab” + “cd”; 常量相加, 看的是池.  String c1 = a + b; 变量相加, 是在堆中)</p>
-<p><img src="https://img-blog.csdnimg.cn/5616938979894385b82804a86fd62393.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_15,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-</li>
-</ul>
-<h3 id="StringBuffer类"><a href="#StringBuffer类" class="headerlink" title="StringBuffer类"></a>StringBuffer类</h3><ul>
-<li>java.lang.StringBuffer代表可变的字符序列, 可以对字符串内容进行增删</li>
-<li>很多方法与String相同, 但StirngBuffer是可变长度的 </li>
-<li>StringBuffer是一个容器</li>
-</ul>
-<p><img src="https://img-blog.csdnimg.cn/b8d553e3583645bda09eafde4287c180.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<h5 id="StringBuffer构造器的使用"><a href="#StringBuffer构造器的使用" class="headerlink" title="StringBuffer构造器的使用"></a>StringBuffer构造器的使用</h5><p><img src="https://img-blog.csdnimg.cn/54aa74022a984d5da6492e844c91dee2.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_19,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<h5 id="StringBuffer与String相互转换"><a href="#StringBuffer与String相互转换" class="headerlink" title="StringBuffer与String相互转换"></a>StringBuffer与String相互转换</h5><h6 id="String-→-StringBuffer"><a href="#String-→-StringBuffer" class="headerlink" title="String → StringBuffer"></a>String → StringBuffer</h6><p><img src="https://img-blog.csdnimg.cn/6d092a96d5cf44f4b52b0a31b1d220db.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_13,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<h6 id="StringBuffer-→-String"><a href="#StringBuffer-→-String" class="headerlink" title="StringBuffer → String"></a>StringBuffer → String</h6><p><img src="https://img-blog.csdnimg.cn/05c5317562b84956b541db458246fa7e.png" alt="img"></p>
-<h5 id="StringBuffer-方法"><a href="#StringBuffer-方法" class="headerlink" title="StringBuffer 方法"></a>StringBuffer 方法</h5><p><img src="https://img-blog.csdnimg.cn/8e90bd989a484e469d7c05bf8b5b22d1.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_9,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<h3 id="StringBuilder类"><a href="#StringBuilder类" class="headerlink" title="StringBuilder类"></a>StringBuilder类</h3><ul>
-<li>StringBuilder 和 StringBuffer 均代表可变的字符序列, 方法是一样的, 所以使用和 StringBuffer 一样</li>
-</ul>
-<p><img src="https://img-blog.csdnimg.cn/81e8e3e4cca14cf790672a4270ee62a9.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<h3 id="String-StringBuffer和StringBuilder的比较"><a href="#String-StringBuffer和StringBuilder的比较" class="headerlink" title="String,StringBuffer和StringBuilder的比较"></a>String,StringBuffer和StringBuilder的比较</h3><ol>
-<li><p>StringBuffer 和 StringBuilder非常类似, 均代表可变的字符序列, 而且方法也一样</p>
-</li>
-<li><p>String : 不可变字符序列, 效率低, 但是复用率高(如果是相同的数据空间”abc”, 被多个对象引用, 都指向常量池的同一个空间地址)</p>
-</li>
-<li><p>StringBuffer : 可变字符序列, 效率较高(增删), 线程安全</p>
-</li>
-<li><p>StringBuilder : 可变字符序列, 效率最高, 线程不安全</p>
-</li>
-<li><p>String 使用注意事项 : </p>
-<pre class=" language-java"><code class="language-java">string s <span class="token operator">=</span> <span class="token string">"a"</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//创建了一个字符串</span>
-s <span class="token operator">+=</span> <span class="token string">"b"</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//实际上原来的"a"字符串对象已经丢弃了, 现在又产生了一个字符串s += "b"(也就是"ab"). 如果多次执行这些改变串内容的操作, 会导致大量副本字符串对象存留在内存中, 降低效率. 如果这样的操作放在循环中, 会极大影响程序的性能</span>
-<span class="token comment" spellcheck="true">//结论: 如果我们对String做大量修改, 不要使用String</span>
-</code></pre>
-</li>
-</ol>
-<h3 id="Math类"><a href="#Math类" class="headerlink" title="Math类"></a>Math类</h3><h5 id="随机数"><a href="#随机数" class="headerlink" title="随机数"></a>随机数</h5><p>获取一个 a - b 之间的一个随机整数</p>
-<p><code>int num = (int)(Math.random() * (b - a + 1) + a)</code></p>
-<p><img src="https://img-blog.csdnimg.cn/7744ddbc9ef0439bbace29507cbd53bd.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_18,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<h3 id="Date类"><a href="#Date类" class="headerlink" title="Date类"></a>Date类</h3><p><img src="https://img-blog.csdnimg.cn/08a952d5e705455392e62a521f957d1b.png" alt="img"></p>
-<p><img src="https://img-blog.csdnimg.cn/00dfd34384564c7f8407cd70a08533bc.png" alt="img"></p>
-<p><img src="https://img-blog.csdnimg.cn/7f3943a157eb4e6c924615588eeb53da.png" alt="img"></p>
-<h3 id="Calendar类"><a href="#Calendar类" class="headerlink" title="Calendar类"></a>Calendar类</h3><p><img src="https://img-blog.csdnimg.cn/789ed06ecdd14281a531ed783c00f415.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<h6 id="24小时进制"><a href="#24小时进制" class="headerlink" title="24小时进制"></a>24小时进制</h6><p>如果我们需要按照24小时进制来获取时间, Calendar.HOUR 改成  Calendar.HOUR_OF_DAY</p>
-<h3 id="第三代日期类-JDK8加入"><a href="#第三代日期类-JDK8加入" class="headerlink" title="第三代日期类  JDK8加入"></a>第三代日期类  JDK8加入</h3><p><code>LocalDate(日期/年月日)</code>,  <code>LocalTime(时间/时分秒)</code>,  <code>LocalDateTime(日期时间/年月日时分秒)</code></p>
-<p><img src="https://img-blog.csdnimg.cn/ccca9b21f2624e9f86990cfa8ecd946e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<h6 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h6><p><img src="https://img-blog.csdnimg.cn/dac1f67bb05b4cb88e5541a197edc15d.png" alt="img"></p>
 
                 
             </div>
@@ -708,7 +654,7 @@ s <span class="token operator">+=</span> <span class="token string">"b"</span><s
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://dd-smile.github.io/2020/02/22/java-note04/">http://dd-smile.github.io/2020/02/22/java-note04/</a>
+                    <a href="http://dd-smile.github.io/2020/02/22/java-note005/">http://dd-smile.github.io/2020/02/22/java-note005/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -795,13 +741,13 @@ s <span class="token operator">+=</span> <span class="token string">"b"</span><s
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/02/25/java-note05/">
+                <a href="/2020/02/25/java-note006/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="集合泛型与线程">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="集合泛型">
                         
-                        <span class="card-title">集合泛型与线程</span>
+                        <span class="card-title">集合泛型</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -816,8 +762,12 @@ s <span class="token operator">+=</span> <span class="token string">"b"</span><s
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            CSD
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%90%8E%E7%AB%AF/" class="post-category">
+                                    后端
+                                </a>
+                            
                             
                         </span>
                     </div>
