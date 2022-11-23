@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="面向对象中级与高级, 冬瓜冬瓜排骨汤">
+    <meta name="keywords" content="面向对象高级, 冬瓜冬瓜排骨汤">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>面向对象中级与高级 | 冬瓜冬瓜排骨汤</title>
+    <title>面向对象高级 | 冬瓜冬瓜排骨汤</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -290,12 +290,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">面向对象中级与高级</h1>
+                    <h1 class="description center-align post-title">面向对象高级</h1>
                 </div>
             </div>
         </div>
@@ -420,6 +420,15 @@
                 </div>
                 <div class="col s5 right-align">
                     
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%90%8E%E7%AB%AF/" class="post-category">
+                                后端
+                            </a>
+                        
+                    </div>
+                    
                 </div>
             </div>
 
@@ -427,7 +436,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-02-17
+                    2020-02-20
                 </div>
                 
 
@@ -448,252 +457,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Java笔记"><a href="#Java笔记" class="headerlink" title="Java笔记"></a>Java笔记</h1><h2 id="第七章-面向对象-中级"><a href="#第七章-面向对象-中级" class="headerlink" title="第七章 面向对象(中级)"></a>第七章 面向对象(中级)</h2><h3 id="访问修饰符"><a href="#访问修饰符" class="headerlink" title="访问修饰符"></a>访问修饰符</h3><table>
-<thead>
-<tr>
-<th align="center">作用域</th>
-<th align="center">当前类</th>
-<th align="center">同一包</th>
-<th align="center">其他包的子孙类</th>
-<th align="center">其他包的类</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">public</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center">√</td>
-</tr>
-<tr>
-<td align="center">protected</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center">×</td>
-</tr>
-<tr>
-<td align="center">friendly</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center">×</td>
-<td align="center">×</td>
-</tr>
-<tr>
-<td align="center">private</td>
-<td align="center">√</td>
-<td align="center">×</td>
-<td align="center">×</td>
-<td align="center">×</td>
-</tr>
-</tbody></table>
-<h6 id="访问修饰符细节"><a href="#访问修饰符细节" class="headerlink" title="访问修饰符细节"></a>访问修饰符细节</h6><p>只有默认的(没有修饰符)和public才能修饰类</p>
-<h3 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h3><ol>
-<li><p>将属性进行私有化private</p>
-</li>
-<li><p>提供一个公共的(public)set的方法, 用于对属性判断并赋值</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setXxx</span><span class="token punctuation">(</span>类型 参数名<span class="token punctuation">)</span><span class="token punctuation">{</span>  <span class="token comment" spellcheck="true">//Xxx表示某个属性</span>
-    <span class="token comment" spellcheck="true">//加入数据验证的业务逻辑</span>
-    属性 <span class="token operator">=</span> 参数名<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-</li>
-<li><p>提供一个公共的(public)get的方法, 用于获取属性的值</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> 数据类型 <span class="token function">getXxx</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>  <span class="token comment" spellcheck="true">//权限判断, Xxx某个属性</span>
-    <span class="token keyword">return</span> xx
-<span class="token punctuation">}</span>
-</code></pre>
-</li>
-</ol>
-<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p><img src="https://img-blog.csdnimg.cn/6700f4add1374946b28884f99c05fe48.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<h3 id="继承细节"><a href="#继承细节" class="headerlink" title="继承细节"></a>继承细节</h3><ol>
-<li><p>子类继承了所有的属性和方法, 但是<strong>私有属性和方法不能在子类直接访问</strong>, 要通过父类提供公共的方法去访问</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Base</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//父类Base</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span> n1<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token keyword">int</span> n2<span class="token punctuation">;</span>
-    
-    <span class="token comment" spellcheck="true">//通过父类提供一个public的方法, 返回了n2</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getN2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">return</span> n2<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test100</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"test100"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">test200</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"test200"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">//通过父类提供的public的方法来调用test200()</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">callTest200</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token function">test200</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Sub</span> <span class="token keyword">extends</span> <span class="token class-name">Base</span><span class="token punctuation">{</span>   <span class="token comment" spellcheck="true">//子类Sub</span>
-    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"n1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//要通过父类提供公共的方法去访问n2</span>
-    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"n4="</span> <span class="token operator">+</span> <span class="token function">getN2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    
-    <span class="token function">test100</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">callTest200</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-</li>
-<li><p><strong>子类必须调用父类的构造器</strong>, 完成父类的初始化</p>
-</li>
-<li><p>当创建子类对象时, 不管使用子类的哪个构造器, 默认情况下总会去调用父类的无参构造器, 如果父类没有提供无参构造器, 则必须在子类的构造器中用super去指定使用父类的哪个构造器完成对父类的初始化工作</p>
-</li>
-<li><p>如果希望指定去调用父类的某个构造器, 则显式的调用一下 : <code>super(参数列表)</code></p>
-<p>1.调用父类的无参构造器, 如下 或者 什么都不写, <strong>默认就是调用<code>super()</code></strong></p>
-<p><code>super();</code>//父类的无参构造器</p>
-<p>2.调用父类的 <code>Base(Sting name)</code>构造器</p>
-<p><code>super("jack");</code></p>
-</li>
-<li><p>super在使用时, 必须放在构造器的第一行(super只能在构造器中使用)</p>
-</li>
-<li><p><code>super()</code>和<code>this()</code>都只能放在构造器的第一行,因此这两个方法不能共存在一个构造器中</p>
-</li>
-<li><p>父类构造器的调用不限于直接父类! 将一直往上追溯直到Object类</p>
-</li>
-</ol>
-<h3 id="继承的本质"><a href="#继承的本质" class="headerlink" title="继承的本质"></a>继承的本质</h3><p>创建子类的过程中    <code>Son son = new Son();</code></p>
-<p>是先加载类,  <code>1.Object  - 2.GrandPa - 3.Father - 4.Son</code></p>
-<p><img src="https://img-blog.csdnimg.cn/7e2cc51f5a484dffac5b326f6849a651.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<p>注意此时name与父类和爷爷类的属性名字相同, 出现这种情况下时,按以下规则 :</p>
-<p><img src="https://img-blog.csdnimg.cn/d73b7db3004e4a9ab361ff13ffc337d1.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<p>如果父类属性为私有属性, 那么还是需要通过公共的方法去访问</p>
-<p><img src="https://img-blog.csdnimg.cn/db4dfdc47f9b4f12bd8a75ae90a54228.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<p>如果此时父类的age属性是私有的, 而爷爷类的age属性是public的话, 可以直接用 <code>son.age</code>来访问吗?</p>
-<p>答案是<strong>不可以</strong>!!!    它是一层一层往上找的, 如果在父类遇到私有的age属性, 就会直接报错, 无法绕过父类去访问爷爷类的age属性(可以通过爷爷类的public方法访问)</p>
-<h3 id="super关键字"><a href="#super关键字" class="headerlink" title="super关键字"></a>super关键字</h3><p>super代表父类的引用, 用于访问父类的属性, 方法, 构造器</p>
-<ol>
-<li><p>访问父类的属性, 但不能访问父类的private属性</p>
-<p><code>super.属性名</code></p>
-</li>
-<li><p>访问父类的方法, 不能访问父类的private方法</p>
-<p><code>super.方法名</code></p>
-</li>
-<li><p>访问父类的构造器</p>
-<p><code>super(参数列表)</code></p>
-</li>
-</ol>
-<h3 id="super细节"><a href="#super细节" class="headerlink" title="super细节"></a>super细节</h3><ol>
-<li><p>当子类中有和父类中的成员(属性和方法)重名时, 为了访问父类的成员, 必须通过super. 如果没有重名, 使用super, this, 直接访问是一样的效果</p>
-<p><img src="https://img-blog.csdnimg.cn/38ead28502f74f99b7bacbdfb2e4903c.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_15,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<p><img src="https://img-blog.csdnimg.cn/d293677a9d814a258576acb7588f5419.png" alt="img"></p>
-</li>
-<li><p>super的访问不限于直接父类, 如果爷爷类和本类中有同名的成员, 也可以使用super去访问爷爷类的成员, 如果多个基类中都有同名的成员, 使用super访问遵循就近原则</p>
-</li>
-<li><p>调用父类构造器的好处 :父类的属性由父类初始化, 子类的属性由子类初始化</p>
-</li>
-</ol>
-<h5 id="super和this的比较"><a href="#super和this的比较" class="headerlink" title="super和this的比较"></a>super和this的比较</h5><p><img src="https://img-blog.csdnimg.cn/2bae6f49712d444494fadb83cb49c08a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_15,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<h3 id="重写"><a href="#重写" class="headerlink" title="重写"></a>重写</h3><p>方法重写也叫方法覆盖</p>
-<p><img src="https://img-blog.csdnimg.cn/c5749e8c90694a76adfb2a4fbb67198f.png" alt="img"></p>
-<h3 id="方法重写细节"><a href="#方法重写细节" class="headerlink" title="方法重写细节"></a>方法重写细节</h3><ol>
-<li>子类的方法的<strong>形参列表</strong>, <strong>方法名称</strong>, 要和父类方法的<strong>形参列表</strong>, <strong>方法名称</strong>完全一样</li>
-<li>子类的返回类型和父类方法返回类型一样, 或者是父类返回类型的子类   比如 : 父类 返回类型是 Object, 子类方法返回类型是 String</li>
-<li>子类方法不能缩小父类方法的访问权限</li>
-</ol>
-<p>重写与重载的区别</p>
-<p><img src="https://img-blog.csdnimg.cn/bfcb9378b98a41cf99924e6d5f8151e8.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_19,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><ol>
-<li><p>方法重载和方法的重写体现多态</p>
-</li>
-<li><p>对象的多态</p>
-<ol>
-<li><p>一句话的编译类型和运行类型可以不一致</p>
-<pre class=" language-java"><code class="language-java">Animal animal <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Dog</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//编译类型(名义上)是Animal,运行类型(实际上)是Dog</span>
-</code></pre>
-</li>
-<li><p>编译类型在定义对象时, 就确定了, 不能改变</p>
-</li>
-<li><p>运行类型是可以变化的</p>
-</li>
-<li><p>编译类型看定义时 =号 的左边, 运行类型看 =号 的右边</p>
-</li>
-</ol>
-</li>
-</ol>
-<h3 id="多态的细节"><a href="#多态的细节" class="headerlink" title="多态的细节"></a>多态的细节</h3><ol>
-<li><p>向上转型</p>
-<p>多态的前提是 : 两个对象(类)存在继承关系</p>
-<p>多态的向上转型</p>
-<ol>
-<li><p>本质: 父类的引用指向了子类的对象</p>
-</li>
-<li><p>语法: 父类类型 引用名 = new 子类类型();</p>
-</li>
-<li><p>特点: 编译类型看左边, 运行类型看右边.</p>
-<p>可以调用父类中的所有成员(需遵守访问权限)</p>
-<p>不能调用子类中特有成员</p>
-<p>最终运行效果看子类的具体实现</p>
-<p>(<strong>编译类型是编译器javac执行的, 运行类型是java执行的</strong>)</p>
-</li>
-</ol>
-<p><img src="https://img-blog.csdnimg.cn/c8b22ff263214e1292b39104b164ed0a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-</li>
-<li><p>向下转型</p>
-<ol>
-<li><p>语法: 子类类型 引用名 = (子类类型) 父类引用</p>
-</li>
-<li><p>只能强转父类的引用, 不能强转父类的对象</p>
-</li>
-<li><p>要求父类的引用必须指向的是当前目标类型的对象</p>
-</li>
-<li><p>当向下转型后, 可以调用子类类型中所有 的成员</p>
-<p><img src="https://img-blog.csdnimg.cn/80dc64531fb94e63b178b4bb3b5a28e1.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_11,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-</li>
-</ol>
-</li>
-</ol>
-<h3 id="属性重写问题"><a href="#属性重写问题" class="headerlink" title="属性重写问题"></a>属性重写问题</h3><ol>
-<li>属性没有重写之说!!! 属性的值看<strong>编译类型</strong></li>
-<li><code>instanceOf</code>比较操作符, 用于判断对象的<strong>运行类型</strong>是否为XX类型或者XX类型的子类型</li>
-</ol>
-<h3 id="动态绑定机制"><a href="#动态绑定机制" class="headerlink" title="动态绑定机制"></a>动态绑定机制</h3><ol>
-<li>当<strong>调用对象方法</strong>的时候, 该方法会和该对象的内存地址/<strong>运行类型绑定</strong></li>
-<li>当<strong>调用对象属性</strong>时, 没有动态绑定机制, 哪里声明, 哪里使用</li>
-</ol>
-<h3 id="多态数组"><a href="#多态数组" class="headerlink" title="多态数组"></a>多态数组</h3><p>//创建一个Person类, Student和Teacher继承于它</p>
-<p>//2个Student 对象和2个Teacher 对象, 统一放在数组中, 并调用每个say方法</p>
-<p><img src="https://img-blog.csdnimg.cn/58606885ca38402487315f7710090902.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_18,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<p>//如何调用子类特有的方法, 比如Teacher有一个teach, Student有一个study , 怎么调用</p>
-<p><img src="https://img-blog.csdnimg.cn/056a97c6bca74ac88a7cd59779d69b28.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_19,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<h3 id="多态参数"><a href="#多态参数" class="headerlink" title="多态参数"></a>多态参数</h3><p>方法定义的形参类型为父类类型, 实参类型允许为子类类型</p>
-<h3 id="Object类详解"><a href="#Object类详解" class="headerlink" title="Object类详解"></a>Object类详解</h3><h5 id="equals方法"><a href="#equals方法" class="headerlink" title="equals方法"></a>equals方法</h5><p>== 与 equals的对比</p>
-<ol>
-<li>== 是一个比较运算符, 既可以判断基本类型, 又可以判断引用类型</li>
-<li>如果判断基本类型, 判断的是值是否相等</li>
-<li>如果判断引用类型, 判断的是地址是否相等, 即判定是不是同一个对象</li>
-</ol>
-<p>equals方法 : 是Object类中的方法, 只能判断引用类型</p>
-<p>默认判断的是地址是否相等, 子类中往往重写该方法, 用于判断内容是否相等. 比如 Integer, String…</p>
-<h5 id="hashCode方法"><a href="#hashCode方法" class="headerlink" title="hashCode方法"></a>hashCode方法</h5><pre class=" language-java"><code class="language-java">AA aa <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-AA aa2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-AA aa3 <span class="token operator">=</span> aa<span class="token punctuation">;</span>
-System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"aa.hashCode = "</span> <span class="token operator">+</span> aa<span class="token punctuation">.</span><span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"aa2.hashCode = "</span> <span class="token operator">+</span> aa2<span class="token punctuation">.</span><span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"aa3.hashCode = "</span> <span class="token operator">+</span> aa3<span class="token punctuation">.</span><span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<ol>
-<li>提高具有哈希结构的容器的效率</li>
-<li>两个引用, 如果指向的是同一个对象, 则哈希值肯定是一样的</li>
-<li>两个引用, 如果指向的是不同对象, 则哈希值是不一样的</li>
-<li>哈希值主要根据地址号来的,  但是不能完全将哈希值等价于地址</li>
-</ol>
-<h5 id="toString方法"><a href="#toString方法" class="headerlink" title="toString方法"></a>toString方法</h5><ol>
-<li>默认返回 : 全类名 + @ + 哈希值的十六进制</li>
-<li>子类往往重写toString方法, 用于返回对象的属性信息</li>
-<li>重写toString方法, 打印对象或拼接对象, 都会自动调用该对象的toString形式(快捷键)</li>
-<li>当直接输出一个对象时, toString方法会被默认的调用</li>
-</ol>
-<h5 id="Finalize方法"><a href="#Finalize方法" class="headerlink" title="Finalize方法"></a>Finalize方法</h5><ol>
-<li>当对象被回收时, 系统自动调用该对象的finalize方法. 子类可以重写该方法, 做一些释放资源的操作</li>
-<li>什么时候被回收 : 当某个对象没有任何引用时, 则jvm就认为这个对象是一个垃圾对象, 就会使用垃圾回收机制来销毁该对象, 在销毁该对象前, 会先调用finalize方法</li>
-<li>垃圾回收机制的调用, 是由系统来决定, 也可以通过<code>System.gc()</code>来主动触发垃圾回收机制</li>
-</ol>
-<h3 id="断点调试"><a href="#断点调试" class="headerlink" title="断点调试"></a>断点调试</h3><p>在断点调试过程中, 是运行状态, 是以对象的运行类型来执行的.</p>
-<h2 id="第八章-面向对象-高级"><a href="#第八章-面向对象-高级" class="headerlink" title="第八章 面向对象(高级)"></a>第八章 面向对象(高级)</h2><h3 id="类变量-静态变量-和类方法-静态方法"><a href="#类变量-静态变量-和类方法-静态方法" class="headerlink" title="类变量(静态变量)和类方法(静态方法)"></a>类变量(静态变量)和类方法(静态方法)</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Child</span><span class="token punctuation">{</span>
+                <h2 id="面向对象-高级"><a href="#面向对象-高级" class="headerlink" title="面向对象(高级)"></a>面向对象(高级)</h2><h3 id="类变量-静态变量-和类方法-静态方法"><a href="#类变量-静态变量-和类方法-静态方法" class="headerlink" title="类变量(静态变量)和类方法(静态方法)"></a>类变量(静态变量)和类方法(静态方法)</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Child</span><span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">//定义一个静态变量count</span>
     <span class="token comment" spellcheck="true">//该变量最大的特点就是会被Child类所有的对象实例共享</span>
     <span class="token comment" spellcheck="true">//类变量,可以通过类名来访问</span>
@@ -840,19 +604,22 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <li><p>静态代码块只能直接调用静态成员(静态属性和静态方法), 普通代码块可以调用任意成员</p>
 </li>
 </ol>
-<h3 id="单例设计模式"><a href="#单例设计模式" class="headerlink" title="单例设计模式"></a>单例设计模式</h3><h5 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h5><ol>
+<h3 id="单例设计模式"><a href="#单例设计模式" class="headerlink" title="单例设计模式"></a>单例设计模式</h3><p><strong>饿汉式</strong></p>
+<ol>
 <li>构造器私有化    -  防止直接 new</li>
 <li>类的内部创建对象(该对象是static)</li>
 <li>向外暴露一个静态的公共方法, 返回对象</li>
 <li>代码实现</li>
 </ol>
-<h5 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h5><ol>
+<p><strong>懒汉式</strong></p>
+<ol>
 <li>构造器私有化    -  防止直接 new</li>
 <li>定义一个静态属性, 不直接new</li>
 <li>向外暴露一个静态的公共方法, 返回对象</li>
 <li>在静态公共方法里面进行判断此时是否创建对象, 如果没有创建对象, 那么就创建一个对象</li>
 </ol>
-<h6 id="饿汉式与懒汉式的区别"><a href="#饿汉式与懒汉式的区别" class="headerlink" title="饿汉式与懒汉式的区别"></a>饿汉式与懒汉式的区别</h6><ol>
+<p><strong>饿汉式与懒汉式的区别</strong></p>
+<ol>
 <li>二者最主要的区别在于创建对象的时机不同 : 饿汉式是在类加载就创建了对象实例, 而懒汉式是在使用时才创建</li>
 <li>饿汉式不存在线程安全问题, 懒汉式存在线程安全问题</li>
 <li>饿汉式存在浪费资源的可能. 因为如果程序员一个对象都没有使用, 那么饿汉式创建的对象就浪费了, 懒汉式是使用时才创建, 就不存在这个问题.</li>
@@ -903,7 +670,8 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <span class="token punctuation">}</span>
 </code></pre>
 <h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><p>当父类的某些方法, 需要声明, 但是又不确定如何实现时, 可以将其声明为抽象方法, 那么这个类就是抽象类</p>
-<h5 id="抽象类细节"><a href="#抽象类细节" class="headerlink" title="抽象类细节"></a>抽象类细节</h5><ol>
+<p><strong>抽象类细节</strong></p>
+<ol>
 <li>抽象类不能被实例化</li>
 <li>抽象类不一定要包含abstract方法. 也就是说, 抽象类可以没有abstract方法</li>
 <li>一旦类包含了abstract方法, 则这个类必须声明为abstract</li>
@@ -972,9 +740,9 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <li>继承是满足 is - a 的关系, 而接口只需满足 like - a 的关系</li>
 </ol>
 <h3 id="接口多态特性"><a href="#接口多态特性" class="headerlink" title="接口多态特性"></a>接口多态特性</h3><ol>
-<li><h5 id="多态参数-1"><a href="#多态参数-1" class="headerlink" title="多态参数"></a>多态参数</h5><p><img src="https://img-blog.csdnimg.cn/b054fa0d0bb24fa8ae76a5a63cf69b92.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_15,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+<li><h5 id="多态参数"><a href="#多态参数" class="headerlink" title="多态参数"></a>多态参数</h5><p><img src="https://img-blog.csdnimg.cn/b054fa0d0bb24fa8ae76a5a63cf69b92.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_15,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
 </li>
-<li><h5 id="多态数组-1"><a href="#多态数组-1" class="headerlink" title="多态数组"></a>多态数组</h5><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//main中</span>
+<li><h5 id="多态数组"><a href="#多态数组" class="headerlink" title="多态数组"></a>多态数组</h5><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//main中</span>
 Usb<span class="token punctuation">[</span><span class="token punctuation">]</span> usbs <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Usb</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 usbs<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Phone_</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 usbs<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Camera_</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1015,8 +783,10 @@ usbs<span class="token punctuation">[</span><span class="token number">0</span><
 <li><h5 id="接口的多态传递现象"><a href="#接口的多态传递现象" class="headerlink" title="接口的多态传递现象"></a>接口的多态传递现象</h5><p><img src="https://img-blog.csdnimg.cn/92027b5d5cdd4126be9060f752336045.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_13,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
 </li>
 </ol>
-<h3 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h3><h5 id="类的五大成员-属性-方法-构造器-代码块-内部类"><a href="#类的五大成员-属性-方法-构造器-代码块-内部类" class="headerlink" title="类的五大成员: 属性, 方法, 构造器, 代码块, 内部类"></a>类的五大成员: 属性, 方法, 构造器, 代码块, 内部类</h5><p><img src="https://img-blog.csdnimg.cn/bf103c84540c4015b0a08d8708422064.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_13,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<h5 id="内部类的分类"><a href="#内部类的分类" class="headerlink" title="内部类的分类"></a>内部类的分类</h5><p>定义在外部类局部位置上 (比如方法内)</p>
+<h3 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h3><p><strong>类的五大成员: 属性, 方法, 构造器, 代码块, 内部类</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/bf103c84540c4015b0a08d8708422064.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_13,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+<p><strong>内部类的分类</strong></p>
+<p>定义在外部类局部位置上 (比如方法内)</p>
 <ol>
 <li>局部内部类 (有类名)</li>
 <li>匿名内部类 (没有类名)</li>
@@ -1140,7 +910,8 @@ father<span class="token punctuation">.</span><span class="token function">test<
 
 <span class="token comment" spellcheck="true">//4.如果外部类和内部类的成员重名时, 默认遵循就近原则, 如果想访问外部类的成员, 则可以使用(外部类名.this.成员)去访问</span>
 </code></pre>
-<h5 id="外部其他类-访问-成员内部类-看别人博客"><a href="#外部其他类-访问-成员内部类-看别人博客" class="headerlink" title="外部其他类 - 访问 - 成员内部类  //看别人博客"></a>外部其他类 - 访问 - 成员内部类  //看别人博客</h5><h3 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h3><p>使用static修饰, 定义在外部类的成员位置</p>
+<p><strong>外部其他类 - 访问 - 成员内部类  //看别人博客</strong></p>
+<h3 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h3><p>使用static修饰, 定义在外部类的成员位置</p>
 <ol>
 <li><p>可以直接访问外部类的所有静态成员, 包含私有的, 但不能直接访问非静态成员</p>
 </li>
@@ -1182,7 +953,7 @@ father<span class="token punctuation">.</span><span class="token function">test<
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://dd-smile.github.io/2020/02/17/java-note03/">http://dd-smile.github.io/2020/02/17/java-note03/</a>
+                    <a href="http://dd-smile.github.io/2020/02/20/java-note004/">http://dd-smile.github.io/2020/02/20/java-note004/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1314,13 +1085,13 @@ father<span class="token punctuation">.</span><span class="token function">test<
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/01/15/java-note02/">
+                <a href="/2020/02/17/java-note003/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="数组与对象">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="面向对象中级">
                         
-                        <span class="card-title">数组与对象</span>
+                        <span class="card-title">面向对象中级</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1331,12 +1102,16 @@ father<span class="token punctuation">.</span><span class="token function">test<
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-17
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            CSD
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%90%8E%E7%AB%AF/" class="post-category">
+                                    后端
+                                </a>
+                            
                             
                         </span>
                     </div>

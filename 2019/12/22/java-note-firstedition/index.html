@@ -840,6 +840,42 @@ eg<span class="token operator">:</span><span class="token number">0x23A</span>�
 <span class="token comment" spellcheck="true">//注意: 有小数运算,得到结果是近似值</span>
 System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">10.5</span><span class="token operator">%</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
+<h2 id="程序流程控制"><a href="#程序流程控制" class="headerlink" title="程序流程控制"></a>程序流程控制</h2><h3 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h3><ol>
+<li>switch 关键字, 表示switch分支</li>
+<li>表达式 对应一个值</li>
+<li>case 常量1: 当表达式的值等于常量1, 就执行 语句块1</li>
+<li>break: 表示退出switch</li>
+<li>如果和case 常量1匹配, 就执行语句块1, 如果没有匹配, 就继续匹配case 常量2</li>
+<li>如果一个都没有匹配上, 执行default</li>
+</ol>
+<h3 id="switch细节"><a href="#switch细节" class="headerlink" title="switch细节"></a>switch细节</h3><ol>
+<li><p>表达式数据类型, 应和case后的常量类型一致, 或者是可以自动转成可以相互比较的类型, 比如输入的是字符, 而常量是int</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">char</span> c <span class="token operator">=</span> <span class="token string">'a'</span><span class="token punctuation">;</span>
+<span class="token keyword">switch</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token number">20</span> <span class="token operator">:</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"ok"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">'a'</span><span class="token operator">:</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"ok1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">default</span> <span class="token operator">:</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"ok2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+</li>
+<li><p>switch(表达式)中表达式的返回值必须是:(byte, short, int, char, enum[枚举], String)</p>
+</li>
+<li><p>case子句中的值必须是常量, 而不能是变量</p>
+</li>
+<li><p>default子句是可选的</p>
+</li>
+<li><p>break语句是用来在执行完一个case分支后使程序跳出switch语句块, 如果没有写break, 会出现<strong>穿透现象</strong>(程序会顺序执行到switch结尾)</p>
+</li>
+</ol>
+<h3 id="return"><a href="#return" class="headerlink" title="return"></a>return</h3><p>当return用在方法时, 表示跳出方法, 如果使用在main, 表示退出程序</p>
+<p>谁调用(接收), 就返回给谁</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">int</span> returnRes <span class="token operator">=</span> p1<span class="token punctuation">.</span><span class="token function">getSum</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//把方法 getSum 返回的值 ,赋给 变量 returnRes</span>
+</code></pre>
 
                 
             </div>
@@ -953,13 +989,13 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/01/15/java-note02/">
+                <a href="/2020/01/15/java-note001/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="数组与对象">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="数组">
                         
-                        <span class="card-title">数组与对象</span>
+                        <span class="card-title">数组</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -974,8 +1010,12 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            CSD
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%90%8E%E7%AB%AF/" class="post-category">
+                                    后端
+                                </a>
+                            
                             
                         </span>
                     </div>
