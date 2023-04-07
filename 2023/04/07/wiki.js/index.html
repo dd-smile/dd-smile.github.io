@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="枚举与异常, 冬瓜冬瓜排骨汤">
+    <meta name="keywords" content="如何使用wiki.js, 冬瓜冬瓜排骨汤">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>枚举与异常 | 冬瓜冬瓜排骨汤</title>
+    <title>如何使用wiki.js | 冬瓜冬瓜排骨汤</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -290,12 +290,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">枚举与异常</h1>
+                    <h1 class="description center-align post-title">如何使用wiki.js</h1>
                 </div>
             </div>
         </div>
@@ -411,8 +411,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Java/">
-                                <span class="chip bg-color">Java</span>
+                            <a href="/tags/Tool/">
+                                <span class="chip bg-color">Tool</span>
                             </a>
                         
                     </div>
@@ -423,8 +423,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%90%8E%E7%AB%AF/" class="post-category">
-                                后端
+                            <a href="/categories/%E5%90%84%E7%A7%8D%E6%8A%98%E8%85%BE/" class="post-category">
+                                各种折腾
                             </a>
                         
                     </div>
@@ -436,7 +436,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-02-22
+                    2023-04-07
                 </div>
                 
 
@@ -457,176 +457,142 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="枚举和注解"><a href="#枚举和注解" class="headerlink" title="枚举和注解"></a>枚举和注解</h2><h3 id="枚举类"><a href="#枚举类" class="headerlink" title="枚举类"></a>枚举类</h3><p>创建Season对象有如下特点</p>
-<ol>
-<li>季节的值是有限的几个值(spring , summer , fall , winter)</li>
-<li>只读, 不需要修改</li>
-</ol>
-<p>引出枚举类</p>
-<h3 id="自定义枚举类"><a href="#自定义枚举类" class="headerlink" title="自定义枚举类"></a>自定义枚举类</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Season</span><span class="token punctuation">{</span>
-    <span class="token keyword">private</span> String name<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> String desc<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//描述</span>
-    <span class="token comment" spellcheck="true">//1.将构造器私有化, 目的防止 直接new</span>
-    <span class="token comment" spellcheck="true">//2.去掉setXxx方法, 防止属性被修改</span>
-    <span class="token comment" spellcheck="true">//3.在Season内部, 直接创建固定的对象</span>
-    <span class="token comment" spellcheck="true">//4.对外暴露对象(通过为对象添加public final static修饰符)</span>
-    
-    <span class="token comment" spellcheck="true">//定义四个固定的对象</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> Season SPRING <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Season</span><span class="token punctuation">(</span><span class="token string">"春天"</span><span class="token punctuation">,</span><span class="token string">"温暖"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> Season WINTER <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Season</span><span class="token punctuation">(</span><span class="token string">"冬天"</span><span class="token punctuation">,</span><span class="token string">"寒冷"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> Season FALL <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Season</span><span class="token punctuation">(</span><span class="token string">"秋天"</span><span class="token punctuation">,</span><span class="token string">"凉爽"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> Season SUMMER <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Season</span><span class="token punctuation">(</span><span class="token string">"夏天"</span><span class="token punctuation">,</span><span class="token string">"炎热"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//通常对枚举对象/属性使用final + static共同修饰,实现底层优化</span>
-</code></pre>
-<ol>
-<li>枚举对象名通常使用全部大写</li>
-<li>枚举对象根据需要, 可以有多个属性</li>
-</ol>
-<h3 id="enum关键字"><a href="#enum关键字" class="headerlink" title="enum关键字"></a>enum关键字</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">enum</span> Season<span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">//1.使用关键 enum 替代 class</span>
-    <span class="token comment" spellcheck="true">//2. public static Season SPRING = new Season("春天","温暖"); 直接使用 SPRING("春天","温暖");   </span>
-    <span class="token comment" spellcheck="true">//常量名(实参列表)</span>
-    <span class="token comment" spellcheck="true">//3.如果有多个常量(对象), 使用 , 号间隔即可</span>
-    <span class="token comment" spellcheck="true">//4.如果使用enum来实现枚举, 要求将定义的常量对象,写在最前面</span>
-    <span class="token function">SPRING</span><span class="token punctuation">(</span><span class="token string">"春天"</span><span class="token punctuation">,</span><span class="token string">"温暖"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">WINTER</span><span class="token punctuation">(</span><span class="token string">"冬天"</span><span class="token punctuation">,</span><span class="token string">"寒冷"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">private</span> String name<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> String desc<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//描述</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<h3 id="enum类常用方法"><a href="#enum类常用方法" class="headerlink" title="enum类常用方法"></a>enum类常用方法</h3><p><img src="https://img-blog.csdnimg.cn/1be4aca2e9b341218477d3045a3dddca.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_14,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<h3 id="enum细节"><a href="#enum细节" class="headerlink" title="enum细节"></a>enum细节</h3><ol>
-<li><p>使用enum关键字开放一个枚举类时, 默认会继承Enum类, 而且是一个final类 (使用javap 可以证明)</p>
-</li>
-<li><p>如果使用无参构造器 创建 枚举对象, 则实参列表和小括号都可以省略’</p>
-</li>
-<li><p>枚举对象必须放在枚举类的首行</p>
-</li>
-<li><p>使用enum关键字后, 就不能再继承其他类了, 因为enum会隐式继承Enum, 而Java是单继承机制</p>
-</li>
-<li><p>枚举类和普通类一样, 可以实现接口</p>
-<p><code>enum 类名 implements 接口1, 接口2{}</code></p>
-</li>
-</ol>
-<h3 id="foreach语句-for循环补充"><a href="#foreach语句-for循环补充" class="headerlink" title="foreach语句 - for循环补充"></a>foreach语句 - for循环补充</h3><p><img src="https://img-blog.csdnimg.cn/adbb1060bc58442b91665f30fe124e89.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_11,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<p>foreach执行流程是 : 依次从nums数组中取出数据, 赋给i, 如果取出完毕, 则退出for</p>
-<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><h3 id="异常体系图-体现继承和实现的关系"><a href="#异常体系图-体现继承和实现的关系" class="headerlink" title="异常体系图 (体现继承和实现的关系)"></a>异常体系图 (体现继承和实现的关系)</h3><p><img src="https://img-blog.csdnimg.cn/4a8d5f05101044ba93d54499088f03d4.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<ol>
-<li>异常分为两大类, 运行时异常和编译时异常</li>
-<li>运行时异常, 编译器检查不出来. 一般是指编译时的逻辑错误, 是程序员应该避免其出现的异常. java.lang.RuntimeException类及它的子类都是运行时异常</li>
-<li>对于运行时异常, 可以不作处理, 因为这类异常很普遍, 若全处理可能会对程序的可读性和运行效率产生影响</li>
-<li>编译时异常, 是编译器要求必须处置的异常</li>
-</ol>
-<h3 id="常见异常"><a href="#常见异常" class="headerlink" title="常见异常"></a>常见异常</h3><p><strong>运行时异常</strong></p>
-<ol>
-<li>NullPointException空指针异常</li>
-<li>ArithmeticException数学运算异常</li>
-<li>ArraylndexOutBoundsException数组下标越界异常</li>
-<li>ClassCastException类型转换异常</li>
-<li>NumberFormatException数字格式不正确异常</li>
-</ol>
-<p><strong>编译时异常</strong></p>
-<ol>
-<li>SQLException操作数据库时, 查询表可能发生异常</li>
-<li>IOException操作文件时, 发生异常</li>
-<li>FileNotFoundException当操作一个不存在的文件时, 发生异常</li>
-<li>ClassNotFoundException加载类, 而该类不存在, 异常</li>
-<li>EOFException操作文件, 到文件末尾, 发生异常</li>
-<li>IIIegaalArguementException参数异常</li>
-</ol>
-<h3 id="异常处理机制"><a href="#异常处理机制" class="headerlink" title="异常处理机制"></a>异常处理机制</h3><ol>
-<li><p><code>try - catch - finally</code></p>
-<p>程序员在代码中捕获发生的异常, 自行处理</p>
-<p><img src="https://img-blog.csdnimg.cn/318f201f173e4c20b81ea34ba40bcf75.png" alt="img"></p>
-</li>
-<li><p><code>throws</code></p>
-<p>将发生的异常抛出, 交给调用者(方法)来处理, 最顶级的处理者就是JVM      </p>
-<p>如果程序员没有显示处理异常, 默认throws</p>
-<p><img src="https://img-blog.csdnimg.cn/ce4605fa9c694365a8a9165966e6306c.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Yas55Oc5Yas55Oc5o6S6aqo5rGk,size_15,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-</li>
-</ol>
-<h3 id="try-catch细节"><a href="#try-catch细节" class="headerlink" title="try - catch细节"></a>try - catch细节</h3><ol>
-<li><p>如果异常发生了, 则异常发生后面的代码不会执行, 直接进入到catch块</p>
-</li>
-<li><p>如果异常没有发生, 则顺序执行try的代码块, 不会进入到catch</p>
-</li>
-<li><p>注意如果在catch中有return, 需观察finally有没有return, 如果有, 则返回的是finally语句中的值(因为finally必须执行)</p>
-</li>
-<li><p>可以有多个catch语句, 捕获不同的异常(进行不同的业务处理), 要求父类异常在后, 子类异常在前, 比如(Exception 在后, NullPointException在前), 如果发生异常, 只会匹配一个catch</p>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//main中</span>
-<span class="token keyword">try</span><span class="token punctuation">{</span>
-    Person person <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    person <span class="token operator">=</span> null<span class="token punctuation">;</span>
-    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//NullPointException</span>
-    <span class="token keyword">int</span> n1 <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> n2 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> res <span class="token operator">=</span> n1 <span class="token operator">/</span> n2<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//ArithmeticException</span>
-<span class="token punctuation">}</span><span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">NullPointException</span> e<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"空指针异常="</span> <span class="token operator">+</span> e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token keyword">catch</span><span class="token punctuation">(</span>ArithmeticException e<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"算术异常="</span> <span class="token operator">+</span> e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token keyword">finally</span><span class="token punctuation">{</span>
-    
-<span class="token punctuation">}</span>
-
-<span class="token keyword">class</span> <span class="token class-name">Person</span><span class="token punctuation">{</span>
-    <span class="token keyword">private</span> String name <span class="token operator">=</span> <span class="token string">"jack"</span><span class="token punctuation">;</span>
-    <span class="token keyword">public</span> String <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">return</span> name<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
-</li>
-</ol>
-<h3 id="throws细节"><a href="#throws细节" class="headerlink" title="throws细节"></a>throws细节</h3><ol>
-<li><p>对于编译异常, 程序中必须处理, 比如<code>try - catch</code>或者<code>throws</code></p>
-</li>
-<li><p>对于运行时异常, 程序中如果没有处理, 默认就是<code>throws</code>的方式处理</p>
-</li>
-<li><p><code>throws</code>与<code>throw</code>的区别</p>
+                <h2 id="Windows下运行"><a href="#Windows下运行" class="headerlink" title="Windows下运行"></a>Windows下运行</h2><blockquote>
+<p>Windows下使用Docker Desktop快速安装。</p>
+<p>需要注意的是Docker Desktop在Windows安装要求有：</p>
 <ul>
-<li><code>throws</code> 异常处理的一种方式, 位置是 : 方法声明处, 后面跟 异常类型</li>
-<li><code>throw</code>手动生成异常对象的关键字, 位置是 : 方法体中, 后面跟 异常对象</li>
+<li><p>在BIOS开启虚拟化</p>
+</li>
+<li><p>在Windows上启用WSL 2功能。</p>
+</li>
+</ul>
+<blockquote>
+<p>使用 WSL 在 Windows 上安装 Linux</p>
+</blockquote>
+<ul>
+<li><p>官方文档 ：<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/windows/wsl/install">https://learn.microsoft.com/en-us/windows/wsl/install</a></p>
+</li>
+<li><p>WSL2迁移Docker镜像存储位置</p>
+</li>
+</ul>
+<blockquote>
+<p>由于 Docker 镜像默认存储在C盘中，C盘空间会越来越小。所以需要进行迁移操作</p>
+</blockquote>
+<ul>
+<li><p>查看 Docker 官网说明，发现原来启用 WSL 后，Docker 运行数据都在 WSL 发行版中，因此镜像存储位置只能由 WSL 管理。</p>
+<p>安装 Docker 后，Docker 会自动创建 2 个发行版：</p>
+<p>docker-desktop： 存储在 %LOCALAPPDATA%\Docker\wsl\distro<br>docker-desktop-data： 存储在 %LOCALAPPDATA%\Docker\wsl\data（占用空间的元凶）</p>
+</li>
+<li><p>具体迁移步骤如下：</p>
+</li>
+<li><p>停止 Docker 进程</p>
+</li>
+<li><p>关闭所有发行版： <code>wsl --shutdown</code></p>
+</li>
+<li><p>导出 docker-desktop-data 发行版： <code>wsl --export docker-desktop-data D:\wsl\docker\tmp\docker-desktop-data.tar</code>                 需要先创建文件夹，防止系统找不到指定路径</p>
+</li>
+<li><p>注销 docker-desktop-data 发行版： <code>wsl --unregister docker-desktop-data</code></p>
+</li>
+<li><p>导入 docker-desktop-data 到期望迁移的目录： <code>wsl --import docker-desktop-data D:\wsl\docker\data\ D:\wsl\docker\tmp\docker-desktop-data.tar --version 2</code> （迁移目录 <code>D:\wsl\docker\data\</code> 可根据个人需求修改）</p>
+</li>
+<li><p>（可选）删除第 3 步导出的临时文件： D:\wsl\docker\tmp\docker-desktop-data.tar<br>（可选）另一个 Docker 发行版 docker-desktop 可使用同样方式迁移，但是其占用空间很小，不迁移亦可</p>
+<ul>
+<li>执行脚本可以查看附件1</li>
 </ul>
 </li>
-<li><p>子类重写父类的方法时, 对抛出异常的规定 : 子类重写的方法, 所抛出的异常类型要么和父类抛出的异常一样, 要么为父类抛出的异常类型的子类型</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Father</span><span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">method</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> RuntimeException<span class="token punctuation">{</span>
-        
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+</ul>
+</blockquote>
+<p>Docker Desktop的新版本无法使用。会出现WSL中的Ubuntu超时，故把版本换成 4.15.0</p>
+<p>旧版本官网地址 ： <a target="_blank" rel="noopener" href="https://docs.docker.com/desktop/release-notes/">https://docs.docker.com/desktop/release-notes/</a></p>
+<h3 id="1-安装Docker桌面"><a href="#1-安装Docker桌面" class="headerlink" title="1.安装Docker桌面"></a>1.安装Docker桌面</h3><p>安装完毕后，创建一个wiki文件夹，在此文件中创建 <code>docker-compose.yaml</code> 并进行配置</p>
+<pre class=" language-shell"><code class="language-shell">version: "3"
+services:
 
-<span class="token keyword">class</span> <span class="token class-name">Son</span> <span class="token keyword">extends</span> <span class="token class-name">Father</span><span class="token punctuation">{</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">method</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> NullPointException<span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//必须为父类异常的子类或者和父类异常相同</span>
-        
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+  db:
+    image: postgres:11-alpine  # 如果初始化一直报错, 请降级11为9版本. (特别注意)
+    environment:
+      POSTGRES_DB: wiki
+      POSTGRES_PASSWORD: wikijsrocks
+      POSTGRES_USER: wikijs
+    logging:
+      driver: "none"
+    restart: unless-stopped
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  wiki:
+    image: requarks/wiki:2
+    depends_on:
+      - db
+    environment:
+      DB_TYPE: postgres
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: wikijs
+      DB_PASS: wikijsrocks
+      DB_NAME: wiki
+    restart: unless-stopped
+    ports:
+      - "3000:3000" # 这里设置docker内部和外部的端口,比如你改成"80:3000"服务器默认输入ip/域名后就能直接访问了.
+      - "443:3443" # 添加默认的https映射,可不添加
+
+volumes:
+  db-data:
 </code></pre>
+<p>这个文件简单地定义了一个PostgreSQL数据库和Wiki.js容器。</p>
+<h3 id="2-打开命令提示符"><a href="#2-打开命令提示符" class="headerlink" title="2.打开命令提示符"></a>2.打开命令提示符</h3><p>在Windows下，进入刚刚创建的wiki文件夹中，在地址栏中输入cmd进行启动命令提示符</p>
+<h3 id="3-启动Wiki-js"><a href="#3-启动Wiki-js" class="headerlink" title="3.启动Wiki.js"></a>3.启动Wiki.js</h3><p>打开浏览器并导航到 <a target="_blank" rel="noopener" href="http://localhost/">http://localhost</a> 已完成安装并使用 Wiki.js</p>
+<h2 id="Wiki-js页面配置"><a href="#Wiki-js页面配置" class="headerlink" title="Wiki.js页面配置"></a>Wiki.js页面配置</h2><h3 id="系统配置"><a href="#系统配置" class="headerlink" title="系统配置"></a>系统配置</h3><ol>
+<li><p><strong>浏览http://&lt;域名或IP地址&gt;:3000</strong></p>
+<p><img src="https://img2023.cnblogs.com/blog/222300/202303/222300-20230311172607756-261293704.png" alt="img"></p>
+<p>输入管理员邮箱、密码和Wiki.js网站域名，点击”INSTALL”系统将进行初始化工作(包括创建相关的数据库表)。</p>
+</li>
+<li><p><strong>开放注册功能</strong> ：</p>
+<p>需要注意的是，如果使用Local方式，需要注册者邮箱开启STMP功能。</p>
+</li>
+<li><p>具体页面配置查看官网 ：<a target="_blank" rel="noopener" href="https://docs.requarks.io/">https://docs.requarks.io/</a></p>
 </li>
 </ol>
-<h3 id="自定义异常"><a href="#自定义异常" class="headerlink" title="自定义异常"></a>自定义异常</h3><ul>
-<li>定义类 : 自定义异常类名(程序员直接写) 继承Exception 或 RuntimeException</li>
-<li>如果继承Exception, 属于编译异常</li>
-<li>如果继承RuntimeException, 属于运行异常</li>
+<h2 id="Linux下运行"><a href="#Linux下运行" class="headerlink" title="Linux下运行"></a>Linux下运行</h2><p>查看文档 ：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://imbajin.com/2019-11-26-%E7%94%A8Wiki.js%E6%9D%A5%E4%BC%98%E9%9B%85%E7%9A%84%E7%AE%A1%E7%90%86%E6%96%87%E6%A1%A3/">http://imbajin.com/2019-11-26-%E7%94%A8Wiki.js%E6%9D%A5%E4%BC%98%E9%9B%85%E7%9A%84%E7%AE%A1%E7%90%86%E6%96%87%E6%A1%A3/</a>      用Wiki.js来优雅的管理文档</li>
+<li><a target="_blank" rel="noopener" href="https://george.betterde.com/technology/20220602.html">https://george.betterde.com/technology/20220602.html</a>    使用 Wiki.js 管理企业内部文档</li>
+<li><a target="_blank" rel="noopener" href="https://laosu.ml/2022/01/03/%E8%BD%BB%E9%87%8F%E4%BD%86%E5%8A%9F%E8%83%BD%E5%BC%BA%E5%A4%A7%E7%9A%84Wiki.js/">https://laosu.ml/2022/01/03/%E8%BD%BB%E9%87%8F%E4%BD%86%E5%8A%9F%E8%83%BD%E5%BC%BA%E5%A4%A7%E7%9A%84Wiki.js/</a>         轻量但功能强大的Wiki.js</li>
 </ul>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//main中</span>
-<span class="token keyword">int</span> age <span class="token operator">=</span> <span class="token number">180</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">//要求范围在 18~120之间, 否则抛出一个自定义异常</span>
-<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token punctuation">(</span>age <span class="token operator">>=</span> <span class="token number">18</span> <span class="token operator">&amp;&amp;</span> age <span class="token operator">&lt;=</span> <span class="token number">120</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">//这里可以通过构造器,设置信息</span>
-    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">AgeException</span><span class="token punctuation">(</span><span class="token string">"年龄需要在18-120之间"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"你的年龄范围正确"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<h2 id="附件"><a href="#附件" class="headerlink" title="附件"></a>附件</h2><h3 id="附件1"><a href="#附件1" class="headerlink" title="附件1"></a>附件1</h3><blockquote>
+<p>PowerShell 一键迁移脚本</p>
+</blockquote>
+<pre class=" language-shell"><code class="language-shell"># wsl2_move_docker_image.ps1 
+# Docker 镜像存储位置一键迁移脚本（适用于 WSL2 版本） 
+# 
+# Powershell Script 3.0+ 
+# --------------------------------------------------------------------------------------- 
+# 脚本使用方式（需使用管理员权限执行）: 
+# .\wsl2_move_docker_image.ps1 -target "D:\wsl\docker" 
+# --------------------------------------------------------------------------------------- 
+# 
+# target: 期望迁移的目录
+param([string]$target="D:\wsl\docker") 
 
-<span class="token comment" spellcheck="true">//自定义一个异常类</span>
-<span class="token comment" spellcheck="true">//1.一般情况下,我们自定义异常是继承 RuntimeException</span>
-<span class="token comment" spellcheck="true">//2.因为如果是运行时异常的话, 系统会自动使用默认的处理机制</span>
-<span class="token keyword">class</span> <span class="token class-name">AgeException</span> <span class="token keyword">extends</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token function">AgeException</span><span class="token punctuation">(</span>String message<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//构造器</span>
-        <span class="token keyword">super</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+Write-Host "Stop docker ..." 
+net stop "com.docker.service" 
+
+Write-Host "Stop wsl ..." 
+wsl --shutdown 
+
+Write-Host "Move docker-desktop-data image ..." 
+wsl --export docker-desktop-data $target\tmp\docker-desktop-data.tar 
+wsl --unregister docker-desktop-data 
+wsl --import docker-desktop-data $target\data\ $target\tmp\docker-desktop-data.tar --version 2 
+Remove-Item $target\tmp\docker-desktop-data.tar -recurse 
+
+Write-Host "Move docker-desktop image ..." 
+wsl --export docker-desktop $target\tmp\docker-desktop.tar 
+wsl --unregister docker-desktop 
+wsl --import docker-desktop $target\distro\ $target\tmp\docker-desktop.tar --version 2 
+Remove-Item $target\tmp\docker-desktop.tar -recurse 
+
+Write-Host "Finish."
 </code></pre>
 
                 
@@ -654,7 +620,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://dd-smile.github.io/2020/02/22/java-note005/">http://dd-smile.github.io/2020/02/22/java-note005/</a>
+                    <a href="http://dd-smile.github.io/2023/04/07/wiki.js/">http://dd-smile.github.io/2023/04/07/wiki.js/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -692,8 +658,8 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Java/">
-                                    <span class="chip bg-color">Java</span>
+                                <a href="/tags/Tool/">
+                                    <span class="chip bg-color">Tool</span>
                                 </a>
                             
                         </div>
@@ -737,17 +703,18 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/02/25/java-note006/">
+                <a href="/2023/04/07/wiki.js/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="集合泛型">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="如何使用wiki.js">
                         
-                        <span class="card-title">集合泛型</span>
+                        <span class="card-title">如何使用wiki.js</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -757,26 +724,27 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-02-25
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%90%8E%E7%AB%AF/" class="post-category">
-                                    后端
+                            <a href="/categories/%E5%90%84%E7%A7%8D%E6%8A%98%E8%85%BE/" class="post-category">
+                                    各种折腾
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java/">
-                        <span class="chip bg-color">Java</span>
+                    <a href="/tags/Tool/">
+                        <span class="chip bg-color">Tool</span>
                     </a>
                     
                 </div>
@@ -790,13 +758,13 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/02/20/java-note004/">
+                <a href="/2022/01/11/springboot/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="面向对象高级">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="SpringBoot入门">
                         
-                        <span class="card-title">面向对象高级</span>
+                        <span class="card-title">SpringBoot入门</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -807,16 +775,12 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-20
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-11
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%90%8E%E7%AB%AF/" class="post-category">
-                                    后端
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            CSD
                             
                         </span>
                     </div>
