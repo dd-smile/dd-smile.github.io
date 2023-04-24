@@ -526,7 +526,7 @@ size(或minsize) log-size                   当日志文件到达指定的大小
 <li><p>每天晚上 cron 定时任务会扫码目录 <code>/etc/cron.daily/</code></p>
 </li>
 <li><p>触发<code>/etc/cron.daily/logrotate</code>脚本，即运行脚本：</p>
-<pre><code>/usr/sbin/logrotate /etc/logrotate.conf
+<pre class=" language-shell"><code class="language-shell">/usr/sbin/logrotate /etc/logrotate.conf
 </code></pre>
 </li>
 <li><p><code>/etc/logrotate.conf</code>会扫码所有<code>/etc/logrotate.d/</code>目录的脚本</p>
