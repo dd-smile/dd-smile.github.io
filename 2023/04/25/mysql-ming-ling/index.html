@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="MQTT协议初识, 冬瓜冬瓜排骨汤">
+    <meta name="keywords" content="MySQL基础命令, 冬瓜冬瓜排骨汤">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>MQTT协议初识 | 冬瓜冬瓜排骨汤</title>
+    <title>MySQL基础命令 | 冬瓜冬瓜排骨汤</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -291,12 +291,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">MQTT协议初识</h1>
+                    <h1 class="description center-align post-title">MySQL基础命令</h1>
                 </div>
             </div>
         </div>
@@ -412,8 +412,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/basis-of-computer-engineering/">
-                                <span class="chip bg-color">basis of computer engineering</span>
+                            <a href="/tags/MySQL/">
+                                <span class="chip bg-color">MySQL</span>
                             </a>
                         
                     </div>
@@ -424,8 +424,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="post-category">
-                                计算机网络
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                数据库
                             </a>
                         
                     </div>
@@ -458,101 +458,307 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="MQTT"><a href="#MQTT" class="headerlink" title="MQTT"></a>MQTT</h1><p>mqtt的工作原理 :</p>
-<p>发布者发布主题会传到服务器, 由服务器下发到订阅该主题的订阅者.并非发布者和订阅者直接对接.</p>
-<h2 id="MQTT协议特点"><a href="#MQTT协议特点" class="headerlink" title="MQTT协议特点"></a>MQTT协议特点</h2><p>MQTT是一个基于<strong>客户端-服务器</strong>的消息发布/订阅传输协议。</p>
-<p>MQTT协议是轻量、简单、开放和易于实现的，这些特点使它适用范围非常广泛。在很多情况下，包括受限的环境中，如：机器与机器（M2M）通信和物联网（IoT）。</p>
-<h2 id="发布和订阅"><a href="#发布和订阅" class="headerlink" title="发布和订阅"></a>发布和订阅</h2><p>MQTT使用的发布/订阅消息模式，它提供了一对多的消息分发机制，从而实现与应用程序的解耦。</p>
-<p>这是一种消息传递模式，<strong>消息不是直接从发送器发送到接收器</strong>（即点对点），而是由<code>MQTT server</code>（或称为 MQTT Broker）分发的。</p>
-<p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20230425085652008.png" alt="image-20230425085652008"></p>
-<p><strong>MQTT 服务器是发布-订阅架构的核心</strong>。</p>
-<p>客户端可以发布消息（发送方）、订阅消息（接收方）或两者兼而有之。</p>
-<p>客户端（也称为节点）是一种智能设备，如微控制器或具有 TCP/IP 堆栈和实现 MQTT 协议的软件的计算机。</p>
-<p>消息在允许过滤的主题下发布。主题是分层划分的 UTF-8 字符串。不同的主题级别用斜杠<code>/</code>作为分隔符号。</p>
-<p>我们来看看下面的设置。</p>
-<p>光伏发电站是发布者（Publisher）。</p>
-<p>主要主题（Topic）级别是”PV”，这个工厂发布两个子级别”sunshine”和”data”；</p>
-<p>“PV/sunshine”是一个布尔值（true/false，也可以是 1/0），充电站需要它来知道是否应该装载电动汽车（仅在阳光普照时 :)）。</p>
-<p>充电站（EVSE）是订阅者，订阅”PV/sunshine”从服务器获取信息。</p>
-<p>“PV/data” 另一方面，以 kW 为单位传输工厂产生的瞬时功率，并且该主题可以例如通过计算机或平板电脑订阅，以生成一天内传输功率的图表。</p>
-<p>这就是一个简单的MQTT的应用场景，具体如下图所示：</p>
-<p><img src="https://img-blog.csdnimg.cn/img_convert/6d78e85dcf57728a8ca2a991371a34c3.png" alt="img"></p>
-<h2 id="QOS"><a href="#QOS" class="headerlink" title="QOS"></a>QOS</h2><p>服务质量是 MQTT 的一个重要特性。当我们使用 TCP/IP 时，连接已经在一定程度上受到保护。但是在无线网络中，中断和干扰很频繁，MQTT 在这里帮助避免信息丢失及其服务质量水平。这些级别在发布时使用。如果客户端发布到 MQTT 服务器，则客户端将是发送者，MQTT 服务器将是接收者。当MQTT服务器向客户端发布消息时，服务器是发送者，客户端是接收者。</p>
-<p><strong>QoS  0</strong></p>
-<p>这一级别会发生消息丢失或重复，消息发布依赖于底层TCP/IP网络。</p>
-<p>至多一次（<strong>qos = 0</strong>），可能会出现丢包的现象。使用在对实时性要求不高的情况。这一级别可应用于如下情景，如环境传感器数据，丢失一次读记录无所谓，因为很快下一次读记录就会产生。</p>
-<p><strong>QoS  1</strong></p>
-<p>QoS 1 承诺消息将至少传送一次给订阅者。</p>
-<p>至少一次（<strong>qos = 1</strong>），保证包会到达目的地，但是可能出现重包。</p>
-<p><strong>QoS  2</strong></p>
-<p>使用 QoS 2，我们保证消息仅传送到目的地一次。为此，带有唯一消息 ID 的消息会存储两次，首先来自发送者，然后是接收者。QoS 级别 2 在网络中具有最高的开销，因为在发送方和接收方之间需要两个流。</p>
-<p>正好一次（<strong>qos = 2</strong>），保证包会到达目的地，且不会出现重包的现象。这一级别可用于如计费系统等场景，在计费系统中，消息丢失或重复可能会导致生成错误的费用。</p>
-<h2 id="MQTT数据包结构"><a href="#MQTT数据包结构" class="headerlink" title="MQTT数据包结构"></a>MQTT数据包结构</h2><ul>
-<li><p>固定头（Fixed header），存在于所有MQTT数据包中，表示数据包类型及数据包的分组类标识；</p>
-</li>
-<li><p>可变头（Variable header），存在于部分MQTT数据包中，数据包类型决定了可变头是否存在及其具体内容；</p>
+                <h1 id="MySQL命令"><a href="#MySQL命令" class="headerlink" title="MySQL命令"></a>MySQL命令</h1><p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20230425151326844.png" alt="image-20230425151326844"></p>
+<h2 id="增删改数据"><a href="#增删改数据" class="headerlink" title="增删改数据"></a>增删改数据</h2><h3 id="添加数据"><a href="#添加数据" class="headerlink" title="添加数据"></a>添加数据</h3><pre class=" language-mysql"><code class="language-mysql">-- 添加数据
+-- 1.给指定字段添加数据
+insert into 表名(字段1,字段2...) values(值1,值2...);
+
+-- 2.给全部字段添加数据
+insert into 表名 values(值1,值2...);
+
+-- 3.批量添加数据
+insert into 表名(字段1,字段2...) values(值1,值2...),(值1,值2...),(值1,值2...);
+insert into 表名 values(值1,值2...),(值1,值2...),(值1,值2...);
+</code></pre>
+<p> 注意 : </p>
 <ul>
-<li>较常的应用是做为包的标识</li>
+<li>插入数据时, 指定的字段顺序需要与值的顺序是一 一对应的</li>
+<li>字符串和日期型数据应该包含在引号中</li>
+<li>插入的数据大小, 应该在字段的规定范围内</li>
 </ul>
-</li>
-<li><p>消息体（Payload），存在于部分MQTT数据包中，表示客户端收到的具体内容；</p>
+<h3 id="修改数据"><a href="#修改数据" class="headerlink" title="修改数据"></a>修改数据</h3><pre class=" language-mysql"><code class="language-mysql">-- 修改数据
+update 表名 set 字段名1 = 值1,字段名2 = 值2,... [where 条件];
+</code></pre>
+<p>注意 : </p>
 <ul>
-<li>CONNECT、SUBSCRIBE、SUBACK、UNSUBSCRIBE四种类型的消息 有消息体：<ul>
-<li><code>CONNECT</code>，消息体内容主要是：客户端的ClientID、订阅的Topic、Message以及用户名和密码</li>
-<li><code>SUBSCRIBE</code>，消息体内容是一系列的要订阅的主题以及<code>QoS</code>。</li>
-<li><code>SUBACK</code>，消息体内容是服务器对于<code>SUBSCRIBE</code>所申请的主题及<code>QoS</code>进行确认和回复。</li>
-<li><code>UNSUBSCRIBE</code>，消息体内容是要取消订阅的主题。</li>
+<li>修改语句的条件可以有, 也可以没有, 如果没有条件, 则会修改整张表的所有数据</li>
 </ul>
+<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><pre class=" language-mysql"><code class="language-mysql">-- 删除数据
+delete from 表名 [where 条件];
+</code></pre>
+<p>注意 : </p>
+<ul>
+<li>delete 语句的条件可以有, 也可以没有, 如果没有条件, 则会删除整张表的所有数据</li>
+<li>delete 语句不能删除某个字段的值(可以使用update)</li>
+</ul>
+<h2 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h2><h3 id="基本查询"><a href="#基本查询" class="headerlink" title="基本查询"></a>基本查询</h3><pre class=" language-mysql"><code class="language-mysql">-- 1.查询多个字段
+select 字段1,字段2,字段3... from 表名;
+select * from 表名;
+
+-- 2.设置别名  as可以省略
+select 字段1 [as 别名1],字段2 [as 别名2]... from 表名;
+
+-- 3.去除重复记录
+select distinct 字段列表 from 表名;
+-例子 查询公司员工的上班地址(不要重复)
+select distinct workaddress from emp;
+</code></pre>
+<h3 id="条件查询-where"><a href="#条件查询-where" class="headerlink" title="条件查询 where"></a>条件查询 where</h3><p><img src="C:/Users/LENOVO/AppData/Roaming/Typora/typora-user-images/image-20220922160607153.png" alt="image-20220922160607153"></p>
+<p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20220922160615215.png" alt="image-20220922160615215"></p>
+<p>模糊查询说明 : </p>
+<pre class=" language-mysql"><code class="language-mysql">select 字段列表 from 表名 where 条件列表;
+
+-- eg:查询姓名为两个字的员工信息
+select * from employee where name like '__';//两个_
+-- eg:查询身份证号最后一位是X的员工信息
+select * from employee where idcard like '%X'; 
+</code></pre>
+<h3 id="分组查询-group-by"><a href="#分组查询-group-by" class="headerlink" title="分组查询 group by"></a>分组查询 group by</h3><pre class=" language-mysql"><code class="language-mysql">select 字段列表 from 表名 [where 条件] group by 分组字段名 [having 分组后过滤条件];
+</code></pre>
+<p>where 与 having区别</p>
+<ul>
+<li>执行时机不同 : where是分组之前进行过滤, 不满足where条件, 不参与分组; 而having是分组之后对结果进行过滤</li>
+<li>判断条件不同 : where不能对聚合函数进行判断, 而having可以</li>
+</ul>
+<p>注意 : </p>
+<ul>
+<li>执行顺序 : where &gt; 聚合函数 &gt; having</li>
+<li>分组之后, 查询的字段一般为聚合函数和分组字段, 查询其他字段无意义</li>
+</ul>
+<p><strong>例子</strong></p>
+<pre class=" language-mysql"><code class="language-mysql">-- 1.根据性别分组,统计男性员工 和 女性员工的数量
+select gender,count(*) from emp group by gender;
+
+-- 2.查询年龄小于45的员工, 并根据工作地址分组, 获取员工数量大于等于3的工作地址
+select workaddress,count(*) from emp where age < 45 group by workaddress having count(*) >= 3;
+</code></pre>
+<h3 id="排序查询-order-by"><a href="#排序查询-order-by" class="headerlink" title="排序查询 order by"></a>排序查询 order by</h3><pre class=" language-mysql"><code class="language-mysql">select 字段列表 from 表名 order by 字段1 排序方式1,字段2 排序方式2...;
+
+-- 排序方式
+# ASC 升序(默认值)
+# DESC 降序
+-- 如果是多字段排序, 只有当第一个字段值相同时, 才会根据第二个字段进行排序
+</code></pre>
+<p><strong>例子</strong></p>
+<pre class=" language-mysql"><code class="language-mysql">-- 1.根据年龄对公司的员工进行升序排序, 年龄相同, 再按照入职时间进行降序排序
+select * from emp order by age asc, entrydate desc;
+</code></pre>
+<h3 id="分页查询-limit"><a href="#分页查询-limit" class="headerlink" title="分页查询 limit"></a>分页查询 limit</h3><pre class=" language-mysql"><code class="language-mysql">select 字段列表 from 表名 limit 起始索引,每页显示记录数;
+</code></pre>
+<p><strong>注意 :</strong> </p>
+<ul>
+<li><p>起始索引从0开始, 起始索引 = (查询页码 - 1) * 每页显示记录数</p>
+<pre class=" language-mysql"><code class="language-mysql">limit (查询页码 - 1)* 每页显示记录数,每页显示记录数
+</code></pre>
+</li>
+<li><p>分页查询是数据库的方言, 不同数据库有不同的实现</p>
+</li>
+<li><p>如果查询的是第一页数据, 起始索引可以省略, 直接简写为limit 10;</p>
 </li>
 </ul>
-</li>
-</ul>
-<h2 id="使用MQTT进行交互"><a href="#使用MQTT进行交互" class="headerlink" title="使用MQTT进行交互"></a>使用MQTT进行交互</h2><blockquote>
-<p>当应用数据通过MQTT网络发送时，MQTT会把与之相关的服务质量（QoS）和主题名（Topic）相关连。</p>
+<p><strong>例子</strong></p>
+<pre class=" language-mysql"><code class="language-mysql">-- 1. 查询第二页员工数据,每页展示10条数据
+select * from emp limit 10,10;
+</code></pre>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h3><blockquote>
+<p>将一列数据作为一个整体, 进行纵向计算</p>
 </blockquote>
-<p><strong>在MQTT客户端上干什么？</strong></p>
+<p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20220922160945163.png" alt="image-20220922160945163"></p>
+<pre class=" language-mysql"><code class="language-mysql">select 聚合函数(字段列表) from 表名;
+</code></pre>
+<p><strong>注意 :</strong> </p>
 <ul>
-<li>发布其他客户端会订阅的信息</li>
-<li>订阅其它客户端发布的消息</li>
-<li>退订或删除应用程序的消息</li>
-<li>断开与服务器连接。</li>
+<li>null值不参与所有聚合函数运算</li>
 </ul>
-<p><strong>MQTT服务器又干什么？</strong></p>
+<h3 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h3><p><img src="C:/Users/LENOVO/AppData/Roaming/Typora/typora-user-images/image-20220922170801076.png" alt="image-20220922170801076"></p>
+<p><strong>例子</strong></p>
+<pre class=" language-mysql"><code class="language-mysql">-- concat 
+select concat('Hello', 'MySQL');
+
+-- lower
+select lower('Hello');
+
+-- upper
+select upper('Hello');
+
+-- lpad
+select lpad('01',5,'-');
+
+-- rpad
+select rpad('01',5,'-');
+
+-- trim
+select trim(' Hello MySQL ');
+
+-- substring
+select substring('Hello MySQL',1,5)
+</code></pre>
+<p><strong>注意 :</strong> </p>
 <ul>
-<li>接受来自客户的网络连接</li>
-<li>向订阅的客户转发应用程序消息</li>
+<li>substring 的起始位置是1 </li>
 </ul>
-<p><strong>MQTT协议中的方法</strong></p>
-<ul>
-<li>（1）Connect。等待与服务器建立连接。</li>
-<li>（2）Disconnect。等待MQTT客户端完成所做的工作，并与服务器断开TCP/IP会话。</li>
-<li>（3）Subscribe。等待完成订阅。</li>
-<li>（4）UnSubscribe。等待服务器取消客户端的一个或多个topics订阅。</li>
-<li>（5）Publish。MQTT客户端发送消息请求，发送完成后返回应用程序线程。</li>
-</ul>
-<h2 id="MQTT如何实现订阅-发布消息模型"><a href="#MQTT如何实现订阅-发布消息模型" class="headerlink" title="MQTT如何实现订阅-发布消息模型?"></a>MQTT如何实现订阅-发布消息模型?</h2><p><strong>MQTT如何管理连接?</strong></p>
-<p>MQTT 是工作在TCP / TLS 协议之上的，是基于连接的，因此在进行主题订阅或消息发布之前，需要先建立连接。MQTT Broker 为了保证网络安全，一般会对请求连接的Client 进行身份验证，因此CONNECT 报文可以携带身份验证信息。MQTT Client 与MQTT Broker 建立连接的过程如下：</p>
-<p><img src="https://img-blog.csdnimg.cn/20210511172638684.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3NjIxMDc4,size_16,color_FFFFFF,t_70#pic_center" alt="MQTT Client 与Broker 建立连接过程"></p>
-<p><strong>MQTT如何传递消息?</strong></p>
-<p>MQTT 传递消息是基于订阅-发布模型的，Client 与Broker 建立连接后，如果想接收消息，需要先订阅自己感兴趣的主题topic，一个Client 可以订阅多个主题topic。MQTT Client 如果想对外发布消息，消息都需要指定主题topic，Broker 需要通过topic 确定要将该消息分发给哪些Client（MQTT Broker 为每个topic 维护一个订阅者列表）。MQTT Client 向Broker 订阅感兴趣主题topic 的过程如下：</p>
-<p><img src="https://img-blog.csdnimg.cn/20210511233948695.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3NjIxMDc4,size_16,color_FFFFFF,t_70#pic_center" alt="MQTT Client 向Broker 订阅感兴趣主题的流程"></p>
-<p>MQTT 为了适应多种应用场景，支持不同的消息传递服务等级QoS，有些不重要的消息即便对方没有收到也影响不大，有些重要的消息则需要确认对方接收到了。还有些特殊场景，比如支付场景，不仅要求对方确认收到该消息，而且要求该消息的传递是幂等的，也即相同的消息发送多次跟发送一次是一样的结果，不至于出现重复支付的情况。<br>MQTT Client 取消订阅不感兴趣的主题时，通过UNSUBSCRIBE 报文告知Broker 要取消订阅哪些主题，报文中比较常用的参数是topic。Broker 也会通过UNSUBACK 报文通知Client 取消订阅主题的结果，报文中比较常用的参数是Reason Code。取消订阅的过程和报文格式跟订阅过程类似，这里就不赘述了。</p>
-<p>MQTT Client 订阅感兴趣的主题后，如果其它Client 在该topic 上发布消息时，Broker 就可以将该主题上的消息转发给它的订阅者。MQTT Client 在指定主题上发布消息的过程如下：</p>
-<p><img src="https://img-blog.csdnimg.cn/20210511234308904.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3NjIxMDc4,size_16,color_FFFFFF,t_70#pic_center" alt="MQTT Client 向Broker 发布某主题的消息"></p>
-<p>前面介绍MQTT Client 订阅主题时也指定了QoS，Broker 实际发送给订阅者的消息服务等级还要看消息发布者将消息发送给Broker 的服务等级。也即，Publisher 到Subscribers 传递消息的服务等级等于发布报文中的QoS 和订阅报文中QoS 的最小值。</p>
-<p>某个主题的消息从Publisher 经Broker 到Subscribers，采用不同的消息QoS 服务等级，传递消息的报文交互也不同，MQTT 支持的三种QoS 服务等级下，报文的交互过程对比如下：</p>
-<ul>
-<li>QoS 0 (At most once)：Publisher / Broker 只管发布消息，不关心对方是否收到（类似于UDP 协议，没有确认重传机制），QoS 0 的消息发送速率比较高，但消息可能会丢失。常用于对消息丢失不敏感的场景，比如传感器发布状态数据，中间几次数据丢失没关系；</li>
-<li>QoS 1 (At least once)：Publisher / Broker 通过PUBACK 报文确认对方收到了发布的消息，若一段时间内未收到对方的PUBACK 报文则继续重发该消息（重发的消息DUP 标识位设置为1，Packet Identifier 字段值不变），QoS 0 的消息保证对方接收到，但消息可能会重复（Broker / Subscribers 发送PUBACK 报文后再收到相同Packet Identifier 的消息也是按新消息处理的），比如下发给执行器的命令，需要确认命令被响应了；</li>
-<li>QoS 2 (Exactly once)：Publisher / Broker 不仅要通过PUBREC 报文确认对方接收到了发布的消息，还要通过报文PUBREL 和PUBCOMP 的二次交互保证对方接收的消息不重复。这要求接收者Broker / Subscribers 先暂存该消息，等接收到了PUBREL 报文后再将消息递交给上层或转发（消息接收者会忽略PUBLISH 报文中相同Packet Identifier 的消息），QoS 0 的消息对硬件计算存储资源的要求较高、消息延迟也较高，比如在计费支付系统中，每笔订单需要且只能处理一次。</li>
-</ul>
-<p><img src="https://img-blog.csdnimg.cn/20210512013948940.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3NjIxMDc4,size_16,color_FFFFFF,t_70" alt="MQTT Quality of Service"></p>
-<blockquote>
-<p><strong>PUBREC</strong>字面意思为Assured publish received，作为订阅者/服务器对QoS level = 2的发布PUBLISH消息的发送方的响应，确认已经收到，为QoS level = 2消息流的第二个消息。 和PUBACK相比，除了消息类型不同外，其它都是一样<strong>。</strong></p>
-<p><strong>PUBREL</strong> Qos level = 2的协议流的第三个消息，有PUBLISH消息的发布者发送，参与方接收。</p>
-<p><strong>PUBCOMP</strong> 作为QoS level = 2消息流第四个，也是最后一个消息，由收到PUBREL的一方向另一方做出的响应消息。完整的消息一览，和PUBREL一致，除了消息类型。</p>
+<h3 id="数值函数"><a href="#数值函数" class="headerlink" title="数值函数"></a>数值函数</h3><p><img src="C:/Users/LENOVO/AppData/Roaming/Typora/typora-user-images/image-20220922170817311.png" alt="image-20220922170817311"></p>
+<h3 id="日期函数"><a href="#日期函数" class="headerlink" title="日期函数"></a>日期函数</h3><p><img src="C:/Users/LENOVO/AppData/Roaming/Typora/typora-user-images/image-20220922170824985.png" alt="image-20220922170824985"></p>
+<h3 id="流程控制函数"><a href="#流程控制函数" class="headerlink" title="流程控制函数"></a>流程控制函数</h3><blockquote>
+<p>可以在SQL语句中实现条件筛选, 从而提高语句的效率</p>
 </blockquote>
-<p>消息接收者Broker / Subscribers 在接收QoS 等级大于0（也即QoS 1 或QoS 2）的消息时，需要在本地暂存该消息（QoS 0 的消息本地不暂存，直接转发或递交给上层应用），QoS 1 的消息需要在本地存储到发送PUBACK 报文后，QoS 2 的消息需要在本地存储到接收PUBREL 报文后。</p>
+<p><img src="C:/Users/LENOVO/AppData/Roaming/Typora/typora-user-images/image-20220922170831005.png" alt="image-20220922170831005"></p>
+<p><strong>例子</strong></p>
+<pre class=" language-mysql"><code class="language-mysql">-- if
+select if(true,'Ok','Error');
+
+-- ifnull
+select ifnull('Ok','Default');
+
+select ifnull(null,'Default'); -- 返回Default
+
+-- 查询emp员工表的员工姓名和工作地址(北京\上海 ===> 一线城市 , 其他 === > 二线城市)
+select
+    name,
+    (case workaddress when '北京' then '一线城市' when '上海' then '一线城市' else '二线城市' end) as '工作地址'
+from emp;    
+</code></pre>
+<h2 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h2><h3 id="消除笛卡尔积"><a href="#消除笛卡尔积" class="headerlink" title="消除笛卡尔积"></a>消除笛卡尔积</h3><pre class=" language-mysql"><code class="language-mysql">-- 多表查询
+select * from emp,dept where emp.dept_id = dept.id;
+</code></pre>
+<h3 id="内连接"><a href="#内连接" class="headerlink" title="内连接"></a>内连接</h3><blockquote>
+<p>相当于查询A, B交集部分数据</p>
+</blockquote>
+<pre class=" language-mysql"><code class="language-mysql">-- 隐式内连接
+select 字段列表 from 表1,表2 where 条件...;
+-- 显式内连接
+select 字段列表 from 表1 [inner] join 表2 on 连接条件...;
+</code></pre>
+<p><strong>例子</strong></p>
+<pre class=" language-mysql"><code class="language-mysql">-- 1.查询每一个员工的姓名, 及关联的部门的名字(隐式内连接实现)
+-- 表结构: emp, dept
+-- 连接条件: emp.dept_id = dept.id
+select emp.name,dept.name from emp,dept where emp.dept_id = dept.id;
+
+-- 2.查询每一个员工的姓名, 及关联的部门的名称(显式内连接实现)
+-- 表结构: emp, dept
+-- 连接条件: emp.dept_id = dept.id
+select emp.name,dept.name from emp inner join dept on emp.dept_id = dept.id;
+</code></pre>
+<h3 id="外连接"><a href="#外连接" class="headerlink" title="外连接"></a>外连接</h3><blockquote>
+<ul>
+<li>左外连接 : 查询左表所有数据, 以及两张表交集部分数据</li>
+<li>右外连接 : 查询右表所有数据, 以及两张表交集部分数据</li>
+</ul>
+</blockquote>
+<pre class=" language-mysql"><code class="language-mysql">-- 左外连接
+select 字段列表 from 表1 left [outer] join 表2 on 条件...;
+-- 右外连接
+select 字段列表 from 表1 right [outer] join 表2 on 条件...;
+</code></pre>
+<p><strong>例子</strong></p>
+<pre class=" language-mysql"><code class="language-mysql">-- 1.查询emp表的所有数据, 和对应的部门名称(左外连接)
+-- 表结构: emp, dept
+-- 连接条件: emp.dept_id = dept.id
+select e.*,d.name from emp e left outer join dept d on e.dept.id = d.id;
+
+-- 2.查询emp表的所有数据, 和对应的员工信息(右外连接)
+select d.*,e.* from emp e right outer join dept d on e.dept.id = d.id;
+</code></pre>
+<h3 id="自连接"><a href="#自连接" class="headerlink" title="自连接"></a>自连接</h3><blockquote>
+<p>当前表与自身的连接查询, 自连接必须使用表别名</p>
+</blockquote>
+<pre class=" language-mysql"><code class="language-mysql">-- 自连接查询, 可以是内连接查询,也可以是外连接查询
+select 字段列表 from 表A 别名A join 表A 别名B on 条件...;
+</code></pre>
+<p><strong>例子</strong></p>
+<pre class=" language-mysql"><code class="language-mysql">-- 1. 查询员工 及其所属领导的名字
+-- 表结构:emp
+select a.name, name from emp a, emp b where a.managerid = b.id;
+
+-- 2. 查询所有员工 emp 及其领导的名字 emp, 如果员工每页领导, 也需要查询出来(要使用外连接)
+-- 表结构
+select a.name '员工',b.name '领导' from emp a left join emp b on a.managerid = b.id;
+</code></pre>
+<h3 id="联合查询"><a href="#联合查询" class="headerlink" title="联合查询"></a>联合查询</h3><blockquote>
+<p>对于union查询, 就是把多次查询的结果合并起来, 形成一个新的查询结果集</p>
+</blockquote>
+<pre class=" language-mysql"><code class="language-mysql">select 字段列表 from 表A...
+union [all]
+select 字段列表 from 表B...;  
+
+-- union all 是直接将结果合并, union 是将结果去重后合并
+</code></pre>
+<p><strong>例子</strong></p>
+<pre class=" language-mysql"><code class="language-mysql">-- 1.将薪资低于5000的员工 和年龄大于50岁的员工全部查询出来
+
+select * from emp where salary < 5000
+union all
+select * from emp where age > 50;
+</code></pre>
+<p><strong>注意 :</strong> </p>
+<ul>
+<li>对于联合查询的多张表的列数必须保持一致, 字段类型也需要保持一致</li>
+</ul>
+<h3 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h3><blockquote>
+<p>sql语句中嵌套select语句, 称为嵌套查询, 又称子查询</p>
+</blockquote>
+<pre class=" language-mysql"><code class="language-mysql">select * from t1 where column1 = (select column1 from t2);
+-- 子查询外部的语句可以 insert / update / delete / select 的任何一个
+</code></pre>
+<p><strong>例子</strong></p>
+<pre class=" language-mysql"><code class="language-mysql">-- 标量子查询
+-- 常用的操作符 : =, <>, >, <, >=, <=
+
+-- 查询"销售部"的所有员工信息
+-- a.查询'销售部'部门ID
+select id from dept where name = '销售部';
+-- b.根据销售部部门ID,查询员工信息
+select * from emp where dept_id = 4;
+
+-- 把a b两部嵌套在一起,形成子查询
+select * from emp where dept_id = (select id from dept where name = '销售部');
+
+-- 列子查询
+-- 常用的操作符 : in, not in, any, some, all
+
+-- 查询比 财务部 所有人工资都高的员工信息
+-- a.查询所有 财务部 人员工资
+select salary from emp where dept_id = (select id from dept where name = '财务部';);
+-- b.比 财务部 所有人工资都高的员工信息
+select * from emp where salary > all (select salary from emp where dept_id = (select id from dept where name = '财务部'));
+
+-- 行子查询
+-- 常用的操作符 : =, <>, in, not in
+
+-- 查询与"张无忌"的薪资及直属领导相同的员工信息
+-- a.查询"张无忌"的薪资及直属领导
+select salary,managerid from emp where name = '张无忌';
+-- b.查询"张无忌"的薪资及直属领导
+select * from emp where (salary,managerid) = (12500,1);
+
+-- 把a b两部嵌套在一起,形成子查询
+select * from emp where (salary,managerid) = (select salary,managerid from emp where name = '张无忌');
+
+-- 表子查询
+-- 常用的操作符 :in
+
+-- 查询与"鹿杖客", "宋远桥" 的职位和薪资相同的员工信息
+-- a.查询"鹿杖客", "宋远桥" 的职位和薪资
+select job,salary from emp where name = '鹿杖客' or name = '宋远桥';
+-- b.查询与"鹿杖客", "宋远桥" 的职位和薪资相同的员工信息
+select * from emp where (job,salary) in (elect job,salary from emp where name = '鹿杖客' or name = '宋远桥');
+
+-- 查询入职日期是"2006-01-01"之后的员工信息, 及部门信息(把子查询的结果作为一张表来和另一张表进行联合查询)
+-- a.入职日期是"2006-01-01"之后的员工信息
+select * from emp where entrydate > '2006-01-01';
+-- b.查询这部分员工, 对应的部门信息
+select e.*,d.* from (select * from emp where entrydate > '2006-01-01') e left join dept d on e.dept_id = d.id;
+</code></pre>
+<p><strong>注意 :</strong> </p>
+<p>根据子查询的结果不同, 分为 : </p>
+<ul>
+<li>标量子查询 (子查询结果为单个值)</li>
+<li>列子查询 (子查询结果为一列)</li>
+<li>行子查询 (子查询结果为一行)</li>
+<li>表子查询 (子查询结果为多行多列)</li>
+</ul>
+<p>根据子查询位置, 分为 : where之后, from之后, select之后</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这只是MQTT的基本理论知识，而更深层的理解需要不断实践。</p>
 
                 
@@ -580,7 +786,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://dd-smile.github.io/2023/04/25/mqtt-xie-yi-chu-shi/">http://dd-smile.github.io/2023/04/25/mqtt-xie-yi-chu-shi/</a>
+                    <a href="http://dd-smile.github.io/2023/04/25/mysql-ming-ling/">http://dd-smile.github.io/2023/04/25/mysql-ming-ling/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -618,8 +824,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/basis-of-computer-engineering/">
-                                    <span class="chip bg-color">basis of computer engineering</span>
+                                <a href="/tags/MySQL/">
+                                    <span class="chip bg-color">MySQL</span>
                                 </a>
                             
                         </div>
@@ -663,9 +869,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2023/04/25/mysql-ming-ling/">
                     <div class="card-image">
@@ -683,9 +890,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-04-25
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-25
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -698,6 +905,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -716,13 +924,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/04/24/catalina.out-ri-zhi-wen-jian-guo-da-chu-li/">
+                <a href="/2023/04/25/mqtt-xie-yi-chu-shi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Linux下tomcat的catalina.out日志文件过大处理方法">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="MQTT协议初识">
                         
-                        <span class="card-title">Linux下tomcat的catalina.out日志文件过大处理方法</span>
+                        <span class="card-title">MQTT协议初识</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -733,14 +941,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-25
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%90%84%E7%A7%8D%E6%8A%98%E8%85%BE/" class="post-category">
-                                    各种折腾
+                            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="post-category">
+                                    计算机网络
                                 </a>
                             
                             
@@ -750,8 +958,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Linux/">
-                        <span class="chip bg-color">Linux</span>
+                    <a href="/tags/basis-of-computer-engineering/">
+                        <span class="chip bg-color">basis of computer engineering</span>
                     </a>
                     
                 </div>
