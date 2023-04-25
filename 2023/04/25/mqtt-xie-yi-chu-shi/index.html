@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Linux下tomcat的catalina.out日志文件过大处理方法, 冬瓜冬瓜排骨汤">
+    <meta name="keywords" content="MQTT协议初识, 冬瓜冬瓜排骨汤">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Linux下tomcat的catalina.out日志文件过大处理方法 | 冬瓜冬瓜排骨汤</title>
+    <title>MQTT协议初识 | 冬瓜冬瓜排骨汤</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -291,12 +291,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Linux下tomcat的catalina.out日志文件过大处理方法</h1>
+                    <h1 class="description center-align post-title">MQTT协议初识</h1>
                 </div>
             </div>
         </div>
@@ -412,8 +412,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Linux/">
-                                <span class="chip bg-color">Linux</span>
+                            <a href="/tags/basis-of-computer-engineering/">
+                                <span class="chip bg-color">basis of computer engineering</span>
                             </a>
                         
                     </div>
@@ -424,8 +424,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%90%84%E7%A7%8D%E6%8A%98%E8%85%BE/" class="post-category">
-                                各种折腾
+                            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="post-category">
+                                计算机网络
                             </a>
                         
                     </div>
@@ -437,7 +437,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-04-24
+                    2023-04-25
                 </div>
                 
 
@@ -458,106 +458,102 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="问题情景"><a href="#问题情景" class="headerlink" title="问题情景"></a>问题情景</h2><p>在linux下运行tomcat会碰到catalina.out日志文件一直增大的问题</p>
-<blockquote>
-<p>有用Tomcat的，绝对都会遇到这样一个问题：catalina.out文件过大。</p>
-<p>它是Tomcat默认生成的日志文件，会随着时间的推移，逐渐增大，不断的增长，甚至达到几G，几十G的大小。由于文件过大，不仅占系统的存储，我们还将无法使用过常规的编辑工具进行查看，严重影响系统的维护工作。</p>
-</blockquote>
-<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><blockquote>
-<p>先来看看Tomcat中catalina.out、catalina.log、localhost.log、access.log的区别吧！</p>
-</blockquote>
-<h3 id="catalina-out-日志"><a href="#catalina-out-日志" class="headerlink" title="catalina.out 日志"></a>catalina.out 日志</h3><p>catalina.out 日志文件是 Tomcat 的标准输出（stdout）和标准出错（stderr）输出的“目的地”。我们在应用里使用<code>System.out</code>打印的内容都会输出到这个日志文件中。另外，如果我们在应用里使用其他的日志框架，配置了向 Console 输出日志，则也会输出到这个文件。</p>
-<blockquote>
-<p><strong>注意点</strong>：随着系统上线的时间越来越长， catalina.out 会变得很大，所以最好还是要设定一些定时任务来清理归档这个日志文件。</p>
-</blockquote>
-<h3 id="catalina-YYYY-MM-DD-log-日志"><a href="#catalina-YYYY-MM-DD-log-日志" class="headerlink" title="catalina.YYYY-MM-DD.log 日志"></a>catalina.YYYY-MM-DD.log 日志</h3><p>catalina.{yyyy-MM-dd}.log 是 Tomcat 自己运行的一些日志，主要记录 Tomcat 在启动和暂停时的运行内容。</p>
-<h3 id="localhost-YYYY-MM-DD-log"><a href="#localhost-YYYY-MM-DD-log" class="headerlink" title="localhost.YYYY-MM-DD.log"></a>localhost.YYYY-MM-DD.log</h3><p>localhost.{yyyy-MM-dd}.log 主要是应用初始化(listener, filter, servlet)未处理的异常最后被 Tomcat 捕获而输出的日志,它也是包含 Tomcat 的启动和暂停时的运行日志,但它没有 catalina.YYYY-MM-DD.log 日志全。</p>
-<h3 id="localhost-access-log-YYYY-MM-DD-txt"><a href="#localhost-access-log-YYYY-MM-DD-txt" class="headerlink" title="localhost_access_log.YYYY-MM-DD.txt"></a>localhost_access_log.YYYY-MM-DD.txt</h3><p>Tomcat 的请求访问日志，请求的时间，请求的类型，请求的资源和返回的状态码都有记录。配置这个日志非常有必要，可以让我们清楚的看清请求的状况。</p>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><blockquote>
-<p>CentOS6.5后自带logrotate程序，可以解决catalina.out的日志轮转问题</p>
-</blockquote>
-<p>&lt;1&gt;在/etc/logrotate.d/目录下新建一个tomcat的文件</p>
-<pre class=" language-shell"><code class="language-shell">cat >/etc/logrotate.d/tomcat ------------ 
-
-/opt/apache-tomcat-9.0.65/logs/catalina.out{            要轮转的文件
-    copytruncate                                创建新的catalina.out副本，截断源catalina.out文件
-    daily                                       每天进行catalina.out文件的轮转
-    rotate 7                                    至多保留7个副本
-    missingok                                   文件丢失了，轮转不报错
-    compress                                    使用压缩
-    size 16M                                    当catalina.out文件大于16MB，就轮转
-}
-</code></pre>
-<p>其他参数：</p>
-<pre class=" language-shell"><code class="language-shell">compress                                   通过gzip 压缩转储以后的日志
-nocompress                                 不做gzip压缩处理
-copytruncate                               用于还在打开中的日志文件，把当前日志备份并截断；是先拷贝再清空的方式，拷贝和清空之间有一个时间差，可能会丢失部分日志数据。
-nocopytruncate                             备份日志文件不过不截断
-create mode owner group                    轮转时指定创建新文件的属性，如create 0777 nobody nobody
-nocreate                                   不建立新的日志文件
-delaycompress                              和compress 一起使用时，转储的日志文件到下一次转储时才压缩
-nodelaycompress                            覆盖 delaycompress 选项，转储同时压缩。
-missingok                                  如果日志丢失，不报错继续滚动下一个日志
-errors address                             专储时的错误信息发送到指定的Email 地址
-ifempty                                    即使日志文件为空文件也做轮转，这个是logrotate的缺省选项。
-notifempty                                 当日志文件为空时，不进行轮转
-mail address                               把转储的日志文件发送到指定的E-mail 地址
-nomail                                     转储时不发送日志文件
-olddir directory                           转储后的日志文件放入指定的目录，必须和当前日志文件在同一个文件系统
-noolddir                                   转储后的日志文件和当前日志文件放在同一个目录下
-sharedscripts                              运行postrotate脚本，作用是在所有日志都轮转后统一执行一次脚本。如果没有配置这个，那么每个日志轮转后都会执行一次脚本
-prerotate                                  在logrotate转储之前需要执行的指令，例如修改文件的属性等动作；必须独立成行
-postrotate                                 在logrotate转储之后需要执行的指令，例如重新启动 (kill -HUP) 某个服务！必须独立成
-daily                                      指定转储周期为每天
-weekly                                     指定转储周期为每周
-monthly                                    指定转储周期为每月
-rotate count                               指定日志文件删除之前转储的次数，0 指没有备份，5 指保留5 个备份
-dateext                                    使用当期日期作为命名格式
-dateformat .%s                             配合dateext使用，紧跟在下一行出现，定义文件切割后的文件名，必须配合dateext使用，只支持 %Y %m %d %s 这四个参数
-size(或minsize) log-size                   当日志文件到达指定的大小时才转储，log-size能指定bytes(缺省)及KB (sizek)或
-</code></pre>
-<p>&lt;2&gt;当执行以上操作时是自动执行的，也可手动切割</p>
-<pre class=" language-shell"><code class="language-shell">logrotate /etc/logrotate.conf
-</code></pre>
-<p>如果只轮转tomcat配置文件，要指定文件</p>
-<pre class=" language-shell"><code class="language-shell">logrotate --force /etc/logrotate.d/tomcat
-</code></pre>
-<h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><ol>
-<li><p>每天晚上 cron 定时任务会扫码目录 <code>/etc/cron.daily/</code></p>
+                <h1 id="MQTT"><a href="#MQTT" class="headerlink" title="MQTT"></a>MQTT</h1><p>mqtt的工作原理 :</p>
+<p>发布者发布主题会传到服务器, 由服务器下发到订阅该主题的订阅者.并非发布者和订阅者直接对接.</p>
+<h2 id="MQTT协议特点"><a href="#MQTT协议特点" class="headerlink" title="MQTT协议特点"></a>MQTT协议特点</h2><p>MQTT是一个基于<strong>客户端-服务器</strong>的消息发布/订阅传输协议。</p>
+<p>MQTT协议是轻量、简单、开放和易于实现的，这些特点使它适用范围非常广泛。在很多情况下，包括受限的环境中，如：机器与机器（M2M）通信和物联网（IoT）。</p>
+<h2 id="发布和订阅"><a href="#发布和订阅" class="headerlink" title="发布和订阅"></a>发布和订阅</h2><p>MQTT使用的发布/订阅消息模式，它提供了一对多的消息分发机制，从而实现与应用程序的解耦。</p>
+<p>这是一种消息传递模式，<strong>消息不是直接从发送器发送到接收器</strong>（即点对点），而是由<code>MQTT server</code>（或称为 MQTT Broker）分发的。</p>
+<p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20230425085652008.png" alt="image-20230425085652008"></p>
+<p><strong>MQTT 服务器是发布-订阅架构的核心</strong>。</p>
+<p>客户端可以发布消息（发送方）、订阅消息（接收方）或两者兼而有之。</p>
+<p>客户端（也称为节点）是一种智能设备，如微控制器或具有 TCP/IP 堆栈和实现 MQTT 协议的软件的计算机。</p>
+<p>消息在允许过滤的主题下发布。主题是分层划分的 UTF-8 字符串。不同的主题级别用斜杠<code>/</code>作为分隔符号。</p>
+<p>我们来看看下面的设置。</p>
+<p>光伏发电站是发布者（Publisher）。</p>
+<p>主要主题（Topic）级别是”PV”，这个工厂发布两个子级别”sunshine”和”data”；</p>
+<p>“PV/sunshine”是一个布尔值（true/false，也可以是 1/0），充电站需要它来知道是否应该装载电动汽车（仅在阳光普照时 :)）。</p>
+<p>充电站（EVSE）是订阅者，订阅”PV/sunshine”从服务器获取信息。</p>
+<p>“PV/data” 另一方面，以 kW 为单位传输工厂产生的瞬时功率，并且该主题可以例如通过计算机或平板电脑订阅，以生成一天内传输功率的图表。</p>
+<p>这就是一个简单的MQTT的应用场景，具体如下图所示：</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/6d78e85dcf57728a8ca2a991371a34c3.png" alt="img"></p>
+<h2 id="QOS"><a href="#QOS" class="headerlink" title="QOS"></a>QOS</h2><p>服务质量是 MQTT 的一个重要特性。当我们使用 TCP/IP 时，连接已经在一定程度上受到保护。但是在无线网络中，中断和干扰很频繁，MQTT 在这里帮助避免信息丢失及其服务质量水平。这些级别在发布时使用。如果客户端发布到 MQTT 服务器，则客户端将是发送者，MQTT 服务器将是接收者。当MQTT服务器向客户端发布消息时，服务器是发送者，客户端是接收者。</p>
+<p><strong>QoS  0</strong></p>
+<p>这一级别会发生消息丢失或重复，消息发布依赖于底层TCP/IP网络。</p>
+<p>至多一次（<strong>qos = 0</strong>），可能会出现丢包的现象。使用在对实时性要求不高的情况。这一级别可应用于如下情景，如环境传感器数据，丢失一次读记录无所谓，因为很快下一次读记录就会产生。</p>
+<p><strong>QoS  1</strong></p>
+<p>QoS 1 承诺消息将至少传送一次给订阅者。</p>
+<p>至少一次（<strong>qos = 1</strong>），保证包会到达目的地，但是可能出现重包。</p>
+<p><strong>QoS  2</strong></p>
+<p>使用 QoS 2，我们保证消息仅传送到目的地一次。为此，带有唯一消息 ID 的消息会存储两次，首先来自发送者，然后是接收者。QoS 级别 2 在网络中具有最高的开销，因为在发送方和接收方之间需要两个流。</p>
+<p>正好一次（<strong>qos = 2</strong>），保证包会到达目的地，且不会出现重包的现象。这一级别可用于如计费系统等场景，在计费系统中，消息丢失或重复可能会导致生成错误的费用。</p>
+<h2 id="MQTT数据包结构"><a href="#MQTT数据包结构" class="headerlink" title="MQTT数据包结构"></a>MQTT数据包结构</h2><ul>
+<li><p>固定头（Fixed header），存在于所有MQTT数据包中，表示数据包类型及数据包的分组类标识；</p>
 </li>
-<li><p>触发<code>/etc/cron.daily/logrotate</code>脚本，即运行脚本：</p>
-<pre class=" language-shell"><code class="language-shell">/usr/sbin/logrotate /etc/logrotate.conf
-</code></pre>
-</li>
-<li><p><code>/etc/logrotate.conf</code>会扫码所有<code>/etc/logrotate.d/</code>目录的脚本</p>
-</li>
-<li><p>触发<code>/etc/logrotate.d/tomcat</code>上面新建的配置</p>
-</li>
-</ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><blockquote>
-<p>对于Linux中，内存快满了解决的方法</p>
-<ol>
-<li>先查看内存使用情况</li>
-<li>进入磁盘挂载的目录 / ，查看各个文件的占用大小</li>
-<li>查看哪一个文件比较大（一层一层找）一般删除的是积累了很久很大的日志文件</li>
-</ol>
-</blockquote>
-<p>具体命令如下：</p>
-<p>查看内存使用情况：</p>
-<pre class=" language-shell"><code class="language-shell">df -h
-</code></pre>
-<p>进入磁盘挂载的目录/，查看各个文件的占用大小：</p>
-<pre class=" language-shell"><code class="language-shell">cd /
-du -sh *
-</code></pre>
-<p>查看哪一个文件比较大（一层一层找）:</p>
-<pre class=" language-shell"><code class="language-shell">du -sh *
-</code></pre>
-<p>而这个方法仅仅只是找到哪个文件占用的磁盘空间大而已。在实际中我们还会出现IO读写高等问题。</p>
-<p>这些问题具体参考文章 ： <strong>Linux系统中负载较高&amp;磁盘I/O %util特别高问题排查思路与解决方法</strong></p>
+<li><p>可变头（Variable header），存在于部分MQTT数据包中，数据包类型决定了可变头是否存在及其具体内容；</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://blog.51cto.com/linhuchong/5241886">https://blog.51cto.com/linhuchong/5241886</a></li>
+<li>较常的应用是做为包的标识</li>
 </ul>
+</li>
+<li><p>消息体（Payload），存在于部分MQTT数据包中，表示客户端收到的具体内容；</p>
+<ul>
+<li>CONNECT、SUBSCRIBE、SUBACK、UNSUBSCRIBE四种类型的消息 有消息体：<ul>
+<li><code>CONNECT</code>，消息体内容主要是：客户端的ClientID、订阅的Topic、Message以及用户名和密码</li>
+<li><code>SUBSCRIBE</code>，消息体内容是一系列的要订阅的主题以及<code>QoS</code>。</li>
+<li><code>SUBACK</code>，消息体内容是服务器对于<code>SUBSCRIBE</code>所申请的主题及<code>QoS</code>进行确认和回复。</li>
+<li><code>UNSUBSCRIBE</code>，消息体内容是要取消订阅的主题。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="使用MQTT进行交互"><a href="#使用MQTT进行交互" class="headerlink" title="使用MQTT进行交互"></a>使用MQTT进行交互</h2><blockquote>
+<p>当应用数据通过MQTT网络发送时，MQTT会把与之相关的服务质量（QoS）和主题名（Topic）相关连。</p>
+</blockquote>
+<p><strong>在MQTT客户端上干什么？</strong></p>
+<ul>
+<li>发布其他客户端会订阅的信息</li>
+<li>订阅其它客户端发布的消息</li>
+<li>退订或删除应用程序的消息</li>
+<li>断开与服务器连接。</li>
+</ul>
+<p><strong>MQTT服务器又干什么？</strong></p>
+<ul>
+<li>接受来自客户的网络连接</li>
+<li>向订阅的客户转发应用程序消息</li>
+</ul>
+<p><strong>MQTT协议中的方法</strong></p>
+<ul>
+<li>（1）Connect。等待与服务器建立连接。</li>
+<li>（2）Disconnect。等待MQTT客户端完成所做的工作，并与服务器断开TCP/IP会话。</li>
+<li>（3）Subscribe。等待完成订阅。</li>
+<li>（4）UnSubscribe。等待服务器取消客户端的一个或多个topics订阅。</li>
+<li>（5）Publish。MQTT客户端发送消息请求，发送完成后返回应用程序线程。</li>
+</ul>
+<h2 id="MQTT如何实现订阅-发布消息模型"><a href="#MQTT如何实现订阅-发布消息模型" class="headerlink" title="MQTT如何实现订阅-发布消息模型?"></a>MQTT如何实现订阅-发布消息模型?</h2><p><strong>MQTT如何管理连接?</strong></p>
+<p>MQTT 是工作在TCP / TLS 协议之上的，是基于连接的，因此在进行主题订阅或消息发布之前，需要先建立连接。MQTT Broker 为了保证网络安全，一般会对请求连接的Client 进行身份验证，因此CONNECT 报文可以携带身份验证信息。MQTT Client 与MQTT Broker 建立连接的过程如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/20210511172638684.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3NjIxMDc4,size_16,color_FFFFFF,t_70#pic_center" alt="MQTT Client 与Broker 建立连接过程"></p>
+<p><strong>MQTT如何传递消息?</strong></p>
+<p>MQTT 传递消息是基于订阅-发布模型的，Client 与Broker 建立连接后，如果想接收消息，需要先订阅自己感兴趣的主题topic，一个Client 可以订阅多个主题topic。MQTT Client 如果想对外发布消息，消息都需要指定主题topic，Broker 需要通过topic 确定要将该消息分发给哪些Client（MQTT Broker 为每个topic 维护一个订阅者列表）。MQTT Client 向Broker 订阅感兴趣主题topic 的过程如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/20210511233948695.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3NjIxMDc4,size_16,color_FFFFFF,t_70#pic_center" alt="MQTT Client 向Broker 订阅感兴趣主题的流程"></p>
+<p>MQTT 为了适应多种应用场景，支持不同的消息传递服务等级QoS，有些不重要的消息即便对方没有收到也影响不大，有些重要的消息则需要确认对方接收到了。还有些特殊场景，比如支付场景，不仅要求对方确认收到该消息，而且要求该消息的传递是幂等的，也即相同的消息发送多次跟发送一次是一样的结果，不至于出现重复支付的情况。<br>MQTT Client 取消订阅不感兴趣的主题时，通过UNSUBSCRIBE 报文告知Broker 要取消订阅哪些主题，报文中比较常用的参数是topic。Broker 也会通过UNSUBACK 报文通知Client 取消订阅主题的结果，报文中比较常用的参数是Reason Code。取消订阅的过程和报文格式跟订阅过程类似，这里就不赘述了。</p>
+<p>MQTT Client 订阅感兴趣的主题后，如果其它Client 在该topic 上发布消息时，Broker 就可以将该主题上的消息转发给它的订阅者。MQTT Client 在指定主题上发布消息的过程如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/20210511234308904.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3NjIxMDc4,size_16,color_FFFFFF,t_70#pic_center" alt="MQTT Client 向Broker 发布某主题的消息"></p>
+<p>前面介绍MQTT Client 订阅主题时也指定了QoS，Broker 实际发送给订阅者的消息服务等级还要看消息发布者将消息发送给Broker 的服务等级。也即，Publisher 到Subscribers 传递消息的服务等级等于发布报文中的QoS 和订阅报文中QoS 的最小值。</p>
+<p>某个主题的消息从Publisher 经Broker 到Subscribers，采用不同的消息QoS 服务等级，传递消息的报文交互也不同，MQTT 支持的三种QoS 服务等级下，报文的交互过程对比如下：</p>
+<ul>
+<li>QoS 0 (At most once)：Publisher / Broker 只管发布消息，不关心对方是否收到（类似于UDP 协议，没有确认重传机制），QoS 0 的消息发送速率比较高，但消息可能会丢失。常用于对消息丢失不敏感的场景，比如传感器发布状态数据，中间几次数据丢失没关系；</li>
+<li>QoS 1 (At least once)：Publisher / Broker 通过PUBACK 报文确认对方收到了发布的消息，若一段时间内未收到对方的PUBACK 报文则继续重发该消息（重发的消息DUP 标识位设置为1，Packet Identifier 字段值不变），QoS 0 的消息保证对方接收到，但消息可能会重复（Broker / Subscribers 发送PUBACK 报文后再收到相同Packet Identifier 的消息也是按新消息处理的），比如下发给执行器的命令，需要确认命令被响应了；</li>
+<li>QoS 2 (Exactly once)：Publisher / Broker 不仅要通过PUBREC 报文确认对方接收到了发布的消息，还要通过报文PUBREL 和PUBCOMP 的二次交互保证对方接收的消息不重复。这要求接收者Broker / Subscribers 先暂存该消息，等接收到了PUBREL 报文后再将消息递交给上层或转发（消息接收者会忽略PUBLISH 报文中相同Packet Identifier 的消息），QoS 0 的消息对硬件计算存储资源的要求较高、消息延迟也较高，比如在计费支付系统中，每笔订单需要且只能处理一次。</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20210512013948940.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3NjIxMDc4,size_16,color_FFFFFF,t_70" alt="MQTT Quality of Service"></p>
+<blockquote>
+<p><strong>PUBREC</strong>字面意思为Assured publish received，作为订阅者/服务器对QoS level = 2的发布PUBLISH消息的发送方的响应，确认已经收到，为QoS level = 2消息流的第二个消息。 和PUBACK相比，除了消息类型不同外，其它都是一样<strong>。</strong></p>
+<p><strong>PUBREL</strong> Qos level = 2的协议流的第三个消息，有PUBLISH消息的发布者发送，参与方接收。</p>
+<p><strong>PUBCOMP</strong> 作为QoS level = 2消息流第四个，也是最后一个消息，由收到PUBREL的一方向另一方做出的响应消息。完整的消息一览，和PUBREL一致，除了消息类型。</p>
+</blockquote>
+<p>消息接收者Broker / Subscribers 在接收QoS 等级大于0（也即QoS 1 或QoS 2）的消息时，需要在本地暂存该消息（QoS 0 的消息本地不暂存，直接转发或递交给上层应用），QoS 1 的消息需要在本地存储到发送PUBACK 报文后，QoS 2 的消息需要在本地存储到接收PUBREL 报文后。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这只是MQTT的基本理论知识，而更深层的理解需要不断实践。</p>
 
                 
             </div>
@@ -584,7 +580,7 @@ du -sh *
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://dd-smile.github.io/2023/04/24/catalina.out-ri-zhi-wen-jian-guo-da-chu-li/">http://dd-smile.github.io/2023/04/24/catalina.out-ri-zhi-wen-jian-guo-da-chu-li/</a>
+                    <a href="http://dd-smile.github.io/2023/04/25/mqtt-xie-yi-chu-shi/">http://dd-smile.github.io/2023/04/25/mqtt-xie-yi-chu-shi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -622,8 +618,8 @@ du -sh *
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Linux/">
-                                    <span class="chip bg-color">Linux</span>
+                                <a href="/tags/basis-of-computer-engineering/">
+                                    <span class="chip bg-color">basis of computer engineering</span>
                                 </a>
                             
                         </div>
@@ -667,9 +663,10 @@ du -sh *
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2023/04/25/mqtt-xie-yi-chu-shi/">
                     <div class="card-image">
@@ -687,9 +684,9 @@ du -sh *
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-04-25
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-25
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -702,6 +699,7 @@ du -sh *
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -720,13 +718,13 @@ du -sh *
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/04/18/shu-ru-wang-zhi-dao-wang-ye-fa-sheng-liao-shi-me/">
+                <a href="/2023/04/24/catalina.out-ri-zhi-wen-jian-guo-da-chu-li/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="输入网址到网页发生了什么？">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Linux下tomcat的catalina.out日志文件过大处理方法">
                         
-                        <span class="card-title">输入网址到网页发生了什么？</span>
+                        <span class="card-title">Linux下tomcat的catalina.out日志文件过大处理方法</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -737,14 +735,14 @@ du -sh *
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-24
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="post-category">
-                                    计算机网络
+                            <a href="/categories/%E5%90%84%E7%A7%8D%E6%8A%98%E8%85%BE/" class="post-category">
+                                    各种折腾
                                 </a>
                             
                             
@@ -754,8 +752,8 @@ du -sh *
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/basis-of-computer-engineering/">
-                        <span class="chip bg-color">basis of computer engineering</span>
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
                     </a>
                     
                 </div>
