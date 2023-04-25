@@ -503,7 +503,7 @@ select distinct 字段列表 from 表名;
 -例子 查询公司员工的上班地址(不要重复)
 select distinct workaddress from emp;
 </code></pre>
-<h3 id="条件查询-where"><a href="#条件查询-where" class="headerlink" title="条件查询 where"></a>条件查询 where</h3><p><img src="C:/Users/LENOVO/AppData/Roaming/Typora/typora-user-images/image-20220922160607153.png" alt="image-20220922160607153"></p>
+<h3 id="条件查询-where"><a href="#条件查询-where" class="headerlink" title="条件查询 where"></a>条件查询 where</h3><p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20220922160607153.png" alt="image-20220922160607153"></p>
 <p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20220922160615215.png" alt="image-20220922160615215"></p>
 <p>模糊查询说明 : </p>
 <pre class=" language-mysql"><code class="language-mysql">select 字段列表 from 表名 where 条件列表;
@@ -570,7 +570,7 @@ select * from emp limit 10,10;
 <ul>
 <li>null值不参与所有聚合函数运算</li>
 </ul>
-<h3 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h3><p><img src="C:/Users/LENOVO/AppData/Roaming/Typora/typora-user-images/image-20220922170801076.png" alt="image-20220922170801076"></p>
+<h3 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h3><p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20220922170801076.png" alt="image-20220922170801076"></p>
 <p><strong>例子</strong></p>
 <pre class=" language-mysql"><code class="language-mysql">-- concat 
 select concat('Hello', 'MySQL');
@@ -597,12 +597,12 @@ select substring('Hello MySQL',1,5)
 <ul>
 <li>substring 的起始位置是1 </li>
 </ul>
-<h3 id="数值函数"><a href="#数值函数" class="headerlink" title="数值函数"></a>数值函数</h3><p><img src="C:/Users/LENOVO/AppData/Roaming/Typora/typora-user-images/image-20220922170817311.png" alt="image-20220922170817311"></p>
-<h3 id="日期函数"><a href="#日期函数" class="headerlink" title="日期函数"></a>日期函数</h3><p><img src="C:/Users/LENOVO/AppData/Roaming/Typora/typora-user-images/image-20220922170824985.png" alt="image-20220922170824985"></p>
+<h3 id="数值函数"><a href="#数值函数" class="headerlink" title="数值函数"></a>数值函数</h3><p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20220922170817311.png" alt="image-20220922170817311"></p>
+<h3 id="日期函数"><a href="#日期函数" class="headerlink" title="日期函数"></a>日期函数</h3><p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20220922170824985.png" alt="image-20220922170824985"></p>
 <h3 id="流程控制函数"><a href="#流程控制函数" class="headerlink" title="流程控制函数"></a>流程控制函数</h3><blockquote>
 <p>可以在SQL语句中实现条件筛选, 从而提高语句的效率</p>
 </blockquote>
-<p><img src="C:/Users/LENOVO/AppData/Roaming/Typora/typora-user-images/image-20220922170831005.png" alt="image-20220922170831005"></p>
+<p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20220922170831005.png" alt="image-20220922170831005"></p>
 <p><strong>例子</strong></p>
 <pre class=" language-mysql"><code class="language-mysql">-- if
 select if(true,'Ok','Error');
@@ -759,7 +759,7 @@ select e.*,d.* from (select * from emp where entrydate > '2006-01-01') e left jo
 <li>表子查询 (子查询结果为多行多列)</li>
 </ul>
 <p>根据子查询位置, 分为 : where之后, from之后, select之后</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这只是MQTT的基本理论知识，而更深层的理解需要不断实践。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>罗列了MySQL语句的基本语法。</p>
 
                 
             </div>
