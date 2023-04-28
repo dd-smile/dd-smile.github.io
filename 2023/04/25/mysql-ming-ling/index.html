@@ -458,7 +458,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="MySQL命令"><a href="#MySQL命令" class="headerlink" title="MySQL命令"></a>MySQL命令</h1><p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20230425151326844.png" alt="image-20230425151326844"></p>
+                <h1 id="MySQL命令"><a href="#MySQL命令" class="headerlink" title="MySQL命令"></a>MySQL命令</h1><p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20230425151326844.png" alt="基本MySQL语句结构"></p>
 <h2 id="增删改数据"><a href="#增删改数据" class="headerlink" title="增删改数据"></a>增删改数据</h2><h3 id="添加数据"><a href="#添加数据" class="headerlink" title="添加数据"></a>添加数据</h3><pre class=" language-mysql"><code class="language-mysql">-- 添加数据
 -- 1.给指定字段添加数据
 insert into 表名(字段1,字段2...) values(值1,值2...);
@@ -503,7 +503,7 @@ select distinct 字段列表 from 表名;
 -例子 查询公司员工的上班地址(不要重复)
 select distinct workaddress from emp;
 </code></pre>
-<h3 id="条件查询-where"><a href="#条件查询-where" class="headerlink" title="条件查询 where"></a>条件查询 where</h3><p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20220922160607153.png" alt="image-20220922160607153"></p>
+<h3 id="条件查询-where"><a href="#条件查询-where" class="headerlink" title="条件查询 where"></a>条件查询 where</h3><p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20220922160607153.png" alt="条件运算符"></p>
 <p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20220922160615215.png" alt="image-20220922160615215"></p>
 <p>模糊查询说明 : </p>
 <pre class=" language-mysql"><code class="language-mysql">select 字段列表 from 表名 where 条件列表;
@@ -563,14 +563,14 @@ select * from emp limit 10,10;
 <h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h3><blockquote>
 <p>将一列数据作为一个整体, 进行纵向计算</p>
 </blockquote>
-<p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20220922160945163.png" alt="image-20220922160945163"></p>
+<p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20220922160945163.png" alt="聚合函数"></p>
 <pre class=" language-mysql"><code class="language-mysql">select 聚合函数(字段列表) from 表名;
 </code></pre>
 <p><strong>注意 :</strong> </p>
 <ul>
 <li>null值不参与所有聚合函数运算</li>
 </ul>
-<h3 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h3><p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20220922170801076.png" alt="image-20220922170801076"></p>
+<h3 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h3><p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20220922170801076.png" alt="字符串函数"></p>
 <p><strong>例子</strong></p>
 <pre class=" language-mysql"><code class="language-mysql">-- concat 
 select concat('Hello', 'MySQL');
@@ -597,12 +597,12 @@ select substring('Hello MySQL',1,5)
 <ul>
 <li>substring 的起始位置是1 </li>
 </ul>
-<h3 id="数值函数"><a href="#数值函数" class="headerlink" title="数值函数"></a>数值函数</h3><p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20220922170817311.png" alt="image-20220922170817311"></p>
-<h3 id="日期函数"><a href="#日期函数" class="headerlink" title="日期函数"></a>日期函数</h3><p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20220922170824985.png" alt="image-20220922170824985"></p>
+<h3 id="数值函数"><a href="#数值函数" class="headerlink" title="数值函数"></a>数值函数</h3><p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20220922170817311.png" alt="数值函数"></p>
+<h3 id="日期函数"><a href="#日期函数" class="headerlink" title="日期函数"></a>日期函数</h3><p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20220922170824985.png" alt="日期函数"></p>
 <h3 id="流程控制函数"><a href="#流程控制函数" class="headerlink" title="流程控制函数"></a>流程控制函数</h3><blockquote>
 <p>可以在SQL语句中实现条件筛选, 从而提高语句的效率</p>
 </blockquote>
-<p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20220922170831005.png" alt="image-20220922170831005"></p>
+<p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20220922170831005.png" alt="流程控制函数"></p>
 <p><strong>例子</strong></p>
 <pre class=" language-mysql"><code class="language-mysql">-- if
 select if(true,'Ok','Error');

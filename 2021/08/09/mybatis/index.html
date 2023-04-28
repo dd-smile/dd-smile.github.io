@@ -1416,7 +1416,7 @@ List<span class="token operator">&lt;</span>Users<span class="token operator">><
 <h2 id="返回主键标签"><a href="#返回主键标签" class="headerlink" title="返回主键标签"></a>返回主键标签</h2><blockquote>
 <p>在完成插入操作后, 将生成的主键信息通过实体类对象返回, 在进行后续<strong>关联</strong>插入操作时, 不用再次访问数据库</p>
 </blockquote>
-<p><img src="https://img-blog.csdnimg.cn/f349cbb8b7944e6b85911b6c3a4bb7be.png" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/f349cbb8b7944e6b85911b6c3a4bb7be.png" alt="流程分析"></p>
 <h3 id="实现步骤-1"><a href="#实现步骤-1" class="headerlink" title="实现步骤"></a>实现步骤</h3><p>在UsersMapper.xml文件中</p>
 <pre class=" language-xml"><code class="language-xml">    <span class="token comment" spellcheck="true">&lt;!--增加用户,返回主键--></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>insert</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>insert<span class="token punctuation">"</span></span> <span class="token attr-name">parameterType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>users<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -2158,7 +2158,7 @@ List<span class="token operator">&lt;</span>Users<span class="token operator">><
 <blockquote>
 <p>多对多关联中，需要通过中间表化解关联关系。中间表描述两张主键表的关联。中间表没有对应的实体类。Mapper.xml文件中也没有中间表的对应标签描述，只是在查询语句中使用中间表来进行关联。</p>
 </blockquote>
-<p><img src="https://img-blog.csdnimg.cn/8b14674e7b0342bbaf2ca4b0013f1a46.png" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/8b14674e7b0342bbaf2ca4b0013f1a46.png" alt="多对多关联"></p>
 <h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><blockquote>
 <p>多个操作同时完成,或同时失败称为事务处理.<br> 事务有四个特性:一致性,持久性,原子性,隔离性.</p>
 </blockquote>
@@ -2295,7 +2295,7 @@ List<span class="token operator">&lt;</span>Users<span class="token operator">><
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/10/18/first/">
+                <a href="/2021/10/18/wu-zi-qi/">
                     <div class="card-image">
                         
                         

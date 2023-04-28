@@ -464,7 +464,7 @@
 <p>MQTT协议是轻量、简单、开放和易于实现的，这些特点使它适用范围非常广泛。在很多情况下，包括受限的环境中，如：机器与机器（M2M）通信和物联网（IoT）。</p>
 <h2 id="发布和订阅"><a href="#发布和订阅" class="headerlink" title="发布和订阅"></a>发布和订阅</h2><p>MQTT使用的发布/订阅消息模式，它提供了一对多的消息分发机制，从而实现与应用程序的解耦。</p>
 <p>这是一种消息传递模式，<strong>消息不是直接从发送器发送到接收器</strong>（即点对点），而是由<code>MQTT server</code>（或称为 MQTT Broker）分发的。</p>
-<p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20230425085652008.png" alt="image-20230425085652008"></p>
+<p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20230425085652008.png" alt="发布与订阅原理"></p>
 <p><strong>MQTT 服务器是发布-订阅架构的核心</strong>。</p>
 <p>客户端可以发布消息（发送方）、订阅消息（接收方）或两者兼而有之。</p>
 <p>客户端（也称为节点）是一种智能设备，如微控制器或具有 TCP/IP 堆栈和实现 MQTT 协议的软件的计算机。</p>
@@ -476,7 +476,7 @@
 <p>充电站（EVSE）是订阅者，订阅”PV/sunshine”从服务器获取信息。</p>
 <p>“PV/data” 另一方面，以 kW 为单位传输工厂产生的瞬时功率，并且该主题可以例如通过计算机或平板电脑订阅，以生成一天内传输功率的图表。</p>
 <p>这就是一个简单的MQTT的应用场景，具体如下图所示：</p>
-<p><img src="https://img-blog.csdnimg.cn/img_convert/6d78e85dcf57728a8ca2a991371a34c3.png" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/6d78e85dcf57728a8ca2a991371a34c3.png" alt="光伏发电的MQTT应用"></p>
 <h2 id="QOS"><a href="#QOS" class="headerlink" title="QOS"></a>QOS</h2><p>服务质量是 MQTT 的一个重要特性。当我们使用 TCP/IP 时，连接已经在一定程度上受到保护。但是在无线网络中，中断和干扰很频繁，MQTT 在这里帮助避免信息丢失及其服务质量水平。这些级别在发布时使用。如果客户端发布到 MQTT 服务器，则客户端将是发送者，MQTT 服务器将是接收者。当MQTT服务器向客户端发布消息时，服务器是发送者，客户端是接收者。</p>
 <p><strong>QoS  0</strong></p>
 <p>这一级别会发生消息丢失或重复，消息发布依赖于底层TCP/IP网络。</p>
