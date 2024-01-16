@@ -485,8 +485,7 @@
 <p><img src="https://upload-images.jianshu.io/upload_images/13838098-1b07689b2e132b5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/656/format/webp" alt="添加的内容"></p>
 <p><strong>yilia主题</strong></p>
 <p>在G:\blog\themes\yilia\layout_partial目录下有一个head.ejs，同样在head.ejs文件中添加如下meta信息即可</p>
-<pre class=" language-shell"><code class="language-shell"><meta name="referrer" content="no-referrer" />
-</code></pre>
+<p><code>&lt;meta name="referrer" content="no-referrer" /&gt;</code></p>
 <p>然后就是<code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code>上传博客了，这一次分别在电脑和手机端打开文章，图片显示正常，问题解决。</p>
 <p>在G:\blog\public\2023目录下就是所有23年生成的blog，找到该目录下的任意一个index.html，用文本编辑器打开就可以看到已经自动生成了referrer标签了。</p>
 <h3 id="原理解析"><a href="#原理解析" class="headerlink" title="原理解析"></a>原理解析</h3><p>http请求体的header中有一个referrer字段，用来表示发起http请求的源地址信息，这个referrer信息是可以省略但是不可修改的，就是说你只能设置是否带上这个referrer信息，不能定制referrer里面的值。</p>
