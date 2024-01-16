@@ -154,31 +154,6 @@
     
     
     <entry>
-      <title>输入网址到网页发生了什么？</title>
-      <link href="/2023/04/18/shu-ru-wang-zhi-dao-wang-ye-fa-sheng-liao-shi-me/"/>
-      <url>/2023/04/18/shu-ru-wang-zhi-dao-wang-ye-fa-sheng-liao-shi-me/</url>
-      
-        <content type="html"><![CDATA[<h2 id="问题情景"><a href="#问题情景" class="headerlink" title="问题情景"></a>问题情景</h2><p>我在看完图解HTTP和图解TCP后对整个计算机网络的脉络有了一些了解。但是对于输入网址到网页这中间到底发生了什么？我只能说出个大概，却不能清楚的知道这中间的流程。</p><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><blockquote><p>所以画了个思维导图~</p><p>lol</p></blockquote><p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/2.png" alt="思维导图"></p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul><li>先解析URL，生成HTTP请求消息。</li><li>然后通过DNS服务器查询域名对应的IP地址，本地DNS服务器会查询有没有这个域名的信息，如果有就直接返回，否则就要去根域名服务器，顶级域名服务器和权威域名服务器依次询问。</li><li>在知道了IP地址后，我们就要开始准备传输了，首先是进行TCP的可靠传输，经过三次握手建立连接后，就要委托IP模块将数据封装成网络包发送给通信对象，也就是加上IP头部。</li><li>有了IP头部就还需要用于两点传输的MAC头部。在这个过程中，如果我们只知道IP地址，而不知道MAC地址，就需要使用ARP协议在以太网进行广播的形式询问。</li><li>接下来就是通过交换机和路由器进行传输到服务器了。</li><li>服务器收到数据包后，会扒开数据包的MAC头部，查看是否和服务器自己的MAC地址符合，接着扒开数据包的IP头和TCP头部。发现TCP头部里面有个端口号，HTTP的服务器正在监听这个端口号。</li><li>于是服务器就知道HTTP进程想要这个包。 于是将包发放HTTP进程。服务器的HTTP进程看到后，知道这个请求是想要访问一个页面，于是把这个网页封装到HTTP响应报文里面。同样的加上TCP，IP，MAC头部。</li><li>客户端收到服务器的响应数据包，客户端也会开始扒皮。最后把响应报文交给浏览器去渲染页面。</li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> 计算机网络 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> basis of computer engineering </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>解决hexo引入图床,手机和web不显示图片的问题</title>
       <link href="/2023/04/10/hexo-bu-xian-shi-tu-pian-wen-ti/"/>
       <url>/2023/04/10/hexo-bu-xian-shi-tu-pian-wen-ti/</url>
