@@ -29,6 +29,31 @@
     
     
     <entry>
+      <title>如何理解LVGL中当前事件和原始事件？</title>
+      <link href="/2023/08/30/ru-he-li-jie-lvgl-zhong-dang-qian-shi-jian-he-yuan-shi-shi-jian/"/>
+      <url>/2023/08/30/ru-he-li-jie-lvgl-zhong-dang-qian-shi-jian-he-yuan-shi-shi-jian/</url>
+      
+        <content type="html"><![CDATA[<h1 id="LVGL"><a href="#LVGL" class="headerlink" title="LVGL"></a>LVGL</h1><h2 id="Fields-of-lv-event-t"><a href="#Fields-of-lv-event-t" class="headerlink" title="Fields of lv_event_t"></a>Fields of lv_event_t</h2><p><code>lv_event_t</code> 是传递给事件回调的唯一参数，它包含有关事件的所有数据。可以从中获得以下值：</p><ul><li><code>lv_event_get_code(e)</code> 获取触发的事件代码</li><li><code>lv_event_get_target(e)</code> 获取事件发送到(关联)的对象</li><li><code>lv_event_get_original_target(e)</code> 获取事件最初发送到的对象（与 <code>lv_event_get_target</code> 不同，如果 <a href="http://lvgl.100ask.net/8.2/overview/event.html#event-bubbling">event bubbling</a> 被启用）</li><li><code>lv_event_get_user_data(e)</code> 获取作为 <code>lv_obj_add_event_cb</code> 的最后一个参数传递的指针。</li><li><code>lv_event_get_param(e)</code> 获取作为 <code>lv_event_send</code> 的最后一个参数传递的参数。</li></ul><h2 id="Event-bubbling（事件冒泡）"><a href="#Event-bubbling（事件冒泡）" class="headerlink" title="Event bubbling（事件冒泡）"></a>Event bubbling（事件冒泡）</h2><blockquote><p>常用于层级间需要触发相同事件</p></blockquote><p>如果启用了 <code>lv_obj_add_flag(obj, LV_OBJ_FLAG_EVENT_BUBBLE)</code>，所有事件也将发送到对象的父级。如果父级也启用了<code>LV_OBJ_FLAG_EVENT_BUBBLE</code>，则事件也将发送到其父级，依此类推。</p><ul><li>lv_event_get_target(e);  获取事件最初针对的对象。即使事件是冒泡的，这个目标都是固定的。</li><li>lv_event_get_current_target(e);  获取事件的当前目标,这个函数返回当前处理事件的对象 。</li></ul><p>区别如下：</p><ol><li><strong>lv_event_get_target(e)</strong>:<ul><li>这个函数返回原始的事件目标，也就是事件最初被发送到的对象。无论事件如何传播或冒泡，这个目标都是固定的。</li></ul></li><li><strong>lv_event_get_current_target(e)</strong>:<ul><li>这个函数返回当前处理事件的对象。考虑一个情况，当一个事件从子对象冒泡到其父对象时，<code>lv_event_get_current_target(e)</code> 将返回父对象，而 <code>lv_event_get_target(e)</code> 仍然返回子对象。也就是说，<code>lv_event_get_current_target(e)</code> 可以在事件传播期间改变，而 <code>lv_event_get_target(e)</code> 始终是固定的。</li></ul></li></ol><p>为了更好地理解这两者的差异，考虑一个实际场景。假设你有一个按钮（button）在一个容器（container）内。当你点击按钮时，事件首先发送到按钮，然后可能冒泡到容器。</p><ul><li>如果你在容器的事件处理函数中调用 <code>lv_event_get_target(e)</code>，它将返回按钮。</li><li>但如果你调用 <code>lv_event_get_current_target(e)</code>，它将返回容器，因为容器是当前处理事件的对象。</li></ul><p>当然关于<code>lv_event_get_target(e)</code>与<code>lv_event_get_current_target(e)</code>区别，我认为爸爸理论是最好理解的：</p><p>lv_event_get_target是永远不变的，目标是固定的。用点击事件来说，点啥就是啥。开启冒泡的时候，lv_event_get_current_target是会变的，点啥就去找爸爸。</p><p>比如说get_target是谁被打，get_current_target是通知有人被打了。我是你爸爸，你被打了会来通知我。我被打了不会通知你，因为不会往下传递消息。但是被打这个事情，我们两个都有可能会发生。所以get_target可能是你，也可能是我。但是在开启冒泡的前提下，get_current_target只可能是爸爸我。而不可能是儿子。</p><blockquote><p>和啵啵斗嘴的日常，虽然啵啵很强，但是我就是不承认，这个爸爸理论是我独创！！！</p></blockquote><p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20240116153342229.png" alt="图图一"></p><p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20240116153412604.png" alt="图图二"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> UI </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LVGL </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>2023年Java秋招面经</title>
       <link href="/2023/04/27/java-2023-mian-jing/"/>
       <url>/2023/04/27/java-2023-mian-jing/</url>
