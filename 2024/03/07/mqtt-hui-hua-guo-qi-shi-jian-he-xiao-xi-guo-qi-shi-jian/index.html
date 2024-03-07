@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="关于工作第一年的一些事情, 冬瓜冬瓜排骨汤">
+    <meta name="keywords" content="【译文】MQTT会话过期时间和消息过期时间, 冬瓜冬瓜排骨汤">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>关于工作第一年的一些事情 | 冬瓜冬瓜排骨汤</title>
+    <title>【译文】MQTT会话过期时间和消息过期时间 | 冬瓜冬瓜排骨汤</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -291,12 +291,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">关于工作第一年的一些事情</h1>
+                    <h1 class="description center-align post-title">【译文】MQTT会话过期时间和消息过期时间</h1>
                 </div>
             </div>
         </div>
@@ -412,8 +412,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E9%9D%9E%E6%8A%80%E6%9C%AF%E9%97%AE%E9%A2%98/">
-                                <span class="chip bg-color">非技术问题</span>
+                            <a href="/tags/basis-of-computer-engineering/">
+                                <span class="chip bg-color">basis of computer engineering</span>
                             </a>
                         
                     </div>
@@ -424,8 +424,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%B7%A5%E4%BD%9C/" class="post-category">
-                                工作
+                            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="post-category">
+                                计算机网络
                             </a>
                         
                     </div>
@@ -437,7 +437,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-01-13
+                    2024-03-07
                 </div>
                 
 
@@ -458,63 +458,45 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="云场馆年终报告"><a href="#云场馆年终报告" class="headerlink" title="云场馆年终报告"></a>云场馆年终报告</h1><p>我自己的工作内容和成绩已经在项目开发历程总结说明了，就不多逼逼。这份年终报告主要针对的是云场馆项目今年遇到的问题来阐述。</p>
-<h2 id="定位问题："><a href="#定位问题：" class="headerlink" title="定位问题："></a>定位问题：</h2><p>云场馆的定位需要尽快确认下来，我说的是最核心的定位。我们要为客户提供什么？怎么在市场上吃下份额？要知道有所为而有所不为，我认为我们一开始是有自己定位的，但是被项目搞得焦头烂额，什么都想吃什么都想要。</p>
-<p>下面我主要分为两部分来说明：</p>
-<p>第一个需要明确我们最想要拿下哪些客户？这些客户的最主要痛点是什么？我们最大的优势是什么？我们有什么资源可以支持我们拿下市场份额？</p>
-<p>第二个需要确认的是我们是想要用关系去拿下客户？还是想要用产品去拿下客户？</p>
-<p><strong>第一部分：</strong></p>
-<p>我们现在的主要客户是百校项目，这些客户的主要都是需求多媒体部分的控制，而关于设备部分控制是比较少的。诸如每个项目都需要灯光控制，LED大屏控制，音响控制，而体育设备的控制并不是每个项目都有，有的话也很少。</p>
-<p>我们最大的优势是体育设施设备，这里面的核心是座椅和看台。以此看来，我们和多媒体完全不着边。这导致什么？基本需要外协。以此可见，百校项目完全可以放弃，因为和我们的定位不符合，我们一开始设计的领先慧馆家智慧管理系统的主要功能包括：</p>
+                <p>原文：<a href="https://link.juejin.cn/?target=https://www.hivemq.com/blog/mqtt5-essentials-part4-session-and-message-expiry/">https://link.juejin.cn/?target=https%3A%2F%2Fwww.hivemq.com%2Fblog%2Fmqtt5-essentials-part4-session-and-message-expiry%2F</a></p>
+<p>作者: Florian Raschbichler<br>发布时间: 2019年10月16日<br>更新于: 2023年6月29日</p>
+<p>欢迎来到<a target="_blank" rel="noopener" href="https://juejin.cn/post/7279346413915177015">MQTT 5 基础</a> 系列的第4部分. 在第3部分我们学习了<a target="_blank" rel="noopener" href="https://juejin.cn/post/7281113851714437135">从MQTT 3.1.1升级到它的七个理由</a>, 对MQTT用户阐明了升级到MQTT 5版本的目的和好处。本篇文章，我们将重点关注两个密切相关的特性: <strong>会话过期时间</strong>和<strong>消息过期时间</strong>。这些功能代表了MQTT 5的重点提升部分，全面的理解它们，对于协议的优化使用至关重要。</p>
+<h2 id="会话过期间隔和消息过期间隔在MQTT-5是如何运作的"><a href="#会话过期间隔和消息过期间隔在MQTT-5是如何运作的" class="headerlink" title="会话过期间隔和消息过期间隔在MQTT 5是如何运作的?"></a>会话过期间隔和消息过期间隔在MQTT 5是如何运作的?</h2><p>让我们分别拆解和分析这两个整数类型的过期时间特性。</p>
+<h3 id="会话过期时间"><a href="#会话过期时间" class="headerlink" title="会话过期时间"></a>会话过期时间</h3><p>会话过期时间是一个以秒为单位的参数，由客户端在CONNECT阶段设置完成。其表示代理服务器保留客户端会话信息的时长。如果间隔设置为0，或者在CONNECT阶段没有设置过期值，那么客户端网络通信一旦终止，代理服务器会立即删除会话数据。 注意，最大会话过期时间值是 <code>UINT_MAX</code> (4,294,967,295), 这使得离线会话在客户端断开连接后能够维持持久化超过136年的时间。</p>
+<p><img src="https://www.hivemq.com/img/blog/connect-packet-session-expiry.png" alt="会话过期时间是定义在CONNECT数据包中的"></p>
+<h3 id="消息过期时间"><a href="#消息过期时间" class="headerlink" title="消息过期时间"></a>消息过期时间</h3><p>使用MQTT 5, 客户端可以对每条PUBLISH数据包设置一个以秒为单位的消息过期时间。此间隔时间代表着非离线状态下，代理服务器维护PUBLISH数据包的时长。如果没有定义消息过期时间，代理服务器会为所有的已匹配主题的订阅者无限期的保留信息，甚至已处于断开状态的订阅者也是如此。而且，如果在发送PUBLISH数据时，选择了‘retained=true’, 消息过期时间还能决定在特定主题上保留消息的时间长度。</p>
+<p><img src="https://www.hivemq.com/img/blog/publish-packet-message-expiry.png" alt="Message Expiry Interval in PUBLISH packet"></p>
+<h2 id="为什么引入过期时间呢"><a href="#为什么引入过期时间呢" class="headerlink" title="为什么引入过期时间呢?"></a>为什么引入过期时间呢?</h2><p>不仅要理解“过期时间”功能，也要探索这些特性纳入MQTT 5规范的原因以及它们实际应用程序中的使用。</p>
+<p>在<a target="_blank" rel="noopener" href="https://juejin.cn/post/7280008213672034319">介绍MQTT 5协议</a>文章中, 我们领会了OASIS委员会审议过程的精神，最终在2019年3月将MQTT 5确立为标准。作为这个委员会的成员之一，HiveMQ感到非常骄傲，HiveMQ积极收集用户反馈，了解MQTT 3.1和3.1.1版本用户的长期需求，并决定如何最好地发展协议。主要的推动力是引入了一些特性，这些特性扩大了用户的使用场景，增强了用户使用协议的简单性。</p>
+<h3 id="会话过期时间-1"><a href="#会话过期时间-1" class="headerlink" title="会话过期时间"></a>会话过期时间</h3><p>MQTT 5中的会话过期时间巧妙地实现了两个重要需求。MQTT的早期版本为了删除<a href="https://link.juejin.cn/?target=https://www.hivemq.com/blog/mqtt-essentials-part-7-persistent-session-queuing-messages/">持久性会话</a>仅提供了一个单一路径: 当客户端需要丢弃一个会话时，客户端不得不使用<code>cleanSession=true</code>标志来重新连接一次代理服务器。</p>
+<p>由于停用，破坏，或者负载测试后的不充分清理会话，导致IoT设备绝不会重新连接，这些剩余会话可能会对代理服务器的持久性造成不必要的负担。像HiveMQ这样的企业级MQTT代理服务器配备了复杂的管理工具，如HiveMQ 控制中心，以便于管理空闲会话。尽管如此，辨别哪些会话可以有效地删除仍然是至关重要的。</p>
+<blockquote>
+<p>MQTT 5加入的会话过期时间特性，直观的允许用户指定一个合理的持续时间，之后代理服务器会自动清除空闲会话，从而释放有价值的资源。</p>
+</blockquote>
+<p>除了这种自动清理功能之外，会话过期时间还极大地简化了会话状态管理。<a href="https://link.juejin.cn/?target=https://www.eclipse.org/community/eclipse_newsletter/2016/september/article3.php">Ian Craggs</a> 慷慨地提供了两个图表来说明状态转换中复杂性的降低。这种可视化强调了这个新特性如何有助于简化状态转换和提高用户效率。</p>
+<p><img src="https://www.hivemq.com/img/blog/mqtt-3-state-transition-v2.png" alt="De-cluttering of state transition in MQTT 3.1.1 and MQTT 5 (courtesy of Ian Craggs)"></p>
+<h2 id="消息过期时间-1"><a href="#消息过期时间-1" class="headerlink" title="消息过期时间"></a>消息过期时间</h2><p>与MQTT 5协议起草类似，“会话过期时间”的起因是为了一个自动化维护机制需求而被推动的。想想无数的IoT设备，如：为了抵御长时间的网络断开而设计的互联网汽车。MQTT为这些具有持久会话和消息排队的场景提供了基础保障。</p>
+<p>为离线设备精心准备的消息会存储在代理服务器上，等待设备恢复连接以进行传递。在大规模部署中，连接设备的数量升级到数千甚至数百万，因此必须单独约束每个客户端的离线消息队列。</p>
+<p>与IoT设备相关的信息有效期可能会出现显著的波动。以互联网汽车为例: 交通更新只能短暂地保持其相关性。然而，当我们考虑无线固件升级时，即使汽车长时间处于离线状态，延长到几个星期，也需要执行这些升级。</p>
+<blockquote>
+<p>MQTT 5中的消息过期时间是管理这些不同时间框架的完美工具，增加了协议的通用性</p>
+</blockquote>
+<p><img src="https://www.hivemq.com/img/blog/message-expiry-car-example.png" alt="Connected car example"></p>
+<p>例如: 交通堵塞警报通常在1-2小时后就会过时，但是固件更新应该可以持续好几周。消息过期是定义这些不同时间段的完美特性。</p>
+<p>为需要有时间有效期的消息分配一个最佳消息过期时间，同时保留没有任何无有效期限制的相关消息, 对于长时间离线的客户端来讲，我们能确保高效的利用代理服务器资源。这种策略还避免了客户端在重新连接时被不相关的消息淹没。</p>
+<blockquote>
+<p>对于保留消息，消息过期时间操作类似，保证这些消息只在指定的时间段内发送给新订阅方。</p>
+</blockquote>
+<p>但是，需要注意的一个重要方面是，当客户端的会话过期时，该客户端的所有排队消息也会与会话同步过期，而不管它们各自的消息过期状态如何。这个“陷阱”是对MQTT协议中会话及其排队消息的相互联系的重要提醒。</p>
+<h2 id="关于使用MQTT-5会话过期时间和消息过期时间的重要提示"><a href="#关于使用MQTT-5会话过期时间和消息过期时间的重要提示" class="headerlink" title="关于使用MQTT 5会话过期时间和消息过期时间的重要提示"></a>关于使用MQTT 5会话过期时间和消息过期时间的重要提示</h2><p>一些重要信息:</p>
 <ul>
-<li>场馆管控：包括场馆监控、模式转换、体育设备管理、非体育设备管理（空调与灯光）</li>
-<li>养护商城：包括售后服务、商城中心</li>
-<li>养护学堂：包括最新行业资讯、设备操作知识与养护知识</li>
-<li>员工管理</li>
+<li>会话过期时间和消息过期时间都有助于完善MQTT代理服务器上的资源管理</li>
+<li>回顾过去，许多MQTT 3用户表示需要有效期特性。HiveMQ通过在我们的MQTT平台中引入了会话和消息过期时间作为补充特性来响应这一需求，这早于它们在MQTT 5中的标准化</li>
+<li>在MQTT 3的CONNECT 数据包中，cleanSession=true 等价于 sessionExpury = 0(或不存在) ，而在 MQTT 5中则是cleanStart = true。</li>
+<li>同样，MQTT 3的CONNECT数据包中“cleanSession=false” 会在MQTT 5中找到其对应的 sessionExpire值，该值大于零，并通过“cleanStart=false”表示</li>
+<li>MQTT代理服务器(例如 HiveMQ)提供了在服务器端为这些过期时间配置最大值的能力。这个特性在多供应商项目中非常方便，特别是当代理服务器操作员可能缺乏对MQTT客户端设置权限时。</li>
 </ul>
-<p>可以看见完全没有多媒体方面的设计。那百校项目又这么大，这是我们一开始的定位出问题？还是市场的问题？</p>
-<p>如果是我们定位问题，那么这个属于重大失误，说明在一开始设计系统的时候，完全没有进行市场调研，完全不了解市场的痛点。</p>
-<p>如果是市场问题，那么百校项目就不要接，不要去做，因为不是我们的目标客户。</p>
-<p><strong>第二部分：</strong></p>
-<p>现在来说说我们想要用关系拿下客户？还是想要用产品拿下客户？</p>
-<p>我首先需要说明的是，这两者不是对立关系。而是侧重点的问题，这两者花费的成本我认为都差不多，那么选择哪一条路是需要思考的。</p>
-<p><strong>首先</strong>说说靠关系拿下客户，这条路的侧重点就主要是打好客户关系了，怎么打好关系不在本文的讨论范围中。我想要说的是，这条路的产品要怎么交付？</p>
-<p>主要是外协，做资源整合商和中间商，也就是润声老刘那条路子。</p>
-<p>我们直接找技术厂家帮我们开发，这个技术路径是宝业恒，河北宏康集团走的技术路径，从多媒体中控系统演变而来的多功能体育馆中控系统。（注意：本文不聊具体的技术路径。宏康集团会在下文在说明，因为和我们很像。）</p>
-<p>我们当技术二道贩子，赚取中间商的差价。这部分的重点就是在关系了，因为我们有渠道，没有技术。而技术厂家有技术，没有渠道，我们和他们互补。</p>
-<p>优点是可以快速拿下市场，前期投入成本不高。</p>
-<p>当然缺点也很明显，我们的渠道关系够硬吗？要是哪一天技术厂家也有渠道了，不鸟我们了怎么办？而且利润也不多，因为只是赚取中间商差价。</p>
-<p><strong>接下来</strong>说一下靠产品拿下客户，这条路就需要我们自己组建技术团体，并且有着敏锐的市场嗅觉。首先最重要的是产品规划一定不能错，因为走错了弯路，花的冤枉钱不是我们这种没融资的小公司能够承受的。</p>
-<p>这个需要产品经理牛逼一点，技术团队至少需要一个大牛。一方面能够打磨好产品细节，把控好产品方向。另一方面有技术大牛可以带领团队实现这个产品，毕竟好产品实现不了，都是吹牛逼。</p>
-<p>优点就是有自己的壁垒，竞争对手想要来吃一口市场份额，得掂量掂量自己的产品打得过我们吗？而且后续的成本会比较低，先发优势明显，龙头老大还是可以竞争一下的。</p>
-<p>缺点就是前期投入成本过高，我看悬。而且目前团队里面个个水货，产品不是好产品，技术不是好技术，完犊子。</p>
-<h2 id="部门墙问题："><a href="#部门墙问题：" class="headerlink" title="部门墙问题："></a>部门墙问题：</h2><p>主要体现在沟通不畅，协作困难，都按照各自部门的规则办事，不考虑公司整体利益。但是不让客户满意，他会考虑这是哪个部门的问题吗？他会觉得是整个公司不行，整个公司垃圾。</p>
-<p>我们从具体项目来分析一下：</p>
-<p>当一个新项目来的时候，此时最需要的是什么？最需要的是需求分析，分析这个项目客户有什么需求，我们能不能做？确定好需求后，第一件事就是撰写需求文档，这个需求文档，不单单是只有智能化部分的需求文档，而是整个项目的需求文档，这个文档至少要包括：</p>
-<ul>
-<li>项目是什么？项目的场景是什么？（一两句话写清楚项目需要哪些东西，涉及到哪些部门）</li>
-<li>项目的方案设计阶段大概应该怎么做？</li>
-<li>方案设计阶段结束后就需要进入干活阶段了，工作排期表要有吧，还有设备购买的排期表等等，这些一箩筐的罗列下来，让所有参与人员都看到，都清楚目标，清楚自己要干啥。</li>
-<li>实施阶段大概应该怎么做？</li>
-</ul>
-<p>为什么要需求文档？因为有了需求文档，目标就会清晰，不会因为中间又漏了什么需求而导致项目乱套。干活的只认需求文档，就像古代的士兵只认兵符。</p>
-<p>如何打破部门墙问题？部门墙问题无法避免的，初创公司大多使用扁平化的工作流程，不称总不叫哥，大家都是平等的。目前公司实现不了扁平化机制，要实现，不得开除一堆人。</p>
-<p>不过关于部门墙问题，我认为有一个案例可以参考一下：</p>
-<p>华为的铁三角：客户经理-解决方案专家-交付专家。</p>
-<h2 id="河北宏康体育集团"><a href="#河北宏康体育集团" class="headerlink" title="河北宏康体育集团"></a>河北宏康体育集团</h2><p><img src="https://gitee.com/dd-smile/figurebed/raw/master/img/image-20240113223708364.png" alt="宏康体育官网"></p>
-<p>和我们像不像？完全是我们的翻版，那么为什么要说这家公司呢？</p>
-<p>首先曼巴星球做的事情相信大家也清楚，就是做多功能体育设备控制的。而曼巴星球是宏康体育旗下，虽然说股权上看不清楚他们的控制关系，但是还是有一些细节可以看出来的。</p>
-<p>而曼巴星球又与广州欧轩智能场馆有着千丝万缕的关系，这里面的股权关系也不在本文讨论范围内，主要说明的是这家公司走的路和我们一样，并且他们走得比我们快。有趣的是他们一开始的定位就是基于多媒体系统，具体情况不细聊，毕竟竞品分析不是我的工作。</p>
-<p>贴一下人家官网：</p>
-<p>宏康：<a target="_blank" rel="noopener" href="https://www.hktiyu.com/">https://www.hktiyu.com/</a></p>
-<p>欧轩： <a target="_blank" rel="noopener" href="https://www.ouxuanzhineng.cn/">https://www.ouxuanzhineng.cn/</a></p>
-<p>曼巴星球的链接给挂掉了，就不贴了。</p>
-<h2 id="终话"><a href="#终话" class="headerlink" title="终话"></a>终话</h2><p>以上仅以个人看法与建议，而且有很多问题都是基于我自己的想象，如果没有问题，就当我瞎逼逼。站在00后年轻人的角度，最需要的是团队氛围感和不画饼，所谓的办公室政治，不要出现。我更希望与团队和管理者以真诚的方式来交流，不服就界限分明，服了就赴汤蹈火。</p>
-<p>总而言之，整个项目需要避免老油条现象。</p>
-<ul>
-<li>技术不要专业术语满天飞，不讲人话，喜欢说一些高大上的词汇来显示自己的技术实力。需要放下技术高高在上的优越感，善于沟通。</li>
-<li>产品不要为了迎合领导，会议上夸下海口，各种保证能实现，会后跑去找技术许愿。</li>
-</ul>
+<p>MQTT 5的出现引入了一系列旨在增强协议的可用性、灵活性和效率的新特性。会话过期时间和消息过期时间是这方面的主要例子，它们在资源管理和确保MQTT代理服务器的顺利运行方面，起到了非常有价值的工具的作用。这两个特性都真正体现了MQTT标准以用户为中心的演变，展示了它对用户需求和挑战的响应能力。</p>
 
                 
             </div>
@@ -541,7 +523,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://dd-smile.github.io/2024/01/13/yun-chang-guan-nian-du-zong-jie/">http://dd-smile.github.io/2024/01/13/yun-chang-guan-nian-du-zong-jie/</a>
+                    <a href="http://dd-smile.github.io/2024/03/07/mqtt-hui-hua-guo-qi-shi-jian-he-xiao-xi-guo-qi-shi-jian/">http://dd-smile.github.io/2024/03/07/mqtt-hui-hua-guo-qi-shi-jian-he-xiao-xi-guo-qi-shi-jian/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -579,8 +561,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E9%9D%9E%E6%8A%80%E6%9C%AF%E9%97%AE%E9%A2%98/">
-                                    <span class="chip bg-color">非技术问题</span>
+                                <a href="/tags/basis-of-computer-engineering/">
+                                    <span class="chip bg-color">basis of computer engineering</span>
                                 </a>
                             
                         </div>
@@ -624,9 +606,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2024/03/07/mqtt-hui-hua-guo-qi-shi-jian-he-xiao-xi-guo-qi-shi-jian/">
                     <div class="card-image">
@@ -644,9 +627,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-03-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-03-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -659,6 +642,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -677,31 +661,31 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/08/30/ru-he-li-jie-lvgl-zhong-dang-qian-shi-jian-he-yuan-shi-shi-jian/">
+                <a href="/2024/01/13/yun-chang-guan-nian-du-zong-jie/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="如何理解LVGL中当前事件和原始事件？">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="关于工作第一年的一些事情">
                         
-                        <span class="card-title">如何理解LVGL中当前事件和原始事件？</span>
+                        <span class="card-title">关于工作第一年的一些事情</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            我是啵啵爸爸还是啵啵是我爸爸？
+                            云场馆从零到一之路
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-08-30
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-01-13
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/UI/" class="post-category">
-                                    UI
+                            <a href="/categories/%E5%B7%A5%E4%BD%9C/" class="post-category">
+                                    工作
                                 </a>
                             
                             
@@ -711,8 +695,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/LVGL/">
-                        <span class="chip bg-color">LVGL</span>
+                    <a href="/tags/%E9%9D%9E%E6%8A%80%E6%9C%AF%E9%97%AE%E9%A2%98/">
+                        <span class="chip bg-color">非技术问题</span>
                     </a>
                     
                 </div>
