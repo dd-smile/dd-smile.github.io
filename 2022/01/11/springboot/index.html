@@ -1844,68 +1844,6 @@ value：map集合key对应的value值
 
 对于使用模板：有包含模板（th:include）， 插入模板(th:insert)
 </code></pre>
-<h1 id="第十章-总结"><a href="#第十章-总结" class="headerlink" title="第十章 总结"></a>第十章 总结</h1><h2 id="10-1-注解"><a href="#10-1-注解" class="headerlink" title="10.1 注解"></a>10.1 注解</h2><p>Spring + SpringMVC + SpringBoot </p>
-<pre class=" language-java"><code class="language-java">创建对象的：
-<span class="token annotation punctuation">@Controller</span><span class="token operator">:</span> 放在类的上面，创建控制器对象，注入到容器中
-<span class="token annotation punctuation">@RestController</span><span class="token operator">:</span> 放在类的上面，创建控制器对象，注入到容器中。
-             作用：复合注解是<span class="token annotation punctuation">@Controller</span> <span class="token punctuation">,</span> <span class="token annotation punctuation">@ResponseBody</span><span class="token punctuation">,</span> 使用这个注解类的，里面的控制器方法的返回值                   都是数据
-
-<span class="token annotation punctuation">@Service</span> ： 放在业务层的实现类上面，创建service对象，注入到容器
-<span class="token annotation punctuation">@Repository</span> <span class="token operator">:</span> 放在dao层的实现类上面，创建dao对象，放入到容器。 没有使用这个注解，是因为现在使用MyBatis框               架，  dao对象是MyBatis通过代理生成的。 不需要使用<span class="token annotation punctuation">@Repository</span>、 所以没有使用。
-<span class="token annotation punctuation">@Component</span><span class="token operator">:</span>  放在类的上面，创建此类的对象，放入到容器中。 
-
-赋值的：
-<span class="token annotation punctuation">@Value</span> ： 简单类型的赋值， 例如 在属性的上面使用<span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"李四"</span><span class="token punctuation">)</span> <span class="token keyword">private</span> String name
-          还可以使用<span class="token annotation punctuation">@Value</span><span class="token punctuation">,</span>获取配置文件者的数据（properties或yml）。 
-          <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"${server.port}"</span><span class="token punctuation">)</span> <span class="token keyword">private</span> Integer port
-
-<span class="token annotation punctuation">@Autowired</span><span class="token operator">:</span> 引用类型赋值自动注入的，支持byName<span class="token punctuation">,</span> byType<span class="token punctuation">.</span> 默认是byType 。 放在属性的上面，也可以放在构造             方法的上面。 推荐是放在构造方法的上面
-<span class="token annotation punctuation">@Qualifer</span><span class="token operator">:</span>  给引用类型赋值，使用byName方式。   
-            <span class="token annotation punctuation">@Autowird</span><span class="token punctuation">,</span> <span class="token annotation punctuation">@Qualifer</span>都是Spring框架提供的。
-
-<span class="token annotation punctuation">@Resource</span> ： 来自jdk中的定义， javax<span class="token punctuation">.</span>annotation。 实现引用类型的自动注入， 支持byName<span class="token punctuation">,</span> byType<span class="token punctuation">.</span>
-             默认是byName<span class="token punctuation">,</span> 如果byName失败， 再使用byType注入。 在属性上面使用
-
-
-其他：
-<span class="token annotation punctuation">@Configuration</span> ： 放在类的上面，表示这是个配置类，相当于xml配置文件
-
-<span class="token annotation punctuation">@Bean</span>：放在方法的上面， 把方法的返回值对象，注入到spring容器中。
-
-<span class="token annotation punctuation">@ImportResource</span> ： 加载其他的xml配置文件， 把文件中的对象注入到spring容器中
-
-<span class="token annotation punctuation">@PropertySource</span> ： 读取其他的properties属性配置文件
-
-<span class="token annotation punctuation">@ComponentScan</span>： 扫描器 ，指定包名，扫描注解的
-
-<span class="token annotation punctuation">@ResponseBody</span><span class="token operator">:</span> 放在方法的上面，表示方法的返回值是数据， 不是视图
-<span class="token annotation punctuation">@RequestBody</span> <span class="token operator">:</span> 把请求体中的数据，读取出来， 转为java对象使用。
-
-<span class="token annotation punctuation">@ControllerAdvice</span><span class="token operator">:</span>  控制器增强， 放在类的上面， 表示此类提供了方法，可以对controller增强功能。
-
-<span class="token annotation punctuation">@ExceptionHandler</span> <span class="token operator">:</span> 处理异常的，放在方法的上面
-
-<span class="token annotation punctuation">@Transcational</span> <span class="token operator">:</span>  处理事务的， 放在service实现类的<span class="token keyword">public</span>方法上面， 表示此方法有事务
-
-
-SpringBoot中使用的注解
-    
-<span class="token annotation punctuation">@SpringBootApplication</span> ： 放在启动类上面， 包含了<span class="token annotation punctuation">@SpringBootConfiguration</span>
-                          <span class="token annotation punctuation">@EnableAutoConfiguration</span>， <span class="token annotation punctuation">@ComponentScan</span>
-
-
-    
-MyBatis相关的注解
-
-<span class="token annotation punctuation">@Mapper</span> ： 放在类的上面 ， 让MyBatis找到接口， 创建他的代理对象    
-<span class="token annotation punctuation">@MapperScan</span> <span class="token operator">:</span>放在主类的上面 ， 指定扫描的包， 把这个包中的所有接口都创建代理对象。 对象注入到容器中
-<span class="token annotation punctuation">@Param</span> ： 放在dao接口的方法的形参前面， 作为命名参数使用的。
-    
-Dubbo注解
-<span class="token annotation punctuation">@DubboService</span><span class="token operator">:</span> 在提供者端使用的，暴露服务的， 放在接口的实现类上面
-<span class="token annotation punctuation">@DubboReference</span><span class="token operator">:</span>  在消费者端使用的， 引用远程服务， 放在属性上面使用。
-<span class="token annotation punctuation">@EnableDubbo</span> <span class="token operator">:</span> 放在主类上面， 表示当前引用启用Dubbo功能。
-</code></pre>
 
                 
             </div>
