@@ -460,7 +460,6 @@
             <div id="articleContent">
                 <p>原文：<a href="https://link.juejin.cn/?target=https://www.hivemq.com/blog/mqtt5-essentials-part4-session-and-message-expiry/">https://link.juejin.cn/?target=https%3A%2F%2Fwww.hivemq.com%2Fblog%2Fmqtt5-essentials-part4-session-and-message-expiry%2F</a></p>
 <p>作者: Florian Raschbichler<br>发布时间: 2019年10月16日<br>更新于: 2023年6月29日</p>
-<p>欢迎来到<a target="_blank" rel="noopener" href="https://juejin.cn/post/7279346413915177015">MQTT 5 基础</a> 系列的第4部分. 在第3部分我们学习了<a target="_blank" rel="noopener" href="https://juejin.cn/post/7281113851714437135">从MQTT 3.1.1升级到它的七个理由</a>, 对MQTT用户阐明了升级到MQTT 5版本的目的和好处。本篇文章，我们将重点关注两个密切相关的特性: <strong>会话过期时间</strong>和<strong>消息过期时间</strong>。这些功能代表了MQTT 5的重点提升部分，全面的理解它们，对于协议的优化使用至关重要。</p>
 <h2 id="会话过期间隔和消息过期间隔在MQTT-5是如何运作的"><a href="#会话过期间隔和消息过期间隔在MQTT-5是如何运作的" class="headerlink" title="会话过期间隔和消息过期间隔在MQTT 5是如何运作的?"></a>会话过期间隔和消息过期间隔在MQTT 5是如何运作的?</h2><p>让我们分别拆解和分析这两个整数类型的过期时间特性。</p>
 <h3 id="会话过期时间"><a href="#会话过期时间" class="headerlink" title="会话过期时间"></a>会话过期时间</h3><p>会话过期时间是一个以秒为单位的参数，由客户端在CONNECT阶段设置完成。其表示代理服务器保留客户端会话信息的时长。如果间隔设置为0，或者在CONNECT阶段没有设置过期值，那么客户端网络通信一旦终止，代理服务器会立即删除会话数据。 注意，最大会话过期时间值是 <code>UINT_MAX</code> (4,294,967,295), 这使得离线会话在客户端断开连接后能够维持持久化超过136年的时间。</p>
 <p><img src="https://www.hivemq.com/img/blog/connect-packet-session-expiry.png" alt="会话过期时间是定义在CONNECT数据包中的"></p>
