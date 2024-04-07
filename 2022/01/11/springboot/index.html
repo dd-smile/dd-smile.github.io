@@ -1043,51 +1043,6 @@ ConfigurableApplicationContext <span class="token operator">:</span> 接口，�
 <p>3）事务处理方式：</p>
 <p>​     1 ） Spring框架中的@Transactional</p>
 <p>​     2 )    aspectj框架可以在xml配置文件中，声明事务控制的内容</p>
-<p>​    </p>
-<p>SpringBoot中使用事务： 上面的两种方式都可以。</p>
-<p>步骤 : </p>
-<p>1）在业务方法的上面加入@Transactional ,  加入注解后，方法有事务功能了。</p>
-<p>2）明确的在 主启动类的上面 ，加入@EnableTransactionManager</p>
-<p>例子：</p>
-<pre class=" language-java"><code class="language-java">Services实现类
-    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-<span class="token comment" spellcheck="true">/**
- * @Transactional: 表示方法的有事务支持
- *       默认：使用库的隔离级别， REQUIRED 传播行为； 超时时间  -1
- *       抛出运行时异常，回滚事务
- */</span>
-<span class="token annotation punctuation">@Transactional</span>
-<span class="token annotation punctuation">@Override</span>
-<span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">addStudent</span><span class="token punctuation">(</span>Student student<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"业务方法addStudent"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> rows  <span class="token operator">=</span>  studentDao<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>student<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"执行sql语句"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token comment" spellcheck="true">//抛出一个运行时异常， 目的是回滚事务</span>
-    <span class="token comment" spellcheck="true">//int m   = 10 / 0 ;</span>
-
-    <span class="token keyword">return</span> rows<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//control类</span>
-
-<span class="token annotation punctuation">@Controller</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">StudentController</span><span class="token punctuation">{</span>
-    <span class="token annotation punctuation">@Resource</span>
-    <span class="token keyword">private</span> StudentService service<span class="token punctuation">;</span>
-    
-    <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/addStudent"</span><span class="token punctuation">)</span>
-    <span class="token annotation punctuation">@ResponseBody</span>
-    <span class="token keyword">public</span> String <span class="token function">addStudent</span><span class="token punctuation">(</span>String naem<span class="token punctuation">,</span>Integer age<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        Student s1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Student</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        s1<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        s1<span class="token punctuation">.</span><span class="token function">setAge</span><span class="token punctuation">(</span>age<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">int</span> rows <span class="token operator">=</span> service<span class="token punctuation">.</span><span class="token function">addStudent</span><span class="token punctuation">(</span>s1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token string">"添加学生: "</span><span class="token operator">+</span>rows<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
 <h1 id="第五章-接口架构风格-—RESTful"><a href="#第五章-接口架构风格-—RESTful" class="headerlink" title="第五章 接口架构风格 —RESTful"></a>第五章 接口架构风格 —RESTful</h1><p>接口： API（Application Programming Interface，应用程序接口）是一些预先定义的接口（如函数、HTTP接口），或指<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/224122">软件系统</a>不同组成部分衔接的约定。 用来提供<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F">应用程序</a>与开发人员基于某<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%BD%AF%E4%BB%B6">软件</a>或硬件得以访问的一组<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BE%8B%E7%A8%8B/2390628">例程</a>，而又无需访问源码，或理解内部<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/9905789">工作机制</a>的细节。</p>
 <p>接口（API）： 可以指访问servlet， controller的url，   调用其他程序的 函数</p>
 <p>架构风格： api组织方式（样子）</p>
