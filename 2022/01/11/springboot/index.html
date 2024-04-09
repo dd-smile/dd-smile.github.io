@@ -710,68 +710,6 @@ school.address=北京的大兴区
 
 site=www.bjpowernode.com
 </code></pre>
-<h2 id="2-7-使用jsp"><a href="#2-7-使用jsp" class="headerlink" title="2.7  使用jsp"></a>2.7  使用jsp</h2><p>SpringBoot不推荐使用jsp ，而是使用模板技术代替jsp</p>
-<p>使用jsp需要配置：</p>
-<p>1） 加入一个处理jsp的依赖。 负责编译jsp文件</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.apache.tomcat.embed<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>tomcat-embed-jasper<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-</code></pre>
-<ol start="2">
-<li>如果需要使用servlet， jsp，jstl的功能</li>
-</ol>
-<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>javax.servlet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>jstl<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>javax.servlet<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>javax.servlet-api<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>javax.servlet.jsp<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>javax.servlet.jsp-api<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>2.3.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-</code></pre>
-<ol start="3">
-<li>创建一个存放jsp的目录，一般叫做webapp</li>
-</ol>
-<p>​    index.jsp</p>
-<ol start="4">
-<li>需要在pom.xml指定jsp文件编译后的存放目录。</li>
-</ol>
-<p>  META-INF/resources</p>
-<p>5）创建Controller， 访问jsp</p>
-<p>6）在application.propertis文件中配置视图解析器</p>
-<h2 id="2-8-使用容器"><a href="#2-8-使用容器" class="headerlink" title="2.8 使用容器"></a>2.8 使用容器</h2><p>你想通过代码，从容器中获取对象。</p>
-<p>通过SpringApplication.run(Application.class, args); 返回值获取容器。</p>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//方法原型 :</span>
-<span class="token keyword">public</span> <span class="token keyword">static</span> ConfigurableApplicationContext <span class="token function">run</span><span class="token punctuation">(</span>Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> primarySource<span class="token punctuation">,</span> String<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Class</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>primarySource<span class="token punctuation">}</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-ConfigurableApplicationContext <span class="token operator">:</span> 接口，是ApplicationContext的子接口
-<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ConfigurableApplicationContext</span> <span class="token keyword">extends</span> <span class="token class-name">ApplicationContext</span>
-</code></pre>
-<h2 id="2-9-ComnandLineRunner-接口-，-ApplcationRunner接口"><a href="#2-9-ComnandLineRunner-接口-，-ApplcationRunner接口" class="headerlink" title="2.9 ComnandLineRunner 接口 ，  ApplcationRunner接口"></a>2.9 ComnandLineRunner 接口 ，  ApplcationRunner接口</h2><blockquote>
-<p>开发中可能会有这样的情景。需要在容器启动后执行一些内容。比如读取配置文件，数据库连接之类的。</p>
-</blockquote>
-<p>这两个接口都 有一个run方法。 执行时间在容器对象创建好后， 自动执行run（）方法。</p>
-<p>可以完成自定义的在容器对象创建好的一些操作。</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@FunctionalInterface</span>
-<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">CommandLineRunner</span> <span class="token punctuation">{</span>
-    <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token annotation punctuation">@FunctionalInterface</span>
-<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ApplicationRunner</span> <span class="token punctuation">{</span>
-    <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span>ApplicationArguments args<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
 <h1 id="第三章-Web组件"><a href="#第三章-Web组件" class="headerlink" title="第三章 Web组件"></a>第三章 Web组件</h1><p>讲三个内容： 拦截器， Servlet ，Filter</p>
 <h2 id="3-1-拦截器"><a href="#3-1-拦截器" class="headerlink" title="3.1 拦截器"></a>3.1 拦截器</h2><p>拦截器是SpringMVC中一种对象，能拦截器对Controller的请求。</p>
 <p>拦截器框架中有系统的拦截器， 还可以自定义拦截器。  实现对请求预先处理。</p>
