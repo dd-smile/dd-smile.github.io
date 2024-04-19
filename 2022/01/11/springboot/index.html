@@ -570,31 +570,7 @@
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SpringConfig</span> <span class="token punctuation">{</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h1 id="第二章-Spring-Boot"><a href="#第二章-Spring-Boot" class="headerlink" title="第二章 Spring Boot"></a>第二章 Spring Boot</h1><h2 id="2-1-介绍"><a href="#2-1-介绍" class="headerlink" title="2.1 介绍"></a>2.1 介绍</h2><p>SpringBoot是Spring中的一个成员， 可以简化Spring，SpringMVC的使用。 他的核心还是IOC容器。</p>
-<p>特点：</p>
-<ul>
-<li><p>Create stand-alone Spring applications</p>
-<p> 创建spring应用</p>
-</li>
-<li><p>Embed Tomcat, Jetty or Undertow directly (no need to deploy WAR files)</p>
-<p>内嵌的tomcat， jetty ， Undertow </p>
-</li>
-<li><p>Provide opinionated ‘starter’ dependencies to simplify your build configuration</p>
-<p>提供了starter起步依赖，简化应用的配置。   </p>
-<p>比如使用MyBatis框架 ， 需要在Spring项目中，配置MyBatis的对象 SqlSessionFactory ， Dao的代理对象</p>
-<p>在SpringBoot项目中，在pom.xml里面, 加入一个 mybatis-spring-boot-starter依赖</p>
-</li>
-<li><p>Automatically configure Spring and 3rd party libraries whenever possible</p>
-<p>尽可能去配置spring和第三方库。叫做自动配置（就是把spring中的，第三方库中的对象都创建好，放到容器中， 开发人员可以直接使用）</p>
-</li>
-<li><p>Provide production-ready features such as metrics, health checks, and externalized configuration</p>
-<p> 提供了健康检查， 统计，外部化配置</p>
-</li>
-<li><p>Absolutely no code generation and no requirement for XML configuration</p>
-<p>不用生成代码， 不用使用xml，做配置</p>
-</li>
-</ul>
-<h1 id="第三章-Web组件"><a href="#第三章-Web组件" class="headerlink" title="第三章 Web组件"></a>第三章 Web组件</h1><p>讲三个内容： 拦截器， Servlet ，Filter</p>
+<h1 id="第二章-Spring-Boot"><a href="#第二章-Spring-Boot" class="headerlink" title="第二章 Spring Boot"></a>第二章 Spring Boot</h1><h2 id="2-1-介绍"><a href="#2-1-介绍" class="headerlink" title="2.1 介绍"></a>2.1 介绍</h2><h1 id="第三章-Web组件"><a href="#第三章-Web组件" class="headerlink" title="第三章 Web组件"></a>第三章 Web组件</h1><p>讲三个内容： 拦截器， Servlet ，Filter</p>
 <h2 id="3-1-拦截器"><a href="#3-1-拦截器" class="headerlink" title="3.1 拦截器"></a>3.1 拦截器</h2><p>拦截器是SpringMVC中一种对象，能拦截器对Controller的请求。</p>
 <p>拦截器框架中有系统的拦截器， 还可以自定义拦截器。  实现对请求预先处理。</p>
 <p>实现自定义拦截器：</p>
