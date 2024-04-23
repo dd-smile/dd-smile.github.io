@@ -534,43 +534,7 @@
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SpringConfig</span> <span class="token punctuation">{</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h2 id="1-3-PropertyResource"><a href="#1-3-PropertyResource" class="headerlink" title="1.3 @PropertyResource"></a>1.3 @PropertyResource</h2><p>@PropertyResource: 读取properties属性配置文件。 使用属性配置文件可以实现外部化配置 ，</p>
-<p>在程序代码之外提供数据。</p>
-<p>步骤：</p>
-<ol>
-<li><p>在resources目录下，创建properties文件， 使用k=v的格式提供数据</p>
-<pre class=" language-properties"><code class="language-properties"><span class="token attr-name">tiger.name</span><span class="token punctuation">=</span><span class="token attr-value">东北老虎</span>
-<span class="token attr-name">tiger.age</span><span class="token punctuation">=</span><span class="token attr-value">2</span>
-</code></pre>
-</li>
-<li><p>在PropertyResource 指定properties文件的位置</p>
-</li>
-<li><p>使用@Value（value=”${key}”）</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Component</span><span class="token punctuation">(</span><span class="token string">"tiger"</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Tiger</span> <span class="token punctuation">{</span>
-    <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"${tiger.name}"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> String name<span class="token punctuation">;</span>
-    <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"${tiger.age}"</span><span class="token punctuation">)</span>
-    <span class="token keyword">private</span> Integer age<span class="token punctuation">;</span>
-
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> String <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token string">"Tiger{"</span> <span class="token operator">+</span>
-                <span class="token string">"name='"</span> <span class="token operator">+</span> name <span class="token operator">+</span> <span class="token string">'\''</span> <span class="token operator">+</span>
-                <span class="token string">", age="</span> <span class="token operator">+</span> age <span class="token operator">+</span>
-                <span class="token string">'}'</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-</code></pre>
-</li>
-</ol>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
-<span class="token annotation punctuation">@ImportResource</span><span class="token punctuation">(</span>value <span class="token operator">=</span><span class="token punctuation">{</span> <span class="token string">"classpath:applicationContext.xml"</span><span class="token punctuation">,</span><span class="token string">"classpath:beans.xml"</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
-<span class="token annotation punctuation">@PropertySource</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"classpath:config.properties"</span><span class="token punctuation">)</span>
-<span class="token annotation punctuation">@ComponentScan</span><span class="token punctuation">(</span>basePackages <span class="token operator">=</span> <span class="token string">"com.bjpowernode.vo"</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//包扫描</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SpringConfig</span> <span class="token punctuation">{</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<h1 id="第二章-Spring-Boot"><a href="#第二章-Spring-Boot" class="headerlink" title="第二章 Spring Boot"></a>第二章 Spring Boot</h1><h2 id="2-1-介绍"><a href="#2-1-介绍" class="headerlink" title="2.1 介绍"></a>2.1 介绍</h2><h1 id="第三章-Web组件"><a href="#第三章-Web组件" class="headerlink" title="第三章 Web组件"></a>第三章 Web组件</h1><p>讲三个内容： 拦截器， Servlet ，Filter</p>
+<h1 id="第三章-Web组件"><a href="#第三章-Web组件" class="headerlink" title="第三章 Web组件"></a>第三章 Web组件</h1><p>讲三个内容： 拦截器， Servlet ，Filter</p>
 <h2 id="3-1-拦截器"><a href="#3-1-拦截器" class="headerlink" title="3.1 拦截器"></a>3.1 拦截器</h2><p>拦截器是SpringMVC中一种对象，能拦截器对Controller的请求。</p>
 <p>拦截器框架中有系统的拦截器， 还可以自定义拦截器。  实现对请求预先处理。</p>
 <p>实现自定义拦截器：</p>
