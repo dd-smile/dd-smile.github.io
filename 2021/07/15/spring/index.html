@@ -1616,69 +1616,6 @@ stu<span class="token punctuation">.</span><span class="token function">setAge</
 
     <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="最终通知"><a href="#最终通知" class="headerlink" title="最终通知"></a>最终通知</h3><blockquote>
-<p>AspectJ的最终通知@After</p>
-<p>无论目标方法是否正常执行,最终通知的代码都会被执行.</p>
-</blockquote>
-<h4 id="实现步骤-3"><a href="#实现步骤-3" class="headerlink" title="实现步骤"></a>实现步骤</h4><p>1.业务接口类</p>
-<p>2.业务实现类</p>
-<p>切面类</p>
-<pre class=" language-java"><code class="language-java">
-<span class="token annotation punctuation">@Aspect</span>
-<span class="token annotation punctuation">@Component</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyAspect</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">/**
-     * 最终通知的方法规范
-     * 访问权限是public
-     * 方法没有返回值
-     * 方法名称自定义
-     * 方法没有参数,如果有也只能是JoinPoint
-     *   参数 :
-     *       value : 指定切入点表达式
-     */</span>
-    <span class="token annotation punctuation">@After</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"execution(* com.bjpowernode.s04.*.*(..))"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">myAfter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"最终方法被实现....."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>4.配置文件applicationContext.xml</p>
-<p>5.测试类</p>
-<h3 id="定义切入点别名"><a href="#定义切入点别名" class="headerlink" title="定义切入点别名"></a>定义切入点别名</h3><blockquote>
-<p>一个方法添加多个通知</p>
-<p>给切入点表达式起别名,  如果多个切面切入到同一个切入点,可以使用别名简化开发.<br>  使用@Pointcut注解,创建一个空方法,此方法的名称就是别名.</p>
-</blockquote>
-<p>切面类</p>
-<pre class=" language-java"><code class="language-java">
-<span class="token annotation punctuation">@Aspect</span>
-<span class="token annotation punctuation">@Component</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyAspect</span> <span class="token punctuation">{</span>
-    <span class="token annotation punctuation">@Before</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"myCut()"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">myBefore</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"前置通知方法被实现....."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token annotation punctuation">@AfterReturning</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"myCut()"</span><span class="token punctuation">,</span>returning <span class="token operator">=</span> <span class="token string">"obj"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">myAfterReturning</span><span class="token punctuation">(</span>Object obj<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"后置通知方法被实现....."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token annotation punctuation">@After</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"myCut()"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">myAfter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"最终通知方法被实现....."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token annotation punctuation">@Around</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"myCut()"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> Object <span class="token function">myAround</span><span class="token punctuation">(</span>ProceedingJoinPoint pjp<span class="token punctuation">)</span> <span class="token keyword">throws</span> Throwable <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"环绕通知的前置方法被实现....."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Object obj <span class="token operator">=</span> pjp<span class="token punctuation">.</span><span class="token function">proceed</span><span class="token punctuation">(</span>pjp<span class="token punctuation">.</span><span class="token function">getArgs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"环绕通知的后置方法被实现....."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> obj<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">//定义切入点表达式的别名</span>
-    <span class="token annotation punctuation">@Pointcut</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"execution(* com.bjpowernode.s04.*.*(..))"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">myCut</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>执行顺序如下 : </p>
-<p><img src="https://img-blog.csdnimg.cn/1eb433cd158f4df3be666e70ed661914.png" alt="测试结果"></p>
 <h2 id="SM整合"><a href="#SM整合" class="headerlink" title="SM整合"></a>SM整合</h2><blockquote>
 <p>将MyBatis与Spring进行整合, 主要解决的问题是将SqlSessionFactory对象交由Spring来管理.</p>
 </blockquote>
