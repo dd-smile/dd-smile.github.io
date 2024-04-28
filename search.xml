@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>TCP重传次数与getsockopt为何无法及时感知连接断开</title>
+      <link href="/2024/04/28/tcp-chong-chuan-ci-shu-yu-getsockopt-wei-he-wu-fa-ji-shi-gan-zhi-lian-jie-duan-kai/"/>
+      <url>/2024/04/28/tcp-chong-chuan-ci-shu-yu-getsockopt-wei-he-wu-fa-ji-shi-gan-zhi-lian-jie-duan-kai/</url>
+      
+        <content type="html"><![CDATA[<p>在上次学府中学发现断线重连无法及时知道连接已断开，需要十来分钟的时间。原因是TCP会进行超时重传，而15分钟左右才能停止重传，将断开的TCP连接通知给上层（应用程序）。</p><p>而这次是问题背景是：西部的销售总监日常在云场馆使用中控屏幕时候，发现了设备无响应，且有死机问题。那天刚好断网，我初步判断是因为网络的原因，且云场馆的程序没有应用学府的最新网络检测模块。实际排查中发现了更深层次的一个BUG：在中控设备突然断网的时候，对中控设备接着进行体育设施设备操作，此时设备无响应；但是如果恢复网络后，中控设备会与MQTT服务器进行自动重连，此时之前的操作指令会接着发送出去。</p><p>这出现了设备会诡异的自动启动，同时如果设备之间有相互干扰的情况下，会出现设备与设备之间的碰撞。</p><p>出现这个问题后，我首先关闭了MQTT的持久会话功能，同时发布之前加入getsockopt函数的监测。对于MQTT的心跳包发送进行了重构，使用单独发布一个主题来进行心跳检测。如果发现无法发送心跳包的时候，会在两个心跳包的时间之后进行重连尝试。</p><p>为了使操作人员更为直观的感知到目前设备操控的状态，加入了MQTT未连接的提示框。但是这一步出现了问题，无法及时的感知连接断开，需要15分钟左右的时间。这情况是MQTT服务器那边在60秒的心跳时间过去后，会发现客户端（中控设备）已断开。但是客户端无法感知到自己已经断网了！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 计算机网络 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> basis of computer engineering </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>关于拔掉网线后,TCP连接还在吗?</title>
       <link href="/2024/03/20/guan-yu-ba-diao-wang-xian-hou-tcp-lian-jie-huan-zai-ma/"/>
       <url>/2024/03/20/guan-yu-ba-diao-wang-xian-hou-tcp-lian-jie-huan-zai-ma/</url>
