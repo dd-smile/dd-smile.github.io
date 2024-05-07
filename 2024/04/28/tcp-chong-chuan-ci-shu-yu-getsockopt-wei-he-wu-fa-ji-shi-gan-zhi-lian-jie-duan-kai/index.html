@@ -458,11 +458,84 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>在上次学府中学发现断线重连无法及时知道连接已断开，需要十来分钟的时间。原因是TCP会进行超时重传，而15分钟左右才能停止重传，将断开的TCP连接通知给上层（应用程序）。</p>
+                <h3 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h3><p>在上次学府中学发现断线重连无法及时知道连接已断开，需要十来分钟的时间。原因是TCP会进行超时重传，而15分钟左右才能停止重传，将断开的TCP连接通知给上层（应用程序）。</p>
 <p>而这次是问题背景是：西部的销售总监日常在云场馆使用中控屏幕时候，发现了设备无响应，且有死机问题。那天刚好断网，我初步判断是因为网络的原因，且云场馆的程序没有应用学府的最新网络检测模块。实际排查中发现了更深层次的一个BUG：在中控设备突然断网的时候，对中控设备接着进行体育设施设备操作，此时设备无响应；但是如果恢复网络后，中控设备会与MQTT服务器进行自动重连，此时之前的操作指令会接着发送出去。</p>
 <p>这出现了设备会诡异的自动启动，同时如果设备之间有相互干扰的情况下，会出现设备与设备之间的碰撞。</p>
 <p>出现这个问题后，我首先关闭了MQTT的持久会话功能，同时发布之前加入getsockopt函数的监测。对于MQTT的心跳包发送进行了重构，使用单独发布一个主题来进行心跳检测。如果发现无法发送心跳包的时候，会在两个心跳包的时间之后进行重连尝试。</p>
 <p>为了使操作人员更为直观的感知到目前设备操控的状态，加入了MQTT未连接的提示框。但是这一步出现了问题，无法及时的感知连接断开，需要15分钟左右的时间。这情况是MQTT服务器那边在60秒的心跳时间过去后，会发现客户端（中控设备）已断开。但是客户端无法感知到自己已经断网了！</p>
+<p>我的第一反应是getsockopt函数的问题，getsockopt函数的意义是：在TCP中，当一个套接字处于错误状态时，就会设置so_error选型，并将错误码存储在其中。我们可以使用getsockopt函数来获取这个选项的值。通过打印日志发现，在已经断网的情况下，心跳包正常发送。但这是不可能的事情，我去检查了下write函数，发现可以正常使用，没有进行报错。这时候就懵逼了。在断网的情况下，write函数应该是无法正常使用的才对。</p>
+<p>这时重新回过头去梳理一下TCP连接，发现依旧是15分钟左右的超时重传机制导致的。那有没有办法能够加快这个时间呢？需要了解到Linux定义了两个参数来限定超时重传的次数。分别是tcp_retries1和tcp_retries2。</p>
+<p>以下是源码中Documentation/networking/ip-sysctl.txt文档中的描述</p>
+<pre class=" language-c"><code class="language-c">tcp_retries1 <span class="token operator">-</span> INTEGER
+    This value influences the time<span class="token punctuation">,</span> after which TCP decides<span class="token punctuation">,</span> that
+    something is wrong due to unacknowledged RTO retransmissions<span class="token punctuation">,</span>
+    and reports this suspicion to the network layer<span class="token punctuation">.</span>
+    See tcp_retries2 <span class="token keyword">for</span> more details<span class="token punctuation">.</span>
+
+    RFC <span class="token number">1122</span> recommends at least <span class="token number">3</span> retransmissions<span class="token punctuation">,</span> which is the
+    <span class="token keyword">default</span><span class="token punctuation">.</span>
+
+tcp_retries2 <span class="token operator">-</span> INTEGER
+    This value influences the timeout of an alive TCP connection<span class="token punctuation">,</span>
+    when RTO retransmissions remain unacknowledged<span class="token punctuation">.</span>
+    Given a value of N<span class="token punctuation">,</span> a hypothetical TCP connection following
+    exponential backoff with an initial RTO of TCP_RTO_MIN would
+    retransmit N times before killing the connection at <span class="token function">the</span> <span class="token punctuation">(</span>N<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span>th RTO<span class="token punctuation">.</span>
+
+    The <span class="token keyword">default</span> value of <span class="token number">15</span> yields a hypothetical timeout of <span class="token number">924.6</span>
+    seconds and is a lower bound <span class="token keyword">for</span> the effective timeout<span class="token punctuation">.</span>
+    TCP will effectively time out at the first RTO which exceeds the
+    hypothetical timeout<span class="token punctuation">.</span>
+
+    RFC <span class="token number">1122</span> recommends at least <span class="token number">100</span> seconds <span class="token keyword">for</span> the timeout<span class="token punctuation">,</span>
+    which corresponds to a value of at least <span class="token number">8</span><span class="token punctuation">.</span>
+</code></pre>
+<h3 id="重传超过tcp-retries1会怎样"><a href="#重传超过tcp-retries1会怎样" class="headerlink" title="重传超过tcp_retries1会怎样"></a>重传超过tcp_retries1会怎样</h3><p>来看一下tcp_retries1相关的代码部分</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">// RTO timer的处理函数是tcp_retransmit_timer()，与tcp_retries1相关的代码调用关系如下  </span>
+<span class="token function">tcp_retransmit_timer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token operator">=</span><span class="token operator">></span> <span class="token function">tcp_write_timeout</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 判断是否重传了足够的久</span>
+        <span class="token operator">=</span><span class="token operator">></span> <span class="token function">retransmit_timed_out</span><span class="token punctuation">(</span>sk<span class="token punctuation">,</span> sysctl_tcp_retries1<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 判断是否超过了阈值</span>
+
+<span class="token comment" spellcheck="true">// tcp_write_timeout()的具体相关内容  </span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">&lt;&lt;</span> sk<span class="token operator">-></span>sk_state<span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token punctuation">(</span>TCPF_SYN_SENT <span class="token operator">|</span> TCPF_SYN_RECV<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 如果超时发生在三次握手期间，此时有专门的tcp_syn_retries来负责限定重传次数</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>    <span class="token comment" spellcheck="true">// 如果超时发生在数据发送期间</span>
+    <span class="token comment" spellcheck="true">// 这个函数负责判断重传是否超过阈值，返回真表示超过。后续会详细分析这个函数  </span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">retransmits_timed_out</span><span class="token punctuation">(</span>sk<span class="token punctuation">,</span> sysctl_tcp_retries1<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+        <span class="token comment" spellcheck="true">/* Black hole detection */</span>
+        <span class="token function">tcp_mtu_probing</span><span class="token punctuation">(</span>icsk<span class="token punctuation">,</span> sk<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 如果开启tcp_mtu_probing(默认关闭)了，则执行PMTU</span>
+
+        <span class="token function">dst_negative_advice</span><span class="token punctuation">(</span>sk<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">// 更新路由缓存</span>
+    <span class="token punctuation">}</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>从以上的代码可以看到，一旦重传超过阈值tcp_retries1，主要的动作就是更新路由缓存。<br>用以避免由于路由选路变化带来的问题。</p>
+<h3 id="重传超过tcp-retries2会怎样"><a href="#重传超过tcp-retries2会怎样" class="headerlink" title="重传超过tcp_retries2会怎样"></a>重传超过tcp_retries2会怎样</h3><p>会直接放弃重传，关闭TCP流</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">// 依然还是在tcp_write_timeout()中，retry_until一般是tcp_retries2</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">retransmits_timed_out</span><span class="token punctuation">(</span>sk<span class="token punctuation">,</span> retry_until<span class="token punctuation">,</span> syn_set <span class="token operator">?</span> <span class="token number">0</span> <span class="token punctuation">:</span> icsk<span class="token operator">-></span>icsk_user_timeout<span class="token punctuation">,</span> syn_set<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">/* Has it gone just too far? */</span>
+    <span class="token function">tcp_write_err</span><span class="token punctuation">(</span>sk<span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">// 调用tcp_done关闭TCP流</span>
+    <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>所以我打算去修改tcp_retries2这个参数，它的默认值是15。</p>
+<p>修改为5：</p>
+<pre class=" language-c"><code class="language-c">echo <span class="token number">5</span> <span class="token operator">></span> <span class="token operator">/</span>proc<span class="token operator">/</span>sys<span class="token operator">/</span>net<span class="token operator">/</span>ipv4<span class="token operator">/</span>tcp_retries2
+</code></pre>
+<p>现在的超时返回时间为30s左右，极大的缓解了无法及时检测到连接断开的问题。</p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ol>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/caojun97/p/16771892.html">MQTT消息持久化</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/7301910992320593972">深入理解非阻塞TCP连接:getsockopt的关键作用</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/7301910992320593972">C++ getsockopt so_error</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.sudun.com/ask/28559.html">如何使用C语言中的getsockopt()函数进行网络互联网服务器设置</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/bandaoyu/p/16752853.html">C语言的socket网络编程</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1826795">Linux上TCP的几个内核参数调优</a></li>
+<li><a target="_blank" rel="noopener" href="https://perthcharles.github.io/2015/09/07/wiki-tcp-retries/">聊一聊重传次数</a></li>
+</ol>
 
                 
             </div>
