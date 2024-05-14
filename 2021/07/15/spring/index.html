@@ -653,43 +653,6 @@ stu<span class="token punctuation">.</span><span class="token function">setAge</
 <p>基于注解的IOC</p>
 </blockquote>
 <p><strong>spring不能创建接口的对象, 只能创建实现类的对象</strong></p>
-<h3 id="什么是基于注解的IOC"><a href="#什么是基于注解的IOC" class="headerlink" title="什么是基于注解的IOC"></a>什么是基于注解的IOC</h3><ul>
-<li><p>基于注解的IOC,必须要在Spring的核心配置文件中添加包扫描.</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!--创建包扫描,只需要写到包就行了,不用写到具体的类--></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">context:</span>component-scan</span> <span class="token attr-name">base-package</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.bjpowernode.s01<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">context:</span>component-scan</span><span class="token punctuation">></span></span>
-</code></pre>
-</li>
-</ul>
-<p>与基于xml相比, 只是换汤不换药.</p>
-<p>药 : 创建对象并依赖注入</p>
-<p>汤 : xml 与 注解annotation</p>
-<ol>
-<li><p>创建对象的注解</p>
-<ul>
-<li>@Component : 可以创建任意对象.创建的对象的默认名称是类名的驼峰命名法.也可以指定对象的名称 <code>@Component("指定名称")</code></li>
-<li>@Controller : 专门用来创建控制器的对象,这种对象可以接收用户的请求,可以返回处理结果给客户端.</li>
-<li>@Service : 专门用来创建业务逻辑层的对象,负责向下访问数据访问层,处理完毕后的结果返回给界面层.</li>
-<li>@Repository : 专门用来创建数据访问层的对象,负责数据库中的增删改查所有操作.</li>
-<li>注意如果在数据访问层使用@Mapper, 那么注入对象需要使用@Resource注解.</li>
-</ul>
-</li>
-<li><p>依赖注入的注解</p>
-<ul>
-<li><p>值类型的注入   (8种基本类型+String)</p>
-<p>@Value : 用来给简单类型注入值</p>
-</li>
-<li><p>引用类型的注入</p>
-<ul>
-<li><p>@Autowired : 使用类型注入值,从整个Bean工厂中搜索同源类型的对象进行注入.</p>
-</li>
-<li><p>@Autowired </p>
-<p>@Qualifier : 使用名称注入值,从整个Bean工厂中搜索相同名称的对象进行注入.</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
 <h3 id="编写一个基于注解的Spring"><a href="#编写一个基于注解的Spring" class="headerlink" title="编写一个基于注解的Spring"></a>编写一个基于注解的Spring</h3><blockquote>
 <p>使用@Component</p>
 </blockquote>
