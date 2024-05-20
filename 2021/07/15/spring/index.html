@@ -1289,26 +1289,6 @@ stu<span class="token punctuation">.</span><span class="token function">setAge</
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 </code></pre>
-<h4 id="后置通知中无法改变目标方法返回值示例"><a href="#后置通知中无法改变目标方法返回值示例" class="headerlink" title="后置通知中无法改变目标方法返回值示例"></a>后置通知中无法改变目标方法返回值示例</h4><p>切面类</p>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//切面类中</span>
-<span class="token annotation punctuation">@Aspect</span>
-<span class="token annotation punctuation">@Component</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyAspect</span> <span class="token punctuation">{</span>
-    <span class="token annotation punctuation">@AfterReturning</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"execution(String com.bjpowernode.s02.*.*(..))"</span><span class="token punctuation">,</span>returning <span class="token operator">=</span> <span class="token string">"obj"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">myAfter</span><span class="token punctuation">(</span>Object obj<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"前面方法的后置功能被实现..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//判断目标方法的返回值是不是八种基本类型或String类型, 如果是则不可以改变. 当前例子使用String类型演示</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>obj <span class="token operator">!=</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>obj <span class="token keyword">instanceof</span> <span class="token class-name">String</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                obj <span class="token operator">=</span> obj<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>测试结果 : </p>
-<p><img src="https://img-blog.csdnimg.cn/3b9433b020a14b9f97ce11a51cb15c89.png" alt="测试结果"></p>
 <h4 id="后置方法中可以改变目标方法返回值示例"><a href="#后置方法中可以改变目标方法返回值示例" class="headerlink" title="后置方法中可以改变目标方法返回值示例"></a>后置方法中可以改变目标方法返回值示例</h4><p>新建一个Student类完成测试</p>
 <pre class=" language-java"><code class="language-java">
 <span class="token comment" spellcheck="true">/**
@@ -1342,27 +1322,6 @@ stu<span class="token punctuation">.</span><span class="token function">setAge</
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>切面类</p>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//切面类中</span>
-<span class="token annotation punctuation">@Aspect</span>
-<span class="token annotation punctuation">@Component</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyAspect</span> <span class="token punctuation">{</span>
-    <span class="token annotation punctuation">@AfterReturning</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"execution(Student com.bjpowernode.s02.*.*(..))"</span><span class="token punctuation">,</span>returning <span class="token operator">=</span> <span class="token string">"obj"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">myAfter</span><span class="token punctuation">(</span>Object obj<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"前面方法的后置功能被实现..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//判断目标方法的返回值是不是引用类型类型, 如果是则可以改变. 当前例子使用String类型演示</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>obj <span class="token operator">!=</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>obj <span class="token keyword">instanceof</span> <span class="token class-name">Student</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                <span class="token punctuation">(</span><span class="token punctuation">(</span>Student<span class="token punctuation">)</span> obj<span class="token punctuation">)</span><span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"123"</span><span class="token punctuation">;</span>
-                <span class="token punctuation">(</span><span class="token punctuation">(</span>Student<span class="token punctuation">)</span> obj<span class="token punctuation">)</span><span class="token punctuation">.</span>age <span class="token operator">=</span> <span class="token number">123</span><span class="token punctuation">;</span>
-                System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span> <span class="token string">"在切面方法中目标方法的返回值是"</span> <span class="token operator">+</span> obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>测试结果 : </p>
-<p><img src="https://img-blog.csdnimg.cn/fa869dfe1aad475fa4852a5bdf5d2403.png" alt="测试结果"></p>
 <h3 id="环绕通知"><a href="#环绕通知" class="headerlink" title="环绕通知"></a>环绕通知</h3><blockquote>
 <p>AspectJ的环绕通知@Around</p>
 <p>它是通过拦截目标方法的方式 ,在目标方法前后增强功能的通知.它是功能最强大的通知,一般事务使用此通知.它可以轻易的改变目标方法的返回值.</p>
