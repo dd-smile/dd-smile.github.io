@@ -1634,68 +1634,6 @@ stu<span class="token punctuation">.</span><span class="token function">setAge</
             isolation <span class="token operator">=</span> Isolation<span class="token punctuation">.</span>DEFAULT<span class="token comment" spellcheck="true">//使用数据库自已的隔离级别        </span>
     <span class="token punctuation">)</span>
 </code></pre>
-<h3 id="为什么添加事务管理器"><a href="#为什么添加事务管理器" class="headerlink" title="为什么添加事务管理器"></a>为什么添加事务管理器</h3><blockquote>
-<p> 事务管理器用来生成相应技术的连接+执行语句的对象.</p>
-</blockquote>
-<p>  JDBC:  Connection   con.commit();   con.rollback();<br>  MyBatis:  SqlSession   sqlSession.commit();  sqlSession.rollback();<br>  Hibernate:  Session    session.commit();   session.rollback();</p>
-<p> 如果使用MyBatis框架,必须使用DataSourceTransactionManager类完成处理</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!--1.添加事务管理器--></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>transactionManager<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>org.springframework.jdbc.datasource.DataSourceTransactionManager<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-        <span class="token comment" spellcheck="true">&lt;!--因为事务必须关联数据库处理, 所以要配置数据源, 配置的数据源是从applicationContext_mapper.xml导入的jdbc数据源--></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>dataSource<span class="token punctuation">"</span></span> <span class="token attr-name">ref</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>dataSource<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bean</span><span class="token punctuation">></span></span>
-</code></pre>
-<p><strong>项目中的所有事务,必须添加到业务逻辑层上.</strong> </p>
-<h3 id="Spring事务的传播特性"><a href="#Spring事务的传播特性" class="headerlink" title="Spring事务的传播特性"></a>Spring事务的传播特性</h3><blockquote>
-<p>多个事务之间的合并,互斥等都可以通过设置事务的传播特性来解决.</p>
-</blockquote>
-<ul>
-<li>PROPAGATION_REQUIRED：必被包含事务(增删改必用)</li>
-<li>PROPAGATION_REQUIRES_NEW：自己新开事务，不管之前是否有事务</li>
-<li>PROPAGATION_SUPPORTS：支持事务，如果加入的方法有事务，则支持事务，如果没有，不单开事务</li>
-<li>PROPAGATION_NEVER：不能运行中事务中，如果包在事务中，抛异常</li>
-<li>PROPAGATION_NOT_SUPPORTED：不支持事务，运行在非事务的环境</li>
-</ul>
-<p>不常用</p>
-<ul>
-<li>PROPAGATION_MANDATORY：必须包在事务中，没有事务则抛异常</li>
-<li>PROPAGATION_NESTED：嵌套事务</li>
-</ul>
-<h4 id="测试事务间的互相影响作用是什么"><a href="#测试事务间的互相影响作用是什么" class="headerlink" title="测试事务间的互相影响作用是什么"></a>测试事务间的互相影响作用是什么</h4><ol>
-<li><p>创建一个新表, 用户表</p>
-</li>
-<li><p>在pojo包中, 创建用户实体类</p>
-</li>
-<li><p>在mapper包中, 创建UsersMapper接口和UsersMapper.xml文件并开发</p>
-</li>
-<li><p>在service包中, 创建UsersService接口和UsersServiceImpl实现类</p>
-</li>
-<li><p>在UsersServiceImpl实现类中 调用账户的增加操作 =&gt; (也就是用户事务中包含着账户事务)</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Service</span>  <span class="token comment" spellcheck="true">//交给Spring去创建对象</span>
-<span class="token annotation punctuation">@Transactional</span><span class="token punctuation">(</span>propagation <span class="token operator">=</span> Propagation<span class="token punctuation">.</span>REQUIRED<span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UsersServiceImpl</span> <span class="token keyword">implements</span> <span class="token class-name">UsersService</span> <span class="token punctuation">{</span>    
-    <span class="token annotation punctuation">@Autowired</span>
-    UsersMapper usersMapper<span class="token punctuation">;</span>
-
-    <span class="token annotation punctuation">@Autowired</span>
-    AccountsService accountsService<span class="token punctuation">;</span>
-
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">insert</span><span class="token punctuation">(</span>Users users<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> num <span class="token operator">=</span> usersMapper<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>users<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"用户增加成功!num="</span><span class="token operator">+</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token comment" spellcheck="true">//调用帐户的增加操作,调用的帐户的业务逻辑层的功能</span>
-        num <span class="token operator">=</span> accountsService<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Accounts</span><span class="token punctuation">(</span><span class="token number">300</span><span class="token punctuation">,</span><span class="token string">"王五"</span><span class="token punctuation">,</span><span class="token string">"帐户好的呢!"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> num<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
-</li>
-<li><p>测试结果图</p>
-<p><img src="https://img-blog.csdnimg.cn/4528569dc6134fc395d9805a242421d8.png" alt="测试结果"></p>
-</li>
-</ol>
 <h3 id="Spring中事务的五大隔离级别"><a href="#Spring中事务的五大隔离级别" class="headerlink" title="Spring中事务的五大隔离级别"></a>Spring中事务的五大隔离级别</h3><ul>
 <li>未提交读(Read Uncommitted)：允许脏读，也就是可能读取到其他会话中未提交事务修改的数据</li>
 <li>提交读(Read Committed)：只能读取到已经提交的数据。Oracle等多数数据库默认都是该级别 (不重复读)</li>
