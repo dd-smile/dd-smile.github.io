@@ -1496,49 +1496,6 @@ stu<span class="token punctuation">.</span><span class="token function">setAge</
 </code></pre>
 </li>
 </ol>
-<h3 id="基于注解的事务"><a href="#基于注解的事务" class="headerlink" title="基于注解的事务"></a>基于注解的事务</h3><ol>
-<li><p>在applicationContext_service.xml文件中添加事务管理器</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!--1.添加事务管理器--></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>transactionManager<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>org.springframework.jdbc.datasource.DataSourceTransactionManager<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-        <span class="token comment" spellcheck="true">&lt;!--因为事务必须关联数据库处理, 所以要配置数据源, 配置的数据源是从applicationContext_mapper.xml导入的jdbc数据源--></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>dataSource<span class="token punctuation">"</span></span> <span class="token attr-name">ref</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>dataSource<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bean</span><span class="token punctuation">></span></span>
-</code></pre>
-</li>
-<li><p>在applicationContext_service.xml文件中添加事务的注解驱动</p>
-<pre class=" language-xml"><code class="language-xml">    <span class="token comment" spellcheck="true">&lt;!--2.添加注解驱动--></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">tx:</span>annotation-driven</span> <span class="token attr-name">transaction-manager</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>transactionManager<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">tx:</span>annotation-driven</span><span class="token punctuation">></span></span>
-</code></pre>
-</li>
-<li><p>在业务逻辑的实现类上添加注解@Transactional(propagation = Propagation.REQUIRED)</p>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
- * 业务接口实现类
- */</span>
-<span class="token annotation punctuation">@Service</span> <span class="token comment" spellcheck="true">//交给Spring去创建对象</span>
-<span class="token annotation punctuation">@Transactional</span><span class="token punctuation">(</span>propagation <span class="token operator">=</span> Propagation<span class="token punctuation">.</span>REQUIRED<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//添加事务的注解, 增删改使用Propagation.REQUIRED</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">AccountsServiceImpl</span> <span class="token keyword">implements</span> <span class="token class-name">AccountsService</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">//切记:在所有的业务逻辑层实现类中一定会有数据访问层的对象</span>
-    <span class="token annotation punctuation">@Autowired</span>
-    AccountsMapper accountsMapper<span class="token punctuation">;</span>
-
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">insert</span><span class="token punctuation">(</span>Accounts accounts<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> accountsMapper<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>accounts<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
-</li>
-</ol>
-<h3 id="Transactional注解参数详解"><a href="#Transactional注解参数详解" class="headerlink" title="@Transactional注解参数详解"></a>@Transactional注解参数详解</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Transactional</span><span class="token punctuation">(</span>propagation <span class="token operator">=</span> Propagation<span class="token punctuation">.</span>REQUIRED<span class="token punctuation">,</span><span class="token comment" spellcheck="true">//事务的传播特性</span>
-            noRollbackForClassName <span class="token operator">=</span> <span class="token string">"ArithmeticException"</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//指定发生什么异常不回滚,使用的是异常的名称</span>
-            noRollbackFor <span class="token operator">=</span> ArithmeticException<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//指定发生什么异常不回滚,使用的是异常的类型</span>
-            rollbackForClassName <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//指定发生什么异常必须回滚</span>
-            rollbackFor <span class="token operator">=</span> ArithmeticException<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">//指定发生什么异常必须回滚</span>
-            timeout <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//连接超时设置,默认值是-1,表示永不超时</span>
-            readOnly <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//默认是false,如果是查询操作,必须设置为true.</span>
-            isolation <span class="token operator">=</span> Isolation<span class="token punctuation">.</span>DEFAULT<span class="token comment" spellcheck="true">//使用数据库自已的隔离级别        </span>
-    <span class="token punctuation">)</span>
-</code></pre>
 <h3 id="Spring中事务的五大隔离级别"><a href="#Spring中事务的五大隔离级别" class="headerlink" title="Spring中事务的五大隔离级别"></a>Spring中事务的五大隔离级别</h3><ul>
 <li>未提交读(Read Uncommitted)：允许脏读，也就是可能读取到其他会话中未提交事务修改的数据</li>
 <li>提交读(Read Committed)：只能读取到已经提交的数据。Oracle等多数数据库默认都是该级别 (不重复读)</li>
