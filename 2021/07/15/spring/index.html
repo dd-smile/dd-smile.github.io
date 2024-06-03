@@ -1194,39 +1194,6 @@ stu<span class="token punctuation">.</span><span class="token function">setAge</
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 </code></pre>
-<h4 id="后置方法中可以改变目标方法返回值示例"><a href="#后置方法中可以改变目标方法返回值示例" class="headerlink" title="后置方法中可以改变目标方法返回值示例"></a>后置方法中可以改变目标方法返回值示例</h4><p>新建一个Student类完成测试</p>
-<pre class=" language-java"><code class="language-java">
-<span class="token comment" spellcheck="true">/**
- * 测试返回值为引用类型
- */</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Student</span> <span class="token punctuation">{</span>
-    String name <span class="token operator">=</span> <span class="token string">"李四"</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> age <span class="token operator">=</span> <span class="token number">24</span><span class="token punctuation">;</span>
-
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> String <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token string">"Student{"</span> <span class="token operator">+</span>
-                <span class="token string">"name='"</span> <span class="token operator">+</span> name <span class="token operator">+</span> <span class="token string">'\''</span> <span class="token operator">+</span>
-                <span class="token string">", age="</span> <span class="token operator">+</span> age <span class="token operator">+</span>
-                <span class="token string">'}'</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>业务实现类</p>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
- * 业务实现类
- */</span>
-<span class="token annotation punctuation">@Service</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SomeServiceImpl</span> <span class="token keyword">implements</span> <span class="token class-name">SomeService</span> <span class="token punctuation">{</span>
-
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> Student <span class="token function">doSome</span><span class="token punctuation">(</span>String name<span class="token punctuation">,</span> <span class="token keyword">int</span> age<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"doSome业务被实现...."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Student student <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Student</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> student<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
 <h3 id="环绕通知"><a href="#环绕通知" class="headerlink" title="环绕通知"></a>环绕通知</h3><blockquote>
 <p>AspectJ的环绕通知@Around</p>
 <p>它是通过拦截目标方法的方式 ,在目标方法前后增强功能的通知.它是功能最强大的通知,一般事务使用此通知.它可以轻易的改变目标方法的返回值.</p>
