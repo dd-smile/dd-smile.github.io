@@ -1094,37 +1094,6 @@ stu<span class="token punctuation">.</span><span class="token function">setAge</
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>beans</span><span class="token punctuation">></span></span>
 </code></pre>
 <p>测试类</p>
-<pre class=" language-java"><code class="language-java">    <span class="token annotation punctuation">@Test</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//启动容器</span>
-        ApplicationContext ac <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ClassPathXmlApplicationContext</span><span class="token punctuation">(</span><span class="token string">"s02/applicationContext.xml"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//取出代理对象</span>
-        SomeService someService <span class="token operator">=</span> <span class="token punctuation">(</span>SomeService<span class="token punctuation">)</span> ac<span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span><span class="token string">"someServiceImpl"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        String s <span class="token operator">=</span> someService<span class="token punctuation">.</span><span class="token function">doSome</span><span class="token punctuation">(</span><span class="token string">"张三"</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-</code></pre>
-<h3 id="环绕通知"><a href="#环绕通知" class="headerlink" title="环绕通知"></a>环绕通知</h3><blockquote>
-<p>AspectJ的环绕通知@Around</p>
-<p>它是通过拦截目标方法的方式 ,在目标方法前后增强功能的通知.它是功能最强大的通知,一般事务使用此通知.它可以轻易的改变目标方法的返回值.</p>
-</blockquote>
-<p><img src="https://img-blog.csdnimg.cn/d271d2c994e84ca4b3fbff40af0fd2be.png" alt="环绕通知"></p>
-<h4 id="实现步骤-1"><a href="#实现步骤-1" class="headerlink" title="实现步骤"></a>实现步骤</h4><p>业务接口类</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">SomeService</span> <span class="token punctuation">{</span>
-    String <span class="token function">doSome</span><span class="token punctuation">(</span>String name<span class="token punctuation">,</span><span class="token keyword">int</span> age<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>业务实现类</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SomeServiceImpl</span> <span class="token keyword">implements</span> <span class="token class-name">SomeService</span> <span class="token punctuation">{</span>
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> String <span class="token function">doSome</span><span class="token punctuation">(</span>String name<span class="token punctuation">,</span> <span class="token keyword">int</span> age<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"目标方法doSome()被调用...."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token string">"abcd"</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>切面类</p>
 <pre class=" language-java"><code class="language-java">
 <span class="token annotation punctuation">@Aspect</span>
 <span class="token annotation punctuation">@Component</span>
@@ -1285,91 +1254,6 @@ stu<span class="token punctuation">.</span><span class="token function">setAge</
     <span class="token keyword">public</span> <span class="token function">Accounts</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre>
-</li>
-<li><p>添加mapper包, 添加AccountsMapper接口和AccountsMapper.xml文件并开发</p>
-<p>AccountsMapper接口</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>bjpowernode<span class="token punctuation">.</span>mapper<span class="token punctuation">;</span>
-
-<span class="token keyword">import</span> com<span class="token punctuation">.</span>bjpowernode<span class="token punctuation">.</span>pojo<span class="token punctuation">.</span>Accounts<span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">/**
- * 数据访问层
- * 数据库sql接口, 用来定义增删改查的方法
- */</span>
-<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">AccountsMapper</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">//增加用户</span>
-    <span class="token keyword">int</span> <span class="token function">insert</span><span class="token punctuation">(</span>Accounts accounts<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>AccountsMapper.xml文件</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8" ?></span> <span class="token doctype">&lt;!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd"></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mapper</span> <span class="token attr-name">namespace</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.bjpowernode.mapper.AccountsMapper<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token comment" spellcheck="true">&lt;!--
-        int insert(Accounts accounts);
-        private Integer aid;
-        private String aname;
-        private String acontent;
-    --></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>insert</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>insert<span class="token punctuation">"</span></span> <span class="token attr-name">parameterType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>accounts<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-        insert into accounts values (#{aid},#{aname},#{acontent});
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>insert</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>mapper</span><span class="token punctuation">></span></span>
-</code></pre>
-</li>
-<li><p>添加service包, 添加AccountsService接口和AccountsServiceImpl实现类</p>
-<p>AccountsService接口</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>bjpowernode<span class="token punctuation">.</span>service<span class="token punctuation">;</span>
-
-<span class="token keyword">import</span> com<span class="token punctuation">.</span>bjpowernode<span class="token punctuation">.</span>pojo<span class="token punctuation">.</span>Accounts<span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">/**
- * 业务逻辑层
- *业务接口类
- */</span>
-<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">AccountsService</span> <span class="token punctuation">{</span>
-    <span class="token keyword">int</span> <span class="token function">insert</span><span class="token punctuation">(</span>Accounts accounts<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>AccountsServiceImpl实现类</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>bjpowernode<span class="token punctuation">.</span>service<span class="token punctuation">.</span>impl<span class="token punctuation">;</span>
-
-<span class="token keyword">import</span> com<span class="token punctuation">.</span>bjpowernode<span class="token punctuation">.</span>mapper<span class="token punctuation">.</span>AccountsMapper<span class="token punctuation">;</span>
-<span class="token keyword">import</span> com<span class="token punctuation">.</span>bjpowernode<span class="token punctuation">.</span>pojo<span class="token punctuation">.</span>Accounts<span class="token punctuation">;</span>
-<span class="token keyword">import</span> com<span class="token punctuation">.</span>bjpowernode<span class="token punctuation">.</span>service<span class="token punctuation">.</span>AccountsService<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Autowired<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span>Service<span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">/**
- * 业务接口实现类
- */</span>
-<span class="token annotation punctuation">@Service</span> <span class="token comment" spellcheck="true">//交给Spring去创建对象</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">AccountsServiceImpl</span> <span class="token keyword">implements</span> <span class="token class-name">AccountsService</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">//切记:在所有的业务逻辑层实现类中一定会有数据访问层的对象</span>
-    <span class="token annotation punctuation">@Autowired</span>
-    AccountsMapper accountsMapper<span class="token punctuation">;</span>
-
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">insert</span><span class="token punctuation">(</span>Accounts accounts<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> accountsMapper<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>accounts<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-
-<span class="token punctuation">}</span>
-</code></pre>
-</li>
-<li><p>添加测试类进行功能测试</p>
-<pre class=" language-java"><code class="language-java">    <span class="token annotation punctuation">@Test</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testAccounts</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//创建容器对象并启动</span>
-        ApplicationContext ac <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ClassPathXmlApplicationContext</span><span class="token punctuation">(</span><span class="token string">"applicationContext.xml"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//取出AccountsServiceImpl对象,业务实现类的对象</span>
-        AccountsService aService <span class="token operator">=</span> <span class="token punctuation">(</span>AccountsService<span class="token punctuation">)</span> ac<span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span><span class="token string">"accountsServiceImpl"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">int</span> num <span class="token operator">=</span> aService<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Accounts</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"张三"</span><span class="token punctuation">,</span> <span class="token string">"123"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token punctuation">}</span>
 </code></pre>
 </li>
 </ol>
