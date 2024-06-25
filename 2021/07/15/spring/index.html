@@ -1044,44 +1044,7 @@ stu<span class="token punctuation">.</span><span class="token function">setAge</
 <p>可以得到业务方法的返回值</p>
 </blockquote>
 <p><img src="https://img-blog.csdnimg.cn/9b4d23e728e04d9087f1274d2da4ea67.png" alt="后置通知"></p>
-<h4 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h4><p>业务接口类</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">SomeService</span> <span class="token punctuation">{</span>
-    String <span class="token function">doSome</span><span class="token punctuation">(</span>String name<span class="token punctuation">,</span> <span class="token keyword">int</span> age<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>业务实现类</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SomeServiceImpl</span> <span class="token keyword">implements</span> <span class="token class-name">SomeService</span> <span class="token punctuation">{</span>
-
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> String <span class="token function">doSome</span><span class="token punctuation">(</span>String name<span class="token punctuation">,</span> <span class="token keyword">int</span> age<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"doSome业务被实现...."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token string">"abcd"</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>切面类</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Aspect</span>
-<span class="token annotation punctuation">@Component</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyAspect</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">/**
-     * 后置通知的方法规范
-     * 方法权限是public
-     * 方法没有返回值
-     * 方法名称自定义
-     * 方法有参数(也可以没有参数,如果目标方法没有返回值,则可以写无参的方法,但一般会写有参,
-     * 这样可以处理无参可以处理有参),这个切面方法的参数就是目标方法的返回值
-     * 使用的注解是  @AfterReturning注解表明是后置通知
-     *  value:指定切入点表达式
-     *  returning:指定目标方法的返回值的名称,则名称必须与切面方法的参数名称一致.
-     */</span>
-    <span class="token annotation punctuation">@AfterReturning</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"execution(String com.bjpowernode.s02.*.*(..))"</span><span class="token punctuation">,</span>returning <span class="token operator">=</span> <span class="token string">"obj"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">myAfter</span><span class="token punctuation">(</span>Object obj<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"前面方法的后置功能被实现..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
-
+<h4 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h4>
                 
             </div>
             <hr/>
