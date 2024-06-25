@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="TCP重传次数与getsockopt为何无法及时感知连接断开, 冬瓜冬瓜排骨汤">
+    <meta name="keywords" content="32位CPU为什么只支持最大4G内存, 冬瓜冬瓜排骨汤">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>TCP重传次数与getsockopt为何无法及时感知连接断开 | 冬瓜冬瓜排骨汤</title>
+    <title>32位CPU为什么只支持最大4G内存 | 冬瓜冬瓜排骨汤</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -291,12 +291,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">TCP重传次数与getsockopt为何无法及时感知连接断开</h1>
+                    <h1 class="description center-align post-title">32位CPU为什么只支持最大4G内存</h1>
                 </div>
             </div>
         </div>
@@ -412,8 +412,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/basis-of-computer-engineering/">
-                                <span class="chip bg-color">basis of computer engineering</span>
+                            <a href="/tags/Linux/">
+                                <span class="chip bg-color">Linux</span>
                             </a>
                         
                     </div>
@@ -424,8 +424,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="post-category">
-                                计算机网络
+                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                操作系统
                             </a>
                         
                     </div>
@@ -437,7 +437,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-04-28
+                    2024-06-25
                 </div>
                 
 
@@ -458,84 +458,29 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h3><p>在上次学府中学发现断线重连无法及时知道连接已断开，需要十来分钟的时间。原因是TCP会进行超时重传，而15分钟左右才能停止重传，将断开的TCP连接通知给上层（应用程序）。</p>
-<p>而这次是问题背景是：西部的销售总监日常在云场馆使用中控屏幕时候，发现了设备无响应，且有死机问题。那天刚好断网，我初步判断是因为网络的原因，且云场馆的程序没有应用学府的最新网络检测模块。实际排查中发现了更深层次的一个BUG：在中控设备突然断网的时候，对中控设备接着进行体育设施设备操作，此时设备无响应；但是如果恢复网络后，中控设备会与MQTT服务器进行自动重连，此时之前的操作指令会接着发送出去。</p>
-<p>这出现了设备会诡异的自动启动，同时如果设备之间有相互干扰的情况下，会出现设备与设备之间的碰撞。</p>
-<p>出现这个问题后，我首先关闭了MQTT的持久会话功能，同时发布之前加入getsockopt函数的监测。对于MQTT的心跳包发送进行了重构，使用单独发布一个主题来进行心跳检测。如果发现无法发送心跳包的时候，会在两个心跳包的时间之后进行重连尝试。</p>
-<p>为了使操作人员更为直观的感知到目前设备操控的状态，加入了MQTT未连接的提示框。但是这一步出现了问题，无法及时的感知连接断开，需要15分钟左右的时间。这情况是MQTT服务器那边在60秒的心跳时间过去后，会发现客户端（中控设备）已断开。但是客户端无法感知到自己已经断网了！</p>
-<p>我的第一反应是getsockopt函数的问题，getsockopt函数的意义是：在TCP中，当一个套接字处于错误状态时，就会设置so_error选型，并将错误码存储在其中。我们可以使用getsockopt函数来获取这个选项的值。通过打印日志发现，在已经断网的情况下，心跳包正常发送。但这是不可能的事情，我去检查了下write函数，发现可以正常使用，没有进行报错。这时候就懵逼了。在断网的情况下，write函数应该是无法正常使用的才对。</p>
-<p>这时重新回过头去梳理一下TCP连接，发现依旧是15分钟左右的超时重传机制导致的。那有没有办法能够加快这个时间呢？需要了解到Linux定义了两个参数来限定超时重传的次数。分别是tcp_retries1和tcp_retries2。</p>
-<p>以下是源码中Documentation/networking/ip-sysctl.txt文档中的描述</p>
-<pre class=" language-c"><code class="language-c">tcp_retries1 <span class="token operator">-</span> INTEGER
-    This value influences the time<span class="token punctuation">,</span> after which TCP decides<span class="token punctuation">,</span> that
-    something is wrong due to unacknowledged RTO retransmissions<span class="token punctuation">,</span>
-    and reports this suspicion to the network layer<span class="token punctuation">.</span>
-    See tcp_retries2 <span class="token keyword">for</span> more details<span class="token punctuation">.</span>
-
-    RFC <span class="token number">1122</span> recommends at least <span class="token number">3</span> retransmissions<span class="token punctuation">,</span> which is the
-    <span class="token keyword">default</span><span class="token punctuation">.</span>
-
-tcp_retries2 <span class="token operator">-</span> INTEGER
-    This value influences the timeout of an alive TCP connection<span class="token punctuation">,</span>
-    when RTO retransmissions remain unacknowledged<span class="token punctuation">.</span>
-    Given a value of N<span class="token punctuation">,</span> a hypothetical TCP connection following
-    exponential backoff with an initial RTO of TCP_RTO_MIN would
-    retransmit N times before killing the connection at <span class="token function">the</span> <span class="token punctuation">(</span>N<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span>th RTO<span class="token punctuation">.</span>
-
-    The <span class="token keyword">default</span> value of <span class="token number">15</span> yields a hypothetical timeout of <span class="token number">924.6</span>
-    seconds and is a lower bound <span class="token keyword">for</span> the effective timeout<span class="token punctuation">.</span>
-    TCP will effectively time out at the first RTO which exceeds the
-    hypothetical timeout<span class="token punctuation">.</span>
-
-    RFC <span class="token number">1122</span> recommends at least <span class="token number">100</span> seconds <span class="token keyword">for</span> the timeout<span class="token punctuation">,</span>
-    which corresponds to a value of at least <span class="token number">8</span><span class="token punctuation">.</span>
-</code></pre>
-<h3 id="重传超过tcp-retries1会怎样"><a href="#重传超过tcp-retries1会怎样" class="headerlink" title="重传超过tcp_retries1会怎样"></a>重传超过tcp_retries1会怎样</h3><p>来看一下tcp_retries1相关的代码部分</p>
-<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">// RTO timer的处理函数是tcp_retransmit_timer()，与tcp_retries1相关的代码调用关系如下  </span>
-<span class="token function">tcp_retransmit_timer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token operator">=</span><span class="token operator">></span> <span class="token function">tcp_write_timeout</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 判断是否重传了足够的久</span>
-        <span class="token operator">=</span><span class="token operator">></span> <span class="token function">retransmit_timed_out</span><span class="token punctuation">(</span>sk<span class="token punctuation">,</span> sysctl_tcp_retries1<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 判断是否超过了阈值</span>
-
-<span class="token comment" spellcheck="true">// tcp_write_timeout()的具体相关内容  </span>
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">&lt;&lt;</span> sk<span class="token operator">-></span>sk_state<span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token punctuation">(</span>TCPF_SYN_SENT <span class="token operator">|</span> TCPF_SYN_RECV<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// 如果超时发生在三次握手期间，此时有专门的tcp_syn_retries来负责限定重传次数</span>
-    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>    <span class="token comment" spellcheck="true">// 如果超时发生在数据发送期间</span>
-    <span class="token comment" spellcheck="true">// 这个函数负责判断重传是否超过阈值，返回真表示超过。后续会详细分析这个函数  </span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">retransmits_timed_out</span><span class="token punctuation">(</span>sk<span class="token punctuation">,</span> sysctl_tcp_retries1<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
-        <span class="token comment" spellcheck="true">/* Black hole detection */</span>
-        <span class="token function">tcp_mtu_probing</span><span class="token punctuation">(</span>icsk<span class="token punctuation">,</span> sk<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 如果开启tcp_mtu_probing(默认关闭)了，则执行PMTU</span>
-
-        <span class="token function">dst_negative_advice</span><span class="token punctuation">(</span>sk<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">// 更新路由缓存</span>
-    <span class="token punctuation">}</span>
-    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>从以上的代码可以看到，一旦重传超过阈值tcp_retries1，主要的动作就是更新路由缓存。<br>用以避免由于路由选路变化带来的问题。</p>
-<h3 id="重传超过tcp-retries2会怎样"><a href="#重传超过tcp-retries2会怎样" class="headerlink" title="重传超过tcp_retries2会怎样"></a>重传超过tcp_retries2会怎样</h3><p>会直接放弃重传，关闭TCP流</p>
-<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">// 依然还是在tcp_write_timeout()中，retry_until一般是tcp_retries2</span>
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">retransmits_timed_out</span><span class="token punctuation">(</span>sk<span class="token punctuation">,</span> retry_until<span class="token punctuation">,</span> syn_set <span class="token operator">?</span> <span class="token number">0</span> <span class="token punctuation">:</span> icsk<span class="token operator">-></span>icsk_user_timeout<span class="token punctuation">,</span> syn_set<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">/* Has it gone just too far? */</span>
-    <span class="token function">tcp_write_err</span><span class="token punctuation">(</span>sk<span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">// 调用tcp_done关闭TCP流</span>
-    <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>所以我打算去修改tcp_retries2这个参数，它的默认值是15。</p>
-<p>修改为5：</p>
-<pre class=" language-c"><code class="language-c">echo <span class="token number">5</span> <span class="token operator">></span> <span class="token operator">/</span>proc<span class="token operator">/</span>sys<span class="token operator">/</span>net<span class="token operator">/</span>ipv4<span class="token operator">/</span>tcp_retries2
-</code></pre>
-<p>现在的超时返回时间为30s左右，极大的缓解了无法及时检测到连接断开的问题。</p>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ol>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/caojun97/p/16771892.html">MQTT消息持久化</a></li>
-<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/7301910992320593972">深入理解非阻塞TCP连接:getsockopt的关键作用</a></li>
-<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/7301910992320593972">C++ getsockopt so_error</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.sudun.com/ask/28559.html">如何使用C语言中的getsockopt()函数进行网络互联网服务器设置</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/bandaoyu/p/16752853.html">C语言的socket网络编程</a></li>
-<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1826795">Linux上TCP的几个内核参数调优</a></li>
-<li><a target="_blank" rel="noopener" href="https://perthcharles.github.io/2015/09/07/wiki-tcp-retries/">聊一聊重传次数</a></li>
-</ol>
+                <h2 id="32位CPU为什么只支持最大4G内存"><a href="#32位CPU为什么只支持最大4G内存" class="headerlink" title="32位CPU为什么只支持最大4G内存"></a>32位CPU为什么只支持最大4G内存</h2><h1 id="一、32位cpu为什么只支持最大4G内存？"><a href="#一、32位cpu为什么只支持最大4G内存？" class="headerlink" title="一、32位cpu为什么只支持最大4G内存？"></a>一、32位cpu为什么只支持最大4G内存？</h1><p>32位最大支持4G内存，到底是怎么算出来的？ 去网上搜索答案，大部分都会甩给一个公式  <strong>2^32 = 4GB</strong></p>
+<p>我当时看到这个公式的时候，没太在意，后来我自己换算了一下，发现和我理解的不一样，我换算出来后不是4G而是512M也就是0.5G。</p>
+<p>32位就可以表示有2的32次种情况，就表示可以指向2^32 个地址，而最大的数字就表示可以访问的内存最大的容量，再大了，由于地址表示不了，所以就无法使用了。所以我就按下面方法进行了换算：</p>
+<p>2^32 bit = 2^29 byte = 2^19 KB = 2^9 MB = 2^-1 GB = 0.5 GB 这样一算就是32位最大只能寻址的范围就是 0.5GB啊 怎么算出是4GB呢？</p>
+<h1 id="二、关于内存需要了解的知识"><a href="#二、关于内存需要了解的知识" class="headerlink" title="二、关于内存需要了解的知识"></a>二、关于内存需要了解的知识</h1><h2 id="1-内存的特性"><a href="#1-内存的特性" class="headerlink" title="1.内存的特性"></a>1.内存的特性</h2><p>内存是计算机系统的主存储器。 而CPU计算的时候不能直接访问硬盘的数据，但是可以直接访问内存的里的数据。</p>
+<h2 id="2-内存的基本结构"><a href="#2-内存的基本结构" class="headerlink" title="2.内存的基本结构"></a>2.内存的基本结构</h2><p>内存也是存储介质，内存里存放的数据其实也是只是存放0或者1这两个二进制数字，所以可以内存里有海量的小格子，每1个格子是1个bit，小格子里面就只能存放0或1。 那么如果要表示数值255需要几个格子来放呢？ 根据二级制算法就是用8个格子，每个格子都是1，来表示255. 计算机规定8bit=1byte 就是1字节=8位(比特)。</p>
+<p>内存的大小就根据格子的多少来进行计算的。</p>
+<p>下面图片就表示一个8byte大小的内存</p>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6c1365d8fbf14baf8674db013c713d04~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" alt="image.png"></p>
+<p>例如一个4GB的内存到底有多少格子呢？ 那就将4GB转换为bit就可以了 4GB = 2^2 GB = 2^12 MB = 2^22 KB = 2^32 byte = 2^35 bit</p>
+<p>也就是4GB的内存有 2^35 个格子。</p>
+<p>如果每一个格子一个地址的话？那么要想全部都访问4GB的内存就需要 35位，32位是不够的。</p>
+<p>那么32位操作系统是怎么做到可以访问4GB内存的呢？</p>
+<p><strong>实际上内存是把8个bit排成1组， 每1组成为1个单位， 大小是1byte(字节）， cpu每一次只能访问1个byte， 而不能单独去访问具体的1个小格子(bit). 1个byte字节就是内存的最小的IO单位.</strong></p>
+<h2 id="3-内存地址的概念"><a href="#3-内存地址的概念" class="headerlink" title="3.内存地址的概念"></a>3.内存地址的概念</h2><p>既然内存的最小IO单位是字节byte，那么我们其实不需要为每一个格子也就是每一bit去分配地址了，而是按照8个bit为一组，也就是一个字节分配一个地址。</p>
+<p>其实计算机操作系统会给内存每1个字节分配1个内存地址, cpu只需要知道某个数据类型的地址, 就可以直接去到读影的内存位置去提取数据了。</p>
+<h1 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h1><p>明白了上面的道理， 我们再算一下，其实32位表示 2^32 个地址，而每一个地址是指向的是 8bit为一组的 byte ，所以要算到寻址的话，就要在乘以8 ，也就是 2^35 个bit，这样再换算为GB就是 4GB了。</p>
+<p>到此终于明白了4GB是怎么算出来的了，原来 “32位操作系统” 中的“位”并不是 内存中的“bit”的概念，对应到内存中其实是“字节byte”，所以才有了 2^32 = 4GB 的说明法</p>
+<p>寻址，是指计算机寻找指定的地址单元（一个地址单元可能8位，可能32位，甚至你可以定义为1M）。32位寻址容量为4G，指的是可以寻找4G个地址（约40亿个地址单元）。如果内存设计为一个地址1字节，那么“32位CPU最多支持4G内存”；如果设计为8字节，那么“32位CPU最多支持32G内存”，随着地址单元的扩大，可能会造成内存浪费，例如8字节地址单元，对于4字节数据而言，会浪费4字节空间(例如jvm指针压缩)。</p>
+<p>*寻址空间大大小不是指存储空间有多大，是指能寻找多少个地址。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/7074538808259117064">原文链接</a></li>
+</ul>
 
                 
             </div>
@@ -562,7 +507,7 @@ tcp_retries2 <span class="token operator">-</span> INTEGER
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://dd-smile.github.io/2024/04/28/tcp-chong-chuan-ci-shu-yu-getsockopt-wei-he-wu-fa-ji-shi-gan-zhi-lian-jie-duan-kai/">http://dd-smile.github.io/2024/04/28/tcp-chong-chuan-ci-shu-yu-getsockopt-wei-he-wu-fa-ji-shi-gan-zhi-lian-jie-duan-kai/</a>
+                    <a href="http://dd-smile.github.io/2024/06/25/32-wei-cpu-wei-shi-me-zhi-zhi-chi-zui-da-4g-nei-cun/">http://dd-smile.github.io/2024/06/25/32-wei-cpu-wei-shi-me-zhi-zhi-chi-zui-da-4g-nei-cun/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -600,8 +545,8 @@ tcp_retries2 <span class="token operator">-</span> INTEGER
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/basis-of-computer-engineering/">
-                                    <span class="chip bg-color">basis of computer engineering</span>
+                                <a href="/tags/Linux/">
+                                    <span class="chip bg-color">Linux</span>
                                 </a>
                             
                         </div>
@@ -645,9 +590,10 @@ tcp_retries2 <span class="token operator">-</span> INTEGER
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2024/06/25/32-wei-cpu-wei-shi-me-zhi-zhi-chi-zui-da-4g-nei-cun/">
                     <div class="card-image">
@@ -665,9 +611,9 @@ tcp_retries2 <span class="token operator">-</span> INTEGER
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-06-25
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-06-25
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -680,6 +626,7 @@ tcp_retries2 <span class="token operator">-</span> INTEGER
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -698,24 +645,24 @@ tcp_retries2 <span class="token operator">-</span> INTEGER
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2024/03/20/guan-yu-ba-diao-wang-xian-hou-tcp-lian-jie-huan-zai-ma/">
+                <a href="/2024/04/28/tcp-chong-chuan-ci-shu-yu-getsockopt-wei-he-wu-fa-ji-shi-gan-zhi-lian-jie-duan-kai/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="关于拔掉网线后,TCP连接还在吗?">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="TCP重传次数与getsockopt为何无法及时感知连接断开">
                         
-                        <span class="card-title">关于拔掉网线后,TCP连接还在吗?</span>
+                        <span class="card-title">TCP重传次数与getsockopt为何无法及时感知连接断开</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            学府中学断线重连问题的深入思考
+                            MQTT离线消息引发的一次事故
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-03-20
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-04-28
                             </span>
                         <span class="publish-author">
                             

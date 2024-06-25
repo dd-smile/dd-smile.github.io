@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>32位CPU为什么只支持最大4G内存</title>
+      <link href="/2024/06/25/32-wei-cpu-wei-shi-me-zhi-zhi-chi-zui-da-4g-nei-cun/"/>
+      <url>/2024/06/25/32-wei-cpu-wei-shi-me-zhi-zhi-chi-zui-da-4g-nei-cun/</url>
+      
+        <content type="html"><![CDATA[<h2 id="32位CPU为什么只支持最大4G内存"><a href="#32位CPU为什么只支持最大4G内存" class="headerlink" title="32位CPU为什么只支持最大4G内存"></a>32位CPU为什么只支持最大4G内存</h2><h1 id="一、32位cpu为什么只支持最大4G内存？"><a href="#一、32位cpu为什么只支持最大4G内存？" class="headerlink" title="一、32位cpu为什么只支持最大4G内存？"></a>一、32位cpu为什么只支持最大4G内存？</h1><p>32位最大支持4G内存，到底是怎么算出来的？ 去网上搜索答案，大部分都会甩给一个公式  <strong>2^32 = 4GB</strong></p><p>我当时看到这个公式的时候，没太在意，后来我自己换算了一下，发现和我理解的不一样，我换算出来后不是4G而是512M也就是0.5G。</p><p>32位就可以表示有2的32次种情况，就表示可以指向2^32 个地址，而最大的数字就表示可以访问的内存最大的容量，再大了，由于地址表示不了，所以就无法使用了。所以我就按下面方法进行了换算：</p><p>2^32 bit = 2^29 byte = 2^19 KB = 2^9 MB = 2^-1 GB = 0.5 GB 这样一算就是32位最大只能寻址的范围就是 0.5GB啊 怎么算出是4GB呢？</p><h1 id="二、关于内存需要了解的知识"><a href="#二、关于内存需要了解的知识" class="headerlink" title="二、关于内存需要了解的知识"></a>二、关于内存需要了解的知识</h1><h2 id="1-内存的特性"><a href="#1-内存的特性" class="headerlink" title="1.内存的特性"></a>1.内存的特性</h2><p>内存是计算机系统的主存储器。 而CPU计算的时候不能直接访问硬盘的数据，但是可以直接访问内存的里的数据。</p><h2 id="2-内存的基本结构"><a href="#2-内存的基本结构" class="headerlink" title="2.内存的基本结构"></a>2.内存的基本结构</h2><p>内存也是存储介质，内存里存放的数据其实也是只是存放0或者1这两个二进制数字，所以可以内存里有海量的小格子，每1个格子是1个bit，小格子里面就只能存放0或1。 那么如果要表示数值255需要几个格子来放呢？ 根据二级制算法就是用8个格子，每个格子都是1，来表示255. 计算机规定8bit=1byte 就是1字节=8位(比特)。</p><p>内存的大小就根据格子的多少来进行计算的。</p><p>下面图片就表示一个8byte大小的内存</p><p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6c1365d8fbf14baf8674db013c713d04~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" alt="image.png"></p><p>例如一个4GB的内存到底有多少格子呢？ 那就将4GB转换为bit就可以了 4GB = 2^2 GB = 2^12 MB = 2^22 KB = 2^32 byte = 2^35 bit</p><p>也就是4GB的内存有 2^35 个格子。</p><p>如果每一个格子一个地址的话？那么要想全部都访问4GB的内存就需要 35位，32位是不够的。</p><p>那么32位操作系统是怎么做到可以访问4GB内存的呢？</p><p><strong>实际上内存是把8个bit排成1组， 每1组成为1个单位， 大小是1byte(字节）， cpu每一次只能访问1个byte， 而不能单独去访问具体的1个小格子(bit). 1个byte字节就是内存的最小的IO单位.</strong></p><h2 id="3-内存地址的概念"><a href="#3-内存地址的概念" class="headerlink" title="3.内存地址的概念"></a>3.内存地址的概念</h2><p>既然内存的最小IO单位是字节byte，那么我们其实不需要为每一个格子也就是每一bit去分配地址了，而是按照8个bit为一组，也就是一个字节分配一个地址。</p><p>其实计算机操作系统会给内存每1个字节分配1个内存地址, cpu只需要知道某个数据类型的地址, 就可以直接去到读影的内存位置去提取数据了。</p><h1 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h1><p>明白了上面的道理， 我们再算一下，其实32位表示 2^32 个地址，而每一个地址是指向的是 8bit为一组的 byte ，所以要算到寻址的话，就要在乘以8 ，也就是 2^35 个bit，这样再换算为GB就是 4GB了。</p><p>到此终于明白了4GB是怎么算出来的了，原来 “32位操作系统” 中的“位”并不是 内存中的“bit”的概念，对应到内存中其实是“字节byte”，所以才有了 2^32 = 4GB 的说明法</p><p>寻址，是指计算机寻找指定的地址单元（一个地址单元可能8位，可能32位，甚至你可以定义为1M）。32位寻址容量为4G，指的是可以寻找4G个地址（约40亿个地址单元）。如果内存设计为一个地址1字节，那么“32位CPU最多支持4G内存”；如果设计为8字节，那么“32位CPU最多支持32G内存”，随着地址单元的扩大，可能会造成内存浪费，例如8字节地址单元，对于4字节数据而言，会浪费4字节空间(例如jvm指针压缩)。</p><p>*寻址空间大大小不是指存储空间有多大，是指能寻找多少个地址。</p><ul><li><a href="https://juejin.cn/post/7074538808259117064">原文链接</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 操作系统 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>TCP重传次数与getsockopt为何无法及时感知连接断开</title>
       <link href="/2024/04/28/tcp-chong-chuan-ci-shu-yu-getsockopt-wei-he-wu-fa-ji-shi-gan-zhi-lian-jie-duan-kai/"/>
       <url>/2024/04/28/tcp-chong-chuan-ci-shu-yu-getsockopt-wei-he-wu-fa-ji-shi-gan-zhi-lian-jie-duan-kai/</url>
