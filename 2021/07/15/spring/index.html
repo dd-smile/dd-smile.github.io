@@ -1002,49 +1002,7 @@ stu<span class="token punctuation">.</span><span class="token function">setAge</
     String <span class="token function">doSome</span><span class="token punctuation">(</span>String name<span class="token punctuation">,</span><span class="token keyword">int</span> age<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>切面类</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>bjpowernode<span class="token punctuation">.</span>s01<span class="token punctuation">;</span>
 
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>aspectj<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Aspect<span class="token punctuation">;</span>
-<span class="token keyword">import</span> org<span class="token punctuation">.</span>aspectj<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Before<span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">/**
- * 此类为切面类, 包含各种切面方法
- *
- */</span>
-<span class="token annotation punctuation">@Aspect</span> <span class="token comment" spellcheck="true">//交给Aspect的框架去识别切面类</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyAspect</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">/**
-     * 所有的切面功能都要放在切面方法来实现的
-     * 可以将各种切面都在此类进行开发
-     *
-     * 前置通知的切面方法的规范
-     * 1)访问权限是public
-     * 2)方法的返回值是void
-     * 3)方法名称自定义
-     * 4)方法没有参数, 如果有也只能是JoinPoint类型
-     * 5)必须使用@Before注解来声明切入的时机是前切功能和切入点
-     *   参数:value  指定切入点表达式
-     */</span>
-    <span class="token annotation punctuation">@Before</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"execution(public String com.bjpowernode.s01.SomeServiceImpl.doSome(String,int ))"</span><span class="token punctuation">)</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">myBefore</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"切面方法中的前置通知功能实现............"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-
-<span class="token punctuation">}</span>
-</code></pre>
-<h5 id="2-AspectJ框架切换JDK动态代理和CGLib动态代理"><a href="#2-AspectJ框架切换JDK动态代理和CGLib动态代理" class="headerlink" title="2.AspectJ框架切换JDK动态代理和CGLib动态代理"></a>2.AspectJ框架切换JDK动态代理和CGLib动态代理</h5><pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!--applicationContext.xml配置文件中--></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">aop:</span>aspectj-autoproxy</span> <span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">aop:</span>aspectj-autoproxy</span><span class="token punctuation">></span></span>  ===>默认是JDK动态代理,取出来时必须使用接口类型
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">aop:</span>aspectj-autoproxy</span> <span class="token attr-name">proxy-target-class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">aop:</span>aspectj-autoproxy</span><span class="token punctuation">></span></span>  ==>设置为CGLib子类代理,可以使用接口和实现类来接
-</code></pre>
-<p><strong>使用接口来接,永远不出错.</strong></p>
-<h3 id="后置通知"><a href="#后置通知" class="headerlink" title="后置通知"></a>后置通知</h3><blockquote>
-<p>AspectJ的后置通知@AfterReturning</p>
-<p>可以得到业务方法的返回值</p>
-</blockquote>
-<p><img src="https://img-blog.csdnimg.cn/9b4d23e728e04d9087f1274d2da4ea67.png" alt="后置通知"></p>
-<h4 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h4>
                 
             </div>
             <hr/>
