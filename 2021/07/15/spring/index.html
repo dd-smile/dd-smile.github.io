@@ -744,26 +744,6 @@ stu<span class="token punctuation">.</span><span class="token function">setAge</
 </code></pre>
 </li>
 </ul>
-<h2 id="AOP-面向切面编程"><a href="#AOP-面向切面编程" class="headerlink" title="AOP - 面向切面编程"></a>AOP - 面向切面编程</h2><blockquote>
-<p>就是将切面提取出来,单独开发,在需要调用的方法中通过动态代理的方式进行织入.</p>
-</blockquote>
-<p>面向切面编程只是面向对象编程的一种补充. 用AOP减少重复代码, 专注业务实现</p>
-<p><img src="https://img-blog.csdnimg.cn/1f3ff7177b2245249364280b9140e13b.png" alt="AOP"></p>
-<h2 id="手写AOP框架"><a href="#手写AOP框架" class="headerlink" title="手写AOP框架"></a>手写AOP框架</h2><h3 id="版本一-业务和切面紧耦合在一起-没有拆分"><a href="#版本一-业务和切面紧耦合在一起-没有拆分" class="headerlink" title="版本一 : 业务和切面紧耦合在一起, 没有拆分"></a>版本一 : 业务和切面紧耦合在一起, 没有拆分</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
- * 图书购买业务和事务切面耦合在一起
- */</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">BookServiceImpl</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">buy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">try</span> <span class="token punctuation">{</span>
-            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"事务开启..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"图书购买业务功能实现..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"事务提交..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"事务回滚..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
 
                 
             </div>
