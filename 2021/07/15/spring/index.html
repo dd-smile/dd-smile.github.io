@@ -597,31 +597,6 @@ stu<span class="token punctuation">.</span><span class="token function">setAge</
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bean</span><span class="token punctuation">></span></span>
 </code></pre>
 </li>
-<li><p>使用构造方法注入</p>
-<ol>
-<li><p>使用构造方法的参数名称进行注入值</p>
-<p>​    创建一个学校类</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">School</span> <span class="token punctuation">{</span>
-    <span class="token keyword">private</span> String name<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> String address<span class="token punctuation">;</span>
-
-    <span class="token keyword">public</span> <span class="token function">School</span><span class="token punctuation">(</span>String name<span class="token punctuation">,</span> String address<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>address <span class="token operator">=</span> address<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> String <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token string">"School{"</span> <span class="token operator">+</span>
-                <span class="token string">"name='"</span> <span class="token operator">+</span> name <span class="token operator">+</span> <span class="token string">'\''</span> <span class="token operator">+</span>
-                <span class="token string">", address='"</span> <span class="token operator">+</span> address <span class="token operator">+</span> <span class="token string">'\''</span> <span class="token operator">+</span>
-                <span class="token string">'}'</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
-</li>
-</ol>
-</li>
 </ul>
 
                 
